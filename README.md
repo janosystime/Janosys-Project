@@ -58,12 +58,12 @@ Desenvolver uma página que permita interpretar e representar os dados do Censo 
 | Rank | Prioridade | User Stories                                                                                                                                                                             | Estimativa | Sprint |
 |:----:|:-----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------:|:------:|
 | 1    |ALTA        | Como secretário municipal de planejamento urbano, quero um site para planejar a melhor distribuição dos recursos financeiros a cada região.                                            | 8          | 1      |
-| 2    |ALTA        | Como secretário municipal de planejamento urbano, quero que o site contenha painéis de dados para planejar a melhor distribuição dos recursos financeiros a cada região.               | 6          | 1      |
-| 3    |MÉDIA       | Como secretário municipal de planejamento urbano, quero que os painéis contenham filtros por região para planejar a melhor distribuição dos recursos financeiros a cada região.        | 6          | 1      |
-| 4    |MÉDIA       | Como secretário municipal de planejamento urbano, quero que os painéis contenham filtros por faixa etária para planejar a melhor distribuição dos recursos financeiros a cada região.  | 8          | 2      |
-| 5    |MÉDIA       | Como secretário municipal de planejamento urbano,  quero um site que apresente gráficos dinâmicos para mensurar a demanda de atendimento à população idosa, para ampliar as unidades especializadas no atendimento geriátrico. | 8          | 2      |
-| 6    |MÉDIA       | Como secretário municipal de planejamento urbano, quero que o site disponha painéis mensurando a demanda infantil, para construir creches em regiões com crescimento populacional infantil. | 6          | 2      |
-| 7    |MÉDIA       | Como secretário municipal de planejamento urbano, quero que o site apresente gráficos dinâmicos mensurando as regiões com maior crescimento populacional, para ampliar os horários e linhas de transporte público nos bairros que mais necessitam. | 6          | 3      |
+| 2    |ALTA        | Como secretário municipal de planejamento urbano, quero que painéis de dados para planejar a melhor distribuição dos recursos financeiros a cada região.               | 6          | 1      |
+| 3    |MÉDIA       | Como secretário municipal de planejamento urbano, quero painéis com filtros por região para planejar a melhor distribuição dos recursos financeiros a cada região.        | 6          | 1      |
+| 4    |MÉDIA       | Como secretário municipal de planejamento urbano, quero painéis com filtros por faixa etária para planejar a melhor distribuição dos recursos financeiros a cada região.  | 8          | 2      |
+| 5    |MÉDIA       | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos para mensurar a demanda de atendimento à população idosa, para ampliar as unidades especializadas no atendimento geriátrico. | 8          | 2      |
+| 6    |MÉDIA       | Como secretário municipal de planejamento urbano, quero painéis mensurando a demanda infantil, para construir creches em regiões com crescimento populacional infantil. | 6          | 2      |
+| 7    |MÉDIA       | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos mensurando as regiões com maior crescimento populacional, para ampliar os horários e linhas de transporte público nos bairros que mais necessitam. | 6          | 3      |
 ---
 
 ## 👷 Time <a id="time"></a>

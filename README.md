@@ -60,7 +60,7 @@ Desenvolver uma página que permita interpretar e representar os dados do Censo 
 <div align="center">
 <br>
 
-| Rank | Título | Prioridade | User Stories | Estimativa | 
+| Rank |   Título   |   Prioridade   |   User Stories   |   Estimativa   | 
 | --- | --- | --- | --- | 
 | 1 | ALTA | Criação do site | Como secretário municipal de planejamento urbano, quero um site para planejar a melhor distribuição dos recursos financeiros a cada região. | 8 |
 | 2 | ALTA | Painéis de dados | Como secretário municipal de planejamento urbano, quero que painéis de dados para planejar a melhor distribuição dos recursos financeiros a cada região. | 6 |
@@ -87,6 +87,8 @@ Desenvolver uma página que permita interpretar e representar os dados do Censo 
 | Rank | Título | Prioridade | User Stories | Estimativa | 
 | --- | --- | --- | --- | 
 | 7 | MÉDIA | Mensurar região com maior crescimento populacional | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos mensurando as regiões com maior crescimento populacional, para ampliar os horários e linhas de transporte público nos bairros que mais necessitam. | 6 |
+</details>
+
 ---
 
 ## 👷 Time <a id="time"></a>

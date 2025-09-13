@@ -55,38 +55,45 @@ Desenvolver uma página que permita interpretar e representar os dados do Censo 
 
 ## 📋 Backlog do Produto <a id="backlog"></a>
 **:link: Clique abaixo para visualizar o backlog de cada sprint.**
+
 <details>
 <summary> Backlog - Sprint 1 </summary>
 <div align="center">
 <br>
 
-| Rank |   Título   |   Prioridade   |   User Stories   |   Estimativa   | 
-| --- | --- | --- | --- | 
-| 1 | ALTA | Criação do site | Como secretário municipal de planejamento urbano, quero um site para planejar a melhor distribuição dos recursos financeiros a cada região. | 8 |
-| 2 | ALTA | Painéis de dados | Como secretário municipal de planejamento urbano, quero que painéis de dados para planejar a melhor distribuição dos recursos financeiros a cada região. | 6 |
-| 3 | MÉDIA | Filtro por região | Como secretário municipal de planejamento urbano, quero painéis com filtros por região para planejar a melhor distribuição dos recursos financeiros a cada região. | 6 |
+| Rank | Título             | Prioridade | User Stories                                                                                                                                                                                                                   | Estimativa |
+|:----:|:-------------------|:----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------:|
+|  1   | Criação do site     |    ALTA    | Como secretário municipal de planejamento urbano, quero um site para planejar a melhor distribuição dos recursos financeiros a cada região.                                                                                     |     8      |
+|  2   | Painéis de dados    |    ALTA    | Como secretário municipal de planejamento urbano, quero que painéis de dados para planejar a melhor distribuição dos recursos financeiros a cada região.                                                                        |     6      |
+|  3   | Filtro por região   |   MÉDIA    | Como secretário municipal de planejamento urbano, quero painéis com filtros por região para planejar a melhor distribuição dos recursos financeiros a cada região.                                                              |     6      |
 
+</div>
 </details>
+
 <details>
 <summary> Backlog - Sprint 2 </summary>
 <div align="center">
 <br>
-      
-| Rank | Título | Prioridade | User Stories | Estimativa | 
-| --- | --- | --- | --- | 
-| 4 | MÉDIA | Filtro por faixa etária | Como secretário municipal de planejamento urbano, quero painéis com filtros por faixa etária para planejar a melhor distribuição dos recursos financeiros a cada região. | 8 |
-| 5 | MÉDIA | Mensurar população idosa | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos para mensurar a demanda de atendimento à população idosa, para ampliar as unidades especializadas no atendimento geriátrico. | 8 |
-| 6 | MÉDIA | Mensurar população infantil | Como secretário municipal de planejamento urbano, quero painéis mensurando a demanda infantil, para construir creches em regiões com crescimento populacional infantil. | 6 |
 
+| Rank | Título                  | Prioridade | User Stories                                                                                                                                                                                                                   | Estimativa |
+|:----:|:-------------------------|:----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------:|
+|  4   | Filtro por faixa etária  |   MÉDIA    | Como secretário municipal de planejamento urbano, quero painéis com filtros por faixa etária para planejar a melhor distribuição dos recursos financeiros a cada região.                                                       |     8      |
+|  5   | Mensurar população idosa |   MÉDIA    | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos para mensurar a demanda de atendimento à população idosa, para ampliar as unidades especializadas no atendimento geriátrico.                        |     8      |
+|  6   | Mensurar população infantil |  MÉDIA  | Como secretário municipal de planejamento urbano, quero painéis mensurando a demanda infantil, para construir creches em regiões com crescimento populacional infantil.                                                          |     6      |
+
+</div>
 </details>
+
 <details>
 <summary> Backlog - Sprint 3 </summary>
 <div align="center">
 <br>
 
-| Rank | Título | Prioridade | User Stories | Estimativa | 
-| --- | --- | --- | --- | 
-| 7 | MÉDIA | Mensurar região com maior crescimento populacional | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos mensurando as regiões com maior crescimento populacional, para ampliar os horários e linhas de transporte público nos bairros que mais necessitam. | 6 |
+| Rank | Título                                      | Prioridade | User Stories                                                                                                                                                                                                                   | Estimativa |
+|:----:|:--------------------------------------------|:----------:|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:----------:|
+|  7   | Mensurar região com maior crescimento populacional |  MÉDIA   | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos mensurando as regiões com maior crescimento populacional, para ampliar os horários e linhas de transporte público nos bairros que mais necessitam.  |     6      |
+
+</div>
 </details>
 
 ---

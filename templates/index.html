@@ -27,10 +27,14 @@
           src="images/bandeira.jpg"
           alt="Bandeira de São José dos Campos"
           width="80"
+          id="bandeira"
         />
       </header>
 
       <main class="container my-4 flex-grow-1">
+        <div class="graphic-card">
+          <img width="95%" src="images/graph.png" alt="graph.png" id="graph-mock">
+        </div>
         <div class="stats-cards d-flex flex-wrap justify-content-center mb-4">
           <div class="card-stat text-center">
             <h4>120.000</h4>
@@ -46,7 +50,7 @@
           </div>
         </div>
 
-        <section class="col-md-9 mx-auto border-start ps-4">
+        <section class="col-md-12 mx-auto border-start ps-4">
           <h3 class="text-center text-pmsjc mb-4">
             Dados Demográficos de População (Região x Faixa Etária)
           </h3>
@@ -78,7 +82,9 @@
       document.querySelectorAll(".progress").forEach((bar) => {
         bar.addEventListener("mouseenter", (e) => {
           const tooltip = document.createElement("div");
+
           tooltip.className = "tooltip-custom";
+
           tooltip.innerText = bar.getAttribute("data-tooltip");
           document.body.appendChild(tooltip);
 

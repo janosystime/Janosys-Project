@@ -10,7 +10,7 @@
     />
     <link rel="stylesheet" href="style.css" />
   </head>
-  <body>
+  <body id="topo">
     <div class="page-wrapper">
       <header class="header-pmsjc">
         <img
@@ -21,7 +21,9 @@
 
         <div class="header-text">
           <h1>Prefeitura Municipal de São José dos Campos</h1>
-          <p style="text-align: center;">Compromisso com a cidade e seus cidadãos</p>
+          <p style="text-align: center">
+            Compromisso com a cidade e seus cidadãos
+          </p>
         </div>
         <img
           src="images/bandeira.jpg"
@@ -33,7 +35,12 @@
 
       <main class="container my-4 flex-grow-1">
         <div class="graphic-card">
-          <img width="95%" src="images/graph.png" alt="graph.png" id="graph-mock">
+          <img
+            width="95%"
+            src="images/graph.png"
+            alt="graph.png"
+            id="graph-mock"
+          />
         </div>
         <div class="stats-cards d-flex flex-wrap justify-content-center mb-4">
           <div class="card-stat text-center">
@@ -42,11 +49,11 @@
           </div>
           <div class="card-stat text-center">
             <h4>45%</h4>
-            <p>População Jovem</p>
+            <p>Crianças (0-5)</p>
           </div>
           <div class="card-stat text-center">
             <h4>55%</h4>
-            <p>População Adulta</p>
+            <p>Idosos (60+)</p>
           </div>
         </div>
 
@@ -71,6 +78,12 @@
           </div>
         </section>
       </main>
+
+      <button
+        class="btn-voltar-topo"
+        onclick="window.scrollTo({top: 0, behavior: 'smooth'});"
+      >
+      </button>
 
       <footer class="footer-pmsjc text-center p-3">
         <span class="fw-bold">PMSJC</span> |

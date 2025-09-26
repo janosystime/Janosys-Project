@@ -48,6 +48,9 @@ Desenvolver uma página que permita interpretar e representar os dados do Censo 
 </a>
 <a href="https://pandas.pydata.org" target="_blank" rel="">
   <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white" alt="Pandas" width="100px">
+<a href="https://plotly.com" target="_blank" rel="">
+  <img src="https://img.shields.io/badge/Plotly-3F4F75?style=flat&logo=plotly&logoColor=white" alt="Plotly" width="85px">
+</a>      
 </a>
 </h4>
 

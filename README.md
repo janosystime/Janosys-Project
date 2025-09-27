@@ -31,25 +31,25 @@ Desenvolver uma página que permita interpretar e representar os dados do Censo 
 <a href="https://www.python.org" target="_blank" rel="">
   <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python" width="100px">
 </a>
-<a href="https://flask.palletsprojects.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" width="100px">
-</a>
-<a href="https://www.mysql.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" width="100px">
-</a>
-<a href="https://www.atlassian.com/software/jira" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=jira&logoColor=white" alt="Jira" width="70px">
-</a>
-<a href="https://github.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub" width="100px">
-</a>
-<a href="https://www.figma.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" alt="Figma" width="90px">
-</a>
 <a href="https://pandas.pydata.org" target="_blank" rel="">
   <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white" alt="Pandas" width="100px">
 <a href="https://plotly.com" target="_blank" rel="">
   <img src="https://img.shields.io/badge/Plotly-3F4F75?style=flat&logo=plotly&logoColor=white" alt="Plotly" width="85px">
+<a href="https://flask.palletsprojects.com" target="_blank" rel="">
+  <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" width="100px">
+</a>
+<a href="https://github.com" target="_blank" rel="">
+  <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub" width="100px">
+</a>
+ <a href="https://colab.research.google.com" target="_blank" rel="">
+  <img src="https://img.shields.io/badge/google_colab-F9AB00?style=flat&logo=google-colab&logoColor=white" alt="Google Colab" width="150px">
+</a>      
+<a href="https://www.figma.com" target="_blank" rel="">
+  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" alt="Figma" width="90px">
+<a href="https://www.atlassian.com/software/jira" target="_blank" rel="">
+  <img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=jira&logoColor=white" alt="Jira" width="70px">
+</a>
+</a>
 </a>      
 </a>
 </h4>

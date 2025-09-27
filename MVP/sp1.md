@@ -102,12 +102,6 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 ## 📈 Métricas de Validação <a id="metricas"></a>
 
-- Toda a equipe teve contato com o MVP
-- Feedback positivo quanto à usabilidade e à interface do site
-- Feedback negativo, em adequação, quanto a melhor espansividade (mobile) do gráfico
-- Precisão aos dados oficiais extraídos de fontes do IBGE e da Prefeitura
-- Precisão das informações por região
-
 | Métrica                                |       Valor sugerido        | Valor alcançado |
 | -------------------------------------- | :---------------------------: | ---------------: |
 | 👥 Contato da equipe com o MVP         | 100% ✅ / 80–99% ⚠️ / <80% ❌ | **100% ✅**  |

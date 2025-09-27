@@ -102,22 +102,15 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 ## 📈 Métricas de Validação <a id="metricas"></a>
 
-- Toda a equipe teve contato com o MVP
-- Feedback positivo quanto à usabilidade e à interface do site
-- Feedback negativo, em adequação, quanto a melhor espansividade (mobile) do gráfico
-- Precisão aos dados oficiais extraídos de fontes do IBGE e da Prefeitura
-- Precisão das informações por região
+| Métrica                                |        Valor sugerido         | Valor alcançado |
+| -------------------------------------- | :---------------------------: | --------------: |
+| 👥 Contato da equipe com o MVP         | 100% ✅ / 80–99% ⚠️ / <80% ❌ |     **100% ✅** |
+| 👍 Feedback positivo sobre usabilidade | ≥80% ✅ / 60–79% ⚠️ / <60% ❌ |      **83% ✅** |
+| 📱 Feedback negativo sobre mobile      | ≤20% ✅ / 21–40% ⚠️ / >40% ❌ |      **66% ❌** |
+| 📊 Precisão dos dados oficiais         | ≥80% ✅ / 80–89% ⚠️ / <80% ❌ |     **100% ✅** |
+| 🌍 Precisão por região                 | ≥80% ✅ / 80–89% ⚠️ / <80% ❌ |      **87% ✅** |
 
-| Métrica                                |       Valor sugerido        | Valor alcançado |
-| -------------------------------------- | :---------------------------: | ---------------: |
-| 👥 Contato da equipe com o MVP         | 100% ✅ / 80–99% ⚠️ / <80% ❌ | **100% ✅**  |
-| 👍 Feedback positivo sobre usabilidade | ≥80% ✅ / 60–79% ⚠️ / <60% ❌ | **83% ✅**   |
-| 📱 Feedback negativo sobre mobile      | ≤20% ✅ / 21–40% ⚠️ / >40% ❌ | **66% ❌**  |
-| 📊 Precisão dos dados oficiais         | ≥80% ✅ / 80–89% ⚠️ / <80% ❌ | **100% ✅**   |
-| 🌍 Precisão por região                 | ≥80% ✅ / 80–89% ⚠️ / <80% ❌ | **87% ✅**  |
-
-8
----
+## 8
 
 ## 🚀 Próximos Passos <a id="proximo"></a>
 
@@ -130,11 +123,11 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 ## 📂 Anexos / Evidências <a id="anexos"></a>
 
 - Prints de tela / Protótipo<br><br>
-![Print 1](../Documentos/assets/sp1/MVP.print.1.jpg)
-![Print 2](../Documentos/assets/sp1/MVP.print.2.jpg)<br><br>
+  ![Print 1](../Documentos/assets/sp1/MVP.print.1.jpg)
+  ![Print 2](../Documentos/assets/sp1/MVP.print.2.jpg)<br><br>
 
 - Vídeo (MVP)<br>
-[Assista ao vídeo](../Documentos/assets/sp1/MVP.video.mp4)
+  ![MVP GIF](../Documentos/assets/sp1/MVP.gif)
 
 ---
 

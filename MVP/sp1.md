@@ -87,37 +87,54 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 | Sprint | Entregas Principais |    Status    |
 | :----: | :-----------------: | :----------: |
-|   01   |   Criação do site   | Em andamento |
+|   01   |   Criação do site   | ✅ Concluído |
 
 ---
 
 ## 📊 Critérios de Aceitação <a id="criterios"></a>
 
-- O MVP permite que o usuário identifique a região com maior crescimento populacional na cidade, filtrar por região e faixa etária.
+- O MVP permite que o usuário identifique a região com maior crescimento populacional na cidade
+- Permite filtar os dados por região e faixa etária
+- Dados apresentados correspondem aos números oficiais
+- Interface clara e de fácil navegabilidade
 
 ---
 
 ## 📈 Métricas de Validação <a id="metricas"></a>
 
-- Número de usuários que testaram o MVP
-- Feedback qualitativo (positivo/negativo)
-- Indicadores de negócio (exemplo: % de adesão, redução de custo, etc.)
+- Toda a equipe teve contato com o MVP
+- Feedback positivo quanto à usabilidade e à interface do site
+- Feedback negativo, em adequação, quanto a melhor espansividade (mobile) do gráfico
+- Precisão aos dados oficiais extraídos de fontes do IBGE e da Prefeitura
+- Precisão das informações por região
 
+| Métrica                                |       Valor sugerido        | Valor alcançado |
+| -------------------------------------- | :---------------------------: | ---------------: |
+| 👥 Contato da equipe com o MVP         | 100% ✅ / 80–99% ⚠️ / <80% ❌ | **100% ✅**  |
+| 👍 Feedback positivo sobre usabilidade | ≥80% ✅ / 60–79% ⚠️ / <60% ❌ | **83% ✅**   |
+| 📱 Feedback negativo sobre mobile      | ≤20% ✅ / 21–40% ⚠️ / >40% ❌ | **66% ❌**  |
+| 📊 Precisão dos dados oficiais         | ≥80% ✅ / 80–89% ⚠️ / <80% ❌ | **100% ✅**   |
+| 🌍 Precisão por região                 | ≥80% ✅ / 80–89% ⚠️ / <80% ❌ | **87% ✅**  |
+
+8
 ---
 
 ## 🚀 Próximos Passos <a id="proximo"></a>
 
-- Melhorias planejadas após feedback
-- Ajustes de usabilidade
-- Expansão de funcionalidades para próximo incremento
+- Ajustar UI/UX conforme feedback
+- Modelagem do Banco de Dados
+- Desenvolver os filtros por Creches e Casa do Idoso
 
 ---
 
 ## 📂 Anexos / Evidências <a id="anexos"></a>
 
-- Prints de tela
-- Fluxos ou protótipos
-- Vídeo (MVP)
+- Prints de tela / Protótipo<br><br>
+![Print 1](../Documentos/assets/sp1/MVP.print.1.jpg)
+![Print 2](../Documentos/assets/sp1/MVP.print.2.jpg)<br><br>
+
+- Vídeo (MVP)<br>
+[Assista ao vídeo](../Documentos/assets/sp1/MVP.video.mp4)
 
 ---
 

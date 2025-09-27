@@ -127,7 +127,7 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
   ![Print 2](../Documentos/assets/sp1/MVP.print.2.jpg)<br><br>
 
 - Vídeo (MVP)<br>
-  [Assista ao vídeo](../Documentos/assets/sp1/MVP.gif)
+  ![MVP GIF](../Documentos/assets/sp1/MVP.gif)
 
 ---
 

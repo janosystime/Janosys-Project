@@ -78,9 +78,9 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 
 |      Sprint       |  Previsão  |    Status    |     Histórico     |
 | :---------------: | :--------: | :----------: | :---------------: |
-|        01         | 01/10/2025 | em andamento | [MVP](MVP/sp1.md) |
-|        02         | 29/10/2025 |   a fazer    |         -         |
-|        03         | 06/11/2025 |   a fazer    |         -         |
+|        01         | 28/09/2025 |  Finalizada  | [MVP](MVP/sp1.md) |
+|        02         | 26/10/2025 |   a fazer    |         -         |
+|        03         | 23/11/2025 |   a fazer    |         -         |
 | Feira de Soluções | 04/12/2025 |   a fazer    |         -         |
 
 ---
@@ -112,6 +112,43 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
   </ul>
  
 ---
+---
+
+## 📦 Manual de Instalação
+
+### Pré-requisitos
+
+Antes de iniciar a instalação, certifique-se de que você tenha os seguintes itens instalados na sua máquina:
+
+- [Python 3.10+](https://www.python.org/downloads/)
+- [MySQL Server](https://dev.mysql.com/downloads/mysql/)
+- [Git](https://git-scm.com/)
+- [pip](https://pip.pypa.io/en/stable/)
+- [Virtualenv (opcional, mas recomendado)](https://virtualenv.pypa.io/en/latest/)
+- Navegador web (Google Chrome, Firefox, etc.)
+- Bibliotecas Python:
+  - [`Flask`](https://flask.palletsprojects.com/)
+  - [`Pandas`](https://pandas.pydata.org/)
+  - [`Plotly`](https://plotly.com/python/)
+
+---
+
+### 🚀 Passo a Passo para Rodar Localmente (MVP - Sprint 1)
+
+#### 1. Clone o repositório
+
+```bash
+git clone https://github.com/janosystime/Janosys-Project.git
+cd Janosys-Project
+```
+
+---
+#### 2. Instale as dependências iniciais do projeto
+
+```bash
+pip install flask pandas plotly
+```
+---
 
 ## 👷 Time <a id="time"></a>
 
@@ -125,3 +162,4 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 |    Pedro Lucas    |   Dev Team    | <a href="https://github.com/pedrodevroot"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>  |     <a href="https://www.linkedin.com/in/pedro-lucas-76870237b/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">     |
 
 ---
+

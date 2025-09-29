@@ -1,8 +1,9 @@
 import pandas as pd
 import plotly.express as px
 
-# Carregar os dados do CSV
+# Carregar os dados do CSV e retirar linhas sem valores
 df = pd.DataFrame(pd.read_csv('https://github.com/janosystime/Janosys-Project/blob/main/bd/mockado_df.csv?raw=true', encoding='latin1', sep=';'))
+df = df.dropna()
 
 # Exibir as primeiras linhas e informações do DataFrame
 df.head()

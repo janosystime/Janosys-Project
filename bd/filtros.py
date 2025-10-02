@@ -15,7 +15,18 @@ totalRegioes_df.head()
 
 
 # Criar o gráfico de barras
-fig = px.bar(totalRegioes_df, x='Regiao', y=['CENSO 2010', 'CENSO 2022'], title='População por Região (2010 vs 2022)',labels={'Diferença': 'Diferença de População', 'Regiao': 'Região'}, barmode='group', text_auto='.2s', color_discrete_sequence=['#A8C8FF','#FFF5B1'])
+fig = px.bar(
+    totalRegioes_df, 
+    x='Regiao', 
+    y=['CENSO 2010', 'CENSO 2022'], 
+    title='População por Região (2010 vs 2022)',
+    labels={'Diferença': 'Diferença de População', 'Regiao': 'Região'},
+    barmode='group', 
+    text_auto='.2s', 
+    color_discrete_sequence=['#A8C8FF','#FFF5B1'])
+
 fig.update_traces(textfont_size=12, textangle=0, textposition="outside", cliponaxis=False)
+
+fig.update_layout(showlegend=False)
 
 fig.write_html('TotalRegioes.html')

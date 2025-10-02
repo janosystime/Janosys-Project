@@ -1,10 +1,3 @@
-:root {
-  --pmsjc-azul: #004d9d;
-  --pmsjc-vermelho: #e30613;
-  --pmsjc-preto: #222;
-  --pmsjc-branco: #fff;
-}
-
 html {
   scroll-behavior: smooth;
 }
@@ -13,7 +6,7 @@ body {
   margin: 0;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #cfe2f3;
-  color: var(--pmsjc-preto);
+  color: #222;
   line-height: 1.6;
   display: flex;
   flex-direction: column;
@@ -46,7 +39,7 @@ main {
 /* HEADER */
 .header-pmsjc {
   background: linear-gradient(180deg, #003366 0%, #cfe2f3 100%);
-  color: var(--pmsjc-branco);
+  color: #fff;
   padding: 30px 40px;
   display: flex;
   justify-content: space-between;
@@ -80,6 +73,7 @@ main {
   font-size: 2rem;
   font-weight: 900;
   margin: 0;
+  color: #fff;
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.55);
 }
 
@@ -91,7 +85,7 @@ main {
 
 /* SECTIONS */
 main section {
-  background: var(--pmsjc-branco);
+  background-color: #fff;
   padding: 30px;
   margin: 20px auto;
   border-radius: 15px;
@@ -107,7 +101,7 @@ main section:hover {
 
 /* TEXTOS */
 .text-pmsjc {
-  color: var(--pmsjc-azul);
+  color: #004d9d;
   font-weight: 800;
   font-size: 1.4rem;
   margin-bottom: 25px;
@@ -117,6 +111,7 @@ main section:hover {
 }
 
 /* PROGRESS BARS */
+/* PROGRESS BARS */
 .progress {
   height: 28px;
   border-radius: 14px;
@@ -124,25 +119,53 @@ main section:hover {
   background: #ddd;
   box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  cursor: pointer;
 }
 
 .progress-bar {
   font-size: 0.95rem;
   font-weight: 700;
-  color: var(--pmsjc-branco);
   display: flex;
   justify-content: center;
   align-items: center;
-  transition: width 0.6s ease;
+  transition: width 0.6s ease, color 0.3s ease;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  white-space: nowrap;
+  border-radius: 14px;
+  color: #fff;
+  background: linear-gradient(
+    90deg,
+    #002766,
+    #004d9d,
+    #b9dbff
+  ); /* gradiente azul animado */
+  background-size: 200% 100%;
+  animation: gradientBar 3s linear infinite;
 }
 
-.progress-bar.azul {
-  background: linear-gradient(90deg, var(--pmsjc-azul), #0066cc);
+.progress-bar.short {
+  color: #fff;
 }
 
-.progress-bar.vermelho {
-  background: linear-gradient(90deg, var(--pmsjc-vermelho), #ff3b3b);
+/* Gradiente animado continuamente */
+@keyframes gradientBar {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 200% 0%;
+  }
+}
+
+/* Destaque ao clicar */
+.progress.highlight .progress-bar {
+  box-shadow: 0 0 10px 3px #000000;
+}
+
+/* Hover leve na barra */
+.progress:hover {
+  transform: scale(1.02);
+  transition: transform 0.3s;
 }
 
 /* CARDS */
@@ -155,72 +178,103 @@ main section:hover {
 
 .card-stat {
   flex: 1 1 150px;
-  background: var(--pmsjc-branco);
+  background-color: #fff;
+  color: #222;
   padding: 20px;
   border-radius: 12px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-  transition: all 0.3s ease;
+  transition: all 0.4s ease;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeUp 0.6s ease forwards;
 }
 
-.card-stat:nth-child(1) {
-  animation-delay: 0.2s;
-}
-.card-stat:nth-child(2) {
-  animation-delay: 0.4s;
-}
-.card-stat:nth-child(3) {
-  animation-delay: 0.6s;
-}
-.card-stat:nth-child(4) {
-  animation-delay: 0.8s;
-}
-
 .card-stat:hover {
-  transform: translateY(-4px) scale(1.02);
+  transform: translateY(-5px) rotate(-1deg) scale(1.05);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
 }
 
 .card-stat h4 {
   font-size: 1.6rem;
-  color: var(--pmsjc-azul);
+  color: #004d9d;
 }
 
-/* GRÁFICO */
-.graphic-card {
+.graphic-container {
   position: relative;
-  width: 100%;
-  padding-top: 75%;
-  border-radius: 12px;
-  background: var(--pmsjc-branco);
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.12);
-  margin-bottom: 1.5em;
+  border-radius: 20px;
+  padding: 20px;
+  max-width: 1140px;
+  margin: 0 auto 2rem auto;
+  overflow: hidden;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(0, 77, 157, 0.2);
+  background: linear-gradient(135deg, #e3f2fb 0%, #ffffff 100%);
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
 }
 
-.graphic-card iframe {
+.graphic-container::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background-size: 400% 400%;
+  animation: gradientShift 12s ease infinite;
+  opacity: 0.08;
+  pointer-events: none;
+  border-radius: 25px;
+  transition: opacity 0.3s ease, background 0.5s ease;
+}
+
+.graphic-container::after {
+  content: "";
   position: absolute;
   top: 0;
-  left: 0;
-  width: 100%;
+  left: -50%;
+  width: 50%;
   height: 100%;
-  border: none;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background: rgba(255, 255, 255, 0.12);
+  transform: skewX(-25deg);
+  transition: left 0.5s;
 }
 
-.graphic-card iframe:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.18);
+.graphic-container:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+}
+
+.graphic-container:hover::after {
+  left: 150%;
+}
+
+.graphic-container:hover::before {
+  opacity: 0.15;
+}
+
+#grafico-iframe {
+  border-radius: 15px;
+  overflow: hidden;
+  background: transparent;
+}
+
+@keyframes gradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 /* TOOLTIP */
 .tooltip-custom {
   position: fixed;
-  background: var(--pmsjc-preto);
-  color: var(--pmsjc-branco);
+  background-color: #222;
+  color: #fff;
   padding: 5px 10px;
   border-radius: 6px;
   font-size: 0.85rem;
@@ -236,8 +290,7 @@ main section:hover {
   right: 20px;
   width: 55px;
   height: 55px;
-  background: linear-gradient(90deg, var(--pmsjc-azul), #0066cc);
-  color: var(--pmsjc-branco);
+  background: linear-gradient(90deg, #004d9d, #0066cc); 
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -250,7 +303,7 @@ main section:hover {
 }
 
 .btn-voltar-topo:hover {
-  background: linear-gradient(90deg, #005bb5, var(--pmsjc-azul));
+  background: linear-gradient(90deg, #005bb5, #004d9d); 
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
@@ -264,13 +317,13 @@ main section:hover {
   content: "";
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 12px solid var(--pmsjc-branco);
+  border-bottom: 12px solid #fff; 
 }
 
 /* FOOTER */
 .footer-pmsjc {
   background: linear-gradient(180deg, #cfe2f3 1%, #003366);
-  color: var(--pmsjc-branco);
+  color: #fff;
   font-size: 0.9rem;
   padding: 15px 0;
   margin-top: 1em;

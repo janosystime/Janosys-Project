@@ -100,21 +100,57 @@
         flex-wrap: wrap;
         margin-top: 5px;
       }
+
       .region-filters {
         display: flex;
-        flex-wrap: wrap;
+        flex-wrap: nowrap; /* impede que quebre linha */
         gap: 8px;
         margin-top: 10px;
+        overflow-x: auto; /* rolamento horizontal */
+        -webkit-overflow-scrolling: touch; /* suaviza scroll no iOS */
+        padding-bottom: 5px;
+      }
+
+      /* Opcional: esconder barra de rolagem */
+      .region-filters::-webkit-scrollbar {
+        display: none;
+      }
+
+      .region-filters button {
+        flex: 0 0 auto; /* impede que o botão encolha */
+        white-space: nowrap; /* impede quebra de texto */
       }
 
       @media (max-width: 640px) {
         #plot {
           height: 55vh;
         }
+
+        .wrap > div:first-child {
+          flex-direction: column; /* empilha título e controles */
+          align-items: center; /* centraliza horizontalmente */
+          gap: 10px;
+        }
+
         .controls {
-          justify-content: center;
-          flex-direction: column;
-          gap: 8px;
+          justify-content: center; /* centraliza horizontalmente */
+          flex-wrap: nowrap; /* impede que quebre em linha */
+          gap: 8px; /* mantém espaço entre os botões */
+          overflow-x: auto; /* caso não caiba na tela, permite deslizar */
+        }
+
+        .controls button {
+          flex: 0 0 auto; /* evita que encolham */
+          white-space: nowrap; /* impede quebra de texto */
+        }
+
+        .region-filters {
+          gap: 6px;
+        }
+
+        .region-filters button {
+          padding: 6px 12px;
+          font-size: 0.85rem;
         }
       }
     </style>

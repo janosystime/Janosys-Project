@@ -37,6 +37,19 @@ main {
 }
 
 /* HEADER */
+
+.container-div-helper-img {
+  float: right;
+  justify-content: end;
+  position: relative;
+  z-index: 9999;
+}
+
+.help-img {
+  width: 1.5em;
+  position: relative;
+  z-index: 9999;
+}
 .header-pmsjc {
   background: linear-gradient(180deg, #003366 0%, #cfe2f3 100%);
   color: #fff;
@@ -273,14 +286,17 @@ main section:hover {
 /* TOOLTIP */
 .tooltip-custom {
   position: fixed;
-  background-color: #222;
+  background: linear-gradient(135deg, #004d9d, #b9dbff);
   color: #fff;
-  padding: 5px 10px;
+  padding: 6px 12px;
   border-radius: 6px;
   font-size: 0.85rem;
+  font-weight: 600;
   pointer-events: none;
-  opacity: 0;
-  animation: fadeInTooltip 0.2s forwards;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  white-space: nowrap;
+  z-index: 9999;
+  transform: translateY(0);
 }
 
 /* BOTÃO VOLTAR AO TOPO */
@@ -290,7 +306,7 @@ main section:hover {
   right: 20px;
   width: 55px;
   height: 55px;
-  background: linear-gradient(90deg, #004d9d, #0066cc); 
+  background: linear-gradient(90deg, #004d9d, #0066cc);
   border: none;
   border-radius: 50%;
   cursor: pointer;
@@ -303,7 +319,7 @@ main section:hover {
 }
 
 .btn-voltar-topo:hover {
-  background: linear-gradient(90deg, #005bb5, #004d9d); 
+  background: linear-gradient(90deg, #005bb5, #004d9d);
   transform: translateY(-2px) scale(1.05);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
 }
@@ -317,7 +333,7 @@ main section:hover {
   content: "";
   border-left: 8px solid transparent;
   border-right: 8px solid transparent;
-  border-bottom: 12px solid #fff; 
+  border-bottom: 12px solid #fff;
 }
 
 /* FOOTER */

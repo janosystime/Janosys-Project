@@ -36,11 +36,18 @@
 
       <main class="container my-4 flex-grow-1">
         <div class="graphic-container mb-4" id="graphic-container">
+          <div class="container-div-helper-img">
+            <img
+              src="/templates/images/help.png"
+              alt="help.png"
+              class="help-img"
+            />
+          </div>
           <iframe
             src="./iframes/grafico_regioes.html"
             frameborder="0"
             width="100%"
-            height="648"
+            height="660"
             title="Gráfico de Regiões"
             id="grafico-iframe"
             class="d-block mx-auto"
@@ -121,7 +128,7 @@
           wrapper.className = "progress mb-3 progress-gradient";
           wrapper.setAttribute(
             "data-tooltip",
-            `${r.nome}: ${r.valor.toLocaleString("pt-BR")} hab.`
+            `${r.nome}: ${r.valor.toLocaleString("pt-BR")} hab. (${perc}%)`
           );
 
           const bar = document.createElement("div");
@@ -134,7 +141,7 @@
           container.appendChild(wrapper);
 
           // Clique para destacar
-          wrapper.addEventListener("click", () => {
+          wrapper.addEventListener("mouseover", () => {
             document
               .querySelectorAll(".progress")
               .forEach((p) => p.classList.remove("highlight"));
@@ -145,19 +152,35 @@
 
       // Tooltip custom
       document.addEventListener("mouseover", (e) => {
-        const bar = e.target.closest(".progress");
-        if (bar) {
+        const barWrapper = e.target.closest(".progress");
+        if (barWrapper) {
           const tooltip = document.createElement("div");
           tooltip.className = "tooltip-custom";
-          tooltip.innerText = bar.getAttribute("data-tooltip");
+          tooltip.innerText = barWrapper.getAttribute("data-tooltip");
           document.body.appendChild(tooltip);
-          const rect = bar.getBoundingClientRect();
+
+          const rect = barWrapper.getBoundingClientRect();
           tooltip.style.left =
             rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
           tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + "px";
-          bar.addEventListener("mouseleave", () => tooltip.remove(), {
-            once: true,
+
+          // Animação de entrada
+          tooltip.style.opacity = 0;
+          tooltip.style.transition = "opacity 0.2s ease, transform 0.2s ease";
+          requestAnimationFrame(() => {
+            tooltip.style.opacity = 1;
+            tooltip.style.transform = "translateY(-4px)";
           });
+
+          barWrapper.addEventListener(
+            "mouseleave",
+            () => {
+              tooltip.style.opacity = 0;
+              tooltip.style.transform = "translateY(0)";
+              setTimeout(() => tooltip.remove(), 200);
+            },
+            { once: true }
+          );
         }
       });
     </script>

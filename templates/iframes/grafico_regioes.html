@@ -184,6 +184,38 @@
     </div>
 
     <script>
+      // Função para ler CSV
+      async function carregarCSV(url) {
+        const response = await fetch(url);
+        const csvText = await response.text();
+
+        const linhas = csvText.split("\n").filter((l) => l.trim() !== "");
+        const cabecalho = linhas[0].split(";");
+
+        const data2010 = [];
+        const data2022 = [];
+
+        for (let i = 1; i < linhas.length; i++) {
+          const cols = linhas[i].split(";");
+
+          // Somando valores de cada linha para 2010 e 2022
+          const total2010 = Number(cols[5].replace(/\./g, "")); // CENSO2010
+          const total2022 = Number(cols[11].replace(/\./g, "")); // CENSO2022
+
+          data2010.push(total2010);
+          data2022.push(total2022);
+        }
+
+        return { data2010, data2022 };
+      }
+
+      // Exemplo de uso:
+      carregarCSV("/bd/mockado_df.csv").then(({ data2010, data2022 }) => {
+        console.log("Data 2010:", data2010);
+        console.log("Data 2022:", data2022);
+        // Aqui você pode chamar a função que desenha os gráficos
+      });
+
       (function () {
         const wrap = document.getElementById("wrap-container");
         const regions = [
@@ -191,17 +223,12 @@
           "Leste",
           "Norte",
           "Oeste",
-          "São Francisco Xavier",
           "Sudeste",
           "Sul",
           "Rural",
         ];
-        const data2010 = [
-          72115, 160990, 59800, 41161, 1342, 45800, 233536, 15237,
-        ];
-        const data2022 = [
-          72401, 181463, 61780, 64482, 1443, 62541, 237572, 15372,
-        ];
+        const data2010 = [72115, 160990, 59800, 41161, 45800, 233536, 15237];
+        const data2022 = [72401, 181463, 61780, 64482, 62541, 237572, 15372];
         const total2022 = data2022.reduce((a, b) => a + b, 0);
         const criancas0a14 = 128855;
         const idosos65Mais = 80504;

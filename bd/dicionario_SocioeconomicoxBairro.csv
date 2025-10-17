@@ -1,0 +1,174 @@
+﻿Região;Setor;Subsetor;Susbsetor – Nome;População
+Centro;3;03.01;Centro;7205
+Centro;3;03.02;Jardim Bela Vista;2405
+Centro;3;03.03;Vila Maria;4607
+Centro;3;03.04;Vila Nova Guarani;1358
+Centro;03A;03A.01;Banhado;665
+Centro;4;04.01;Jardim Paulista;5255
+Centro;4;04.02;Conjunto Residencial Monte Castelo;6324
+Centro;4;04.03;Jardim Jussara;6531
+Centro;4;04.04;Vila São Pedro;1608
+Centro;4;04.05;Jardim Augusta;1308
+Centro;4;04.06;Jardim Oswaldo Cruz;890
+Centro;20;20.01;Vila Adyana;9758
+Centro;20;20.02;Jardim São Dimas;3615
+Centro;20;20.03;Vila Rubi;212
+Centro;20;20.04;Vila Betânia;1904
+Centro;20;20.05;Jardim Renata;306
+Centro;20;20.06;Jardim Maringá;2876
+Centro;26;26.01;Jardim Esplanada;7570
+Centro;26;26.02;Residencial Esplanada do Sol;1225
+Centro;26;26.03;Jardim Apolo;770
+Centro;26;26.04;Vila Ema;6009
+Leste;5;05.01;Vista Linda;1256
+Leste;5;05.02;Vila Industrial;8847
+Leste;5;05.03;Jardim Ismênia;10002
+Leste;5;05.04;Vila do Tesouro;8582
+Leste;5;05.05;Jardim Valparaíba;4386
+Leste;5;05.06;Vila Tatetuba;6433
+Leste;05A;05A.01;Banhado Leste;234
+Leste;05A;05A.02;Sapê;302
+Leste;6;06.01;Jardim das Flores;2860
+Leste;6;06.02;Eugênio de Melo;2073
+Leste;6;06.03;Jardim Itapuã;1637
+Leste;6;06.04;Galo Branco;14043
+Leste;06A;06A.01;Banhado Eugênio de Melo;262
+Leste;7;07.01;Campos de São José;9277
+Leste;7;07.02;Jardim Mariana;4085
+Leste;7;07.03;Pousada do Vale;1875
+Leste;7;07.04;Petrobras;0
+Leste;8;08.01;Jardim Diamante;811
+Leste;8;08.02;Jardim Motorama;2956
+Leste;8;08.03;Cidade Vista Verde;8387
+Leste;8;08.04;Villagio Antonini;2106
+Leste;27;27.01;Jardim Santa Inês 1;5790
+Leste;27;27.02;Jardim Santa Inês 3;3541
+Leste;27;27.03;Frei Galvão;2592
+Leste;27;27.04;Jardim São José;5657
+Leste;27;27.05;Jardim Paraíso do Sol;2887
+Leste;27;27.06;Jardim Castanheira;2575
+Leste;27;27.07;Chácaras Araújo;2484
+Leste;27;27.08;Jardim Nova Michigan;1976
+Leste;27;27.09;Parque Novo Horizonte;10216
+Leste;27;27.10;Jardim Santa Helena;747
+Leste;27;27.11;Residencial Dom Bosco;3237
+Leste;27;27.12;Parque Nova Esperança;5486
+Leste;30;30.01;Capão Grosso;775
+Leste;30;30.02;Jardim Santa Maria;2667
+Leste;30;30.03;Santa Lúcia;2728
+Leste;30;30.04;Majestic;2340
+Leste;30;30.05;Bom Retiro;2496
+Leste;30;30.06;Santa Hermínia;3646
+Leste;30;30.07;Chácara Boa Esperança;2963
+Leste;31;31.01;Jardim Santa Cecília;714
+Leste;31;31.02;Serrote;2957
+Leste;31;31.03;Jardim Helena;3101
+Leste;33;33.01;Jardim São Vicente;2637
+Leste;33;33.02;Jardim Nova Detroit;2700
+Leste;33;33.03;Jardim Pararangaba;4575
+Leste;33;33.04;Jardim Santa Inês 2;4493
+Leste;33;33.05;Parque Tecnológico;13
+Leste;33;33.06;Jardim Nova Flórida;581
+Leste;33;33.07;Residencial Ana Maria;2661
+Leste;33;33.08;Jardim Americano;1814
+Norte;1;01.01;Vila Paiva;4614
+Norte;1;01.02;Altos da Vila Paiva;2910
+Norte;1;01.03;Vila São Geraldo;4243
+Norte;1;01.04;Alto da Ponte;2661
+Norte;1;01.05;Jardim Guimarães;3799
+Norte;1;01.06;Jardim Minas Gerais;5509
+Norte;1;01.07;Vila Dirce;825
+Norte;1;01.08;Jardim Telespark;2106
+Norte;1;01.09;Altos de Santana;11247
+Norte;1;01.10;Condomínio Jaguari;2377
+Norte;1;01.11;Vila Berfares;272
+Norte;01A;01A.01;Jaguari;342
+Norte;2;02.01;Vila Machado;627
+Norte;2;02.02;Vila Alexandrina;2805
+Norte;2;02.03;Santana;1665
+Norte;2;02.04;Vila Cristina;4113
+Norte;2;02.05;Vila César;1637
+Norte;2;02.06;Vila Rossi;4770
+Norte;2;02.07;Vila Rhodia;395
+Norte;02A;02A.01;Banhado Santana;167
+Norte;25;25.01;Vargem Grande;3727
+Norte;25A;25A.01;Banhado Vargem Grande;219
+Norte;32;32.01;Buquirinha;910
+Oeste;17;17.01;Jardim das Indústrias;18066
+Oeste;17;17.02;Jardim Alvorada;2437
+Oeste;17;17.03;Limoeiro;3144
+Oeste;17A;17A.01;Banhado Oeste;1010
+Oeste;18;18.01;Urbanova;13430
+Oeste;18;18.02;Beira Rio;174
+Oeste;18;18.03;Jardim do Golfe;935
+Oeste;19;19.01;Jardim Colinas;3220
+Oeste;19;19.02;Bosque Imperial;1605
+Oeste;19;19.03;Reserva da Barra;57
+Oeste;19;19.04;Parque Residencial Aquarius;20404
+São Francisco Xavier;21;21.01;São Francisco Xavier;1443
+Sudeste;9;09.01;Jardim Souto;2993
+Sudeste;9;09.02;IFSP;0
+Sudeste;9;09.03;Jardim da Granja;6601
+Sudeste;9;09.04;Jardim Uirá;2347
+Sudeste;9;09.05;Residencial São Francisco;2673
+Sudeste;9;09.06;Parque Residencial Flamboyant;5117
+Sudeste;9;09.07;Sítio Bom Jesus;1355
+Sudeste;10;10.01;DCTA;2560
+Sudeste;29;29.01;Setville Altos de São José;1639
+Sudeste;29;29.02;Mirante Cambuí;442
+Sudeste;29;29.03;Jardim Aeroporto;636
+Sudeste;29;29.04;Jardim Santa Cecília 2;1589
+Sudeste;29;29.05;Jardim Santa Júlia;6611
+Sudeste;29;29.06;Jardim Santa Rosa;3111
+Sudeste;29;29.07;Jardim do Lago;1169
+Sudeste;29;29.08;Conjunto Tom Jobim;1575
+Sudeste;29;29.09;Pinheirinho dos Palmares;5911
+Sudeste;29;29.10;Residencial Jatobá;2765
+Sudeste;29;29.11;Jardim Santo Onofre;4910
+Sudeste;29;29.12;Jardim São Judas Tadeu;5749
+Sudeste;29;29.13;Conjunto Habitacional São Judas (Polícia Militar);629
+Sudeste;29;29.14;Vila Adriana;1480
+Sudeste;29;29.15;Recanto dos Nobres;679
+Sul;11;11.01;Jardim Torrão de Ouro;1517
+Sul;11;11.02;Parque Interlagos;12381
+Sul;12;12.01;Jardim Colonial;3961
+Sul;12;12.02;Conjunto Habitacional Elmano Ferreira Veloso;3284
+Sul;12;12.03;Conjunto Habitacional Dom Pedro I;6780
+Sul;12;12.04;Jardim Cruzeiro do Sul;3179
+Sul;12;12.05;Vila das Flores;2147
+Sul;12;12.06;Jardim República;6139
+Sul;12;12.07;Parque do Cerrado;16
+Sul;12;12.08;Jardim Imperial;4458
+Sul;12;12.09;Campo dos Alemães;17669
+Sul;12;12.10;Conjunto Habitacional Dom Pedro II;4419
+Sul;12;12.11;Conjunto Papa João Paulo II;1349
+Sul;12;12.12;Parque dos Ipês;1859
+Sul;12;12.13;Condomínio Colônia Paraíso;1568
+Sul;12;12.14;Estrada do Imperador;26
+Sul;13;13.01;Jardim Portugal;4795
+Sul;13;13.02;Jardim Estoril;1775
+Sul;13;13.03;Condomínio Primavera;2282
+Sul;13;13.04;Bosque dos Eucaliptos;24222
+Sul;13;13.05;Quinta das Flores;291
+Sul;14;14.01;Floradas de São José;6735
+Sul;14;14.02;Jardim Satélite;21069
+Sul;15;15.01;Cidade Morumbi;18760
+Sul;15;15.02;Jardim Paraíso;4442
+Sul;15;15.03;Jardim Oriente;6867
+Sul;15;15.04;Jardim Sul;7922
+Sul;15;15.05;Bosque dos Ipês;5906
+Sul;15;15.06;Residencial Gazzo;1098
+Sul;15;15.07;Parque Residencial União;8058
+Sul;15;15.08;Jardim América;7560
+Sul;15;15.09;Jardim Anhembi;1042
+Sul;16;16.01;Residencial de Ville;656
+Sul;16;16.02;Conjunto Habitacional Trinta e Um de Março;9008
+Sul;16;16.03;Parque Industrial;18117
+Sul;16;16.04;Jardim Vale do Sol;3877
+Sul;16;16.05;Centro Industrial Eldorado;0
+Sul;16;16.06;Chácaras Reunidas;1319
+Sul;16;16.07;Menino Jesus;345
+Sul;16;16.08;Rio Comprido;1775
+Sul;16;16.09;Palmeiras de São José;3452
+Sul;28;28.01;Vila Nair;3073
+Sul;28;28.02;Vila São Bento;2374

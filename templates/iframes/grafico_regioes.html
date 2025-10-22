@@ -43,6 +43,7 @@
       #plot {
         width: 100%;
         height: 30.5em;
+        transition: opacity 0.6s ease, transform 0.6s ease;
       }
 
       /* Botões de ano e filtros */
@@ -59,7 +60,7 @@
 
       button.active {
         transform: scale(0.95);
-        box-shadow: 0 3px 0px rgba(0,0,0,0.08);
+        box-shadow: 0 3px 0px rgba(0, 0, 0, 0.08);
       }
 
       /* Botões */
@@ -121,6 +122,45 @@
         flex: 0 0 auto; /* impede que o botão encolha */
         white-space: nowrap; /* impede quebra de texto */
       }
+      .region-scroll-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
+      .arrow-btn {
+        display: none; /* desktop: escondido */
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(90deg, #004d9d, #0066cc);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 5;
+        font-size: 0.8rem;
+        text-align: center;
+        padding-bottom: 0.5em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+
+      .arrow-btn:hover {
+        transform: translateY(-50%) scale(1.1);
+        filter: brightness(1.15);
+      }
+
+      .arrow-btn.left {
+        left: 4px;
+      }
+
+      .arrow-btn.right {
+        right: 4px;
+      }
 
       @media (max-width: 640px) {
         #plot {
@@ -147,15 +187,25 @@
 
         .region-filters {
           gap: 6px;
+          margin: 0 50px;
+          padding: 0.5em;
+          border: 2px solid #004d9d;
+          border-radius: 10px;
+          box-shadow: 0 2px 6px rgba(0, 77, 157, 0.1);
         }
 
         .region-filters button {
           padding: 6px 12px;
           font-size: 0.85rem;
         }
+        .arrow-btn {
+          display: flex;
+          align-self: center;
+          justify-content: center;
+          align-items: center;
+        }
       }
     </style>
-
   </head>
   <body>
     <div class="wrap bg-all" id="wrap-container">
@@ -181,7 +231,12 @@
         </div>
       </div>
 
-      <div class="region-filters" id="region-filters"></div>
+      <div class="region-scroll-container">
+        <button class="arrow-btn left" id="scroll-left">&#9664;</button>
+        <div class="region-filters" id="region-filters"></div>
+        <button class="arrow-btn right" id="scroll-right">&#9654;</button>
+      </div>
+
       <div id="plot"></div>
     </div>
     <script>
@@ -198,24 +253,14 @@
 
         for (let i = 1; i < linhas.length; i++) {
           const cols = linhas[i].split(";");
-
-          // Somando valores de cada linha para 2010 e 2022
-          const total2010 = Number(cols[5].replace(/\./g, "")); // CENSO2010
-          const total2022 = Number(cols[11].replace(/\./g, "")); // CENSO2022
-
+          const total2010 = Number(cols[5].replace(/\./g, ""));
+          const total2022 = Number(cols[11].replace(/\./g, ""));
           data2010.push(total2010);
           data2022.push(total2022);
         }
 
         return { data2010, data2022 };
       }
-
-      // Exemplo de uso:
-      carregarCSV("/bd/mockado_df.csv").then(({ data2010, data2022 }) => {
-        console.log("Data 2010:", data2010);
-        console.log("Data 2022:", data2022);
-        // Aqui você pode chamar a função que desenha os gráficos
-      });
 
       (function () {
         const wrap = document.getElementById("wrap-container");
@@ -237,59 +282,6 @@
         let selectedYear = "both";
         let selectedRegions = [...regions];
 
-        // Tooltip com gradiente
-        function gradientHoverLabel(color1, color2) {
-          return {
-            bgcolor: `linear-gradient(135deg, ${color1}, ${color2})`,
-            bordercolor: color1,
-            font: {
-              family: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif",
-              size: 14,
-              color: "#000",
-            },
-            namelength: 0,
-          };
-        }
-
-        const trace2010 = {
-          x: regions,
-          y: data2010,
-          name: "Censo 2010",
-          type: "bar",
-          marker: { color: "#004d9d", line: { width: 1.5, color: "#003366" } },
-          text: data2010.map(
-            (n) =>
-              `${n.toLocaleString("pt-BR")} (${((n / total2022) * 100).toFixed(
-                1
-              )}%)`
-          ),
-          textposition: "auto",
-          hovertemplate: "%{x}<br><b>2010:</b> %{text}<extra></extra>",
-          hoverlabel: gradientHoverLabel("#004d9d", "#002766"),
-        };
-
-        const trace2022 = {
-          x: regions,
-          y: data2022,
-          name: "Censo 2022",
-          type: "bar",
-          marker: {
-            color: "#b9dbff", // azul claro
-            line: { width: 1, color: "#004d9d" }, // borda azul escura
-          },
-          text: data2022.map((n, i) => {
-            const diff = n - data2010[i];
-            const sign = diff >= 0 ? "+" : "";
-            return `${n.toLocaleString("pt-BR")} (${(
-              (n / total2022) *
-              100
-            ).toFixed(1)}%) (${sign}${diff})`;
-          }),
-          textposition: "auto",
-          hovertemplate: "%{x}<br><b>2022:</b> %{text}<extra></extra>",
-          hoverlabel: gradientHoverLabel("#b9dbff", "#004d9d"), // gradiente azul claro → escuro
-        };
-
         function makeTraces(filteredRegions) {
           const y2010 = data2010.map((v, i) =>
             filteredRegions.includes(regions[i]) ? v : 0
@@ -307,8 +299,8 @@
               color: "#004d9d",
               line: { width: 1.5, color: "#003366" },
             },
-            text: data2010.map(
-              (n, i) =>
+            text: y2010.map(
+              (n) =>
                 `${n.toLocaleString("pt-BR")} (${(
                   (n / total2022) *
                   100
@@ -318,16 +310,14 @@
             hovertemplate: "%{x}<br><b>2010:</b> %{text}<extra></extra>",
             hoverlabel: { bgcolor: "#004d9d", font: { color: "#fff" } },
           };
+
           const trace2022 = {
             x: regions,
             y: y2022,
             name: "Censo 2022",
             type: "bar",
-            marker: {
-              color: "#b9dbff", // azul claro
-              line: { width: 0.5, color: "black" },
-            },
-            text: data2022.map((n, i) => {
+            marker: { color: "#b9dbff", line: { width: 1, color: "#004d9d" } },
+            text: y2022.map((n, i) => {
               const diff = n - data2010[i];
               const sign = diff >= 0 ? "+" : "";
               return `${n.toLocaleString("pt-BR")} (${(
@@ -338,9 +328,9 @@
             textposition: "auto",
             hovertemplate: "%{x}<br><b>2022:</b> %{text}<extra></extra>",
             hoverlabel: {
-              bgcolor: "#b9dbff", // azul claro no fundo
-              bordercolor: "#004d9d", // borda azul escura (fica mais legível)
-              font: { color: "#000" }, // texto preto
+              bgcolor: "#b9dbff",
+              bordercolor: "#004d9d",
+              font: { color: "#000" },
             },
           };
 
@@ -368,12 +358,29 @@
 
         const config = { responsive: true, displaylogo: false };
 
-        function updatePlot() {
-          Plotly.react("plot", makeTraces(selectedRegions), layout, config);
-        }
+        // Primeiro cria o gráfico
+        Plotly.newPlot("plot", makeTraces(selectedRegions), layout, config);
 
-        // Inicializa gráfico
-        updatePlot();
+        // Depois define função de atualização
+        function updatePlot() {
+          const updateData = makeTraces(selectedRegions);
+          Plotly.animate(
+            "plot",
+            { data: updateData, traces: [0, 1], layout: layout },
+            {
+              transition: { duration: 700, easing: "cubic-in-out" },
+              frame: { duration: 700, redraw: true },
+            }
+          );
+
+          const plotDiv = document.getElementById("plot");
+          plotDiv.style.opacity = 0;
+          plotDiv.style.transform = "scale(0.97)";
+          setTimeout(() => {
+            plotDiv.style.opacity = 1;
+            plotDiv.style.transform = "scale(1)";
+          }, 50);
+        }
 
         // Botões de ano
         const btnBoth = document.getElementById("show-both");
@@ -404,7 +411,7 @@
         btn2022.addEventListener("click", () => selectYear(btn2022, "2022"));
 
         // Filtros de regiões
-        const filterContainer = document.getElementById("region-filters");
+        const filterContainer = document.querySelectorAll("#region-filters")[0]; // usa só o primeiro
         regions.forEach((region) => {
           const btn = document.createElement("button");
           btn.textContent = region;
@@ -426,8 +433,6 @@
         function adjustTextPosition() {
           const w = document.getElementById("plot").clientWidth;
           const pos = w < 460 ? "outside" : "auto";
-          trace2010.textposition = pos;
-          trace2022.textposition = pos;
           updatePlot();
         }
         window.addEventListener("resize", debounce(adjustTextPosition, 150));
@@ -439,7 +444,7 @@
           };
         }
 
-        // Envia dados para o index (cards)
+        // Comunicação com o parent
         window.parent.postMessage(
           {
             type: "updateDemographics",
@@ -451,6 +456,19 @@
           "*"
         );
       })();
+
+      // Rolagem com as setas no mobile
+      const scrollContainer = document.querySelectorAll("#region-filters")[0];
+      const btnLeft = document.getElementById("scroll-left");
+      const btnRight = document.getElementById("scroll-right");
+
+      btnLeft.addEventListener("click", () => {
+        scrollContainer.scrollBy({ left: -100, behavior: "smooth" });
+      });
+
+      btnRight.addEventListener("click", () => {
+        scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
+      });
     </script>
   </body>
 </html>

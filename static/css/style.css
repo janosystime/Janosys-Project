@@ -153,12 +153,7 @@ main section:hover {
   white-space: nowrap;
   border-radius: 14px;
   color: #fff;
-  background: linear-gradient(
-    90deg,
-    #002766,
-    #004d9d,
-    #b9dbff
-  ); /* gradiente azul animado */
+  background: linear-gradient(90deg, #002766, #004d9d, #b9dbff);
   background-size: 200% 100%;
   animation: gradientBar 3s linear infinite;
 }
@@ -167,7 +162,6 @@ main section:hover {
   color: #fff;
 }
 
-/* Gradiente animado continuamente */
 @keyframes gradientBar {
   0% {
     background-position: 0% 0%;
@@ -177,31 +171,32 @@ main section:hover {
   }
 }
 
-/* Destaque ao clicar */
 .progress.highlight .progress-bar {
   box-shadow: 0 0 10px 3px #000000;
 }
 
-/* Hover leve na barra */
 .progress:hover {
   transform: scale(1.02);
   transition: transform 0.3s;
 }
 
-/* CARDS */
+/* === CARDS RESPONSIVOS === */
 .stats-cards {
   display: flex;
-  flex-wrap: wrap;         /* Permite quebra de linha em telas grandes */
-  gap: 20px;               /* Espaçamento entre os cards */
-  justify-content: center; /* Centraliza os cards */
-  align-items: flex-start; /* Alinha pelo topo */
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-start;
   margin-bottom: 2rem;
+  width: 100%;
+  padding: 0 1rem;
+  box-sizing: border-box;
 }
 
-/* Cada card */
 .card-stat {
-  flex: 1 1 180px;         /* Largura mínima de 180px, flexível */
-  max-width: 335px;        /* Não deixa crescer demais */
+  flex: 1 1 260px;
+  max-width: 320px;
+  min-width: 220px;
   background-color: #fff;
   text-align: center;
   color: #222;
@@ -214,12 +209,10 @@ main section:hover {
   animation: fadeUp 0.6s ease forwards;
 }
 
-/* Delay por card para animação sequencial */
 .card-stat:nth-child(1) { animation-delay: 0s; }
 .card-stat:nth-child(2) { animation-delay: 0.1s; }
 .card-stat:nth-child(3) { animation-delay: 0.2s; }
 
-/* Hover leve */
 .card-stat:hover {
   transform: translateY(-5px) scale(1.05);
   box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
@@ -230,6 +223,29 @@ main section:hover {
   color: #004d9d;
   margin: 0 0 5px 0;
 }
+
+@media (max-width: 992px) {
+  .card-stat {
+    flex: 1 1 45%;
+  }
+}
+
+@media (max-width: 600px) {
+  .stats-cards {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .card-stat {
+    flex: 1 1 100%;
+    width: 90%;
+    max-width: 380px;
+    min-width: unset;
+    margin: 0 auto;
+  }
+}
+
+/* === FIM DOS CARDS === */
 
 .graphic-container {
   position: relative;
@@ -341,13 +357,11 @@ main section:hover {
   box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
 }
 
-/* Efeito hover no botão */
 .dropdown button:hover {
   background: linear-gradient(90deg, #005bb5, #004d9d);
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
-/* Menu suspenso */
 .dropdown .content {
   display: none;
   position: absolute;
@@ -361,12 +375,10 @@ main section:hover {
   animation: fadeInDropdown 0.3s ease forwards;
 }
 
-/* Mostra o menu ao passar o mouse */
 .dropdown:hover .content {
   display: block;
 }
 
-/* Links internos */
 .dropdown .content a {
   display: block;
   padding: 0.9em 1.2em;
@@ -377,14 +389,12 @@ main section:hover {
   transition: all 0.25s ease;
 }
 
-/* Efeito hover nos links */
 .dropdown .content a:hover {
   background: linear-gradient(90deg, #e3f2fb, #b9dbff);
   color: #002b66;
   padding-left: 1.6em;
 }
 
-/* Animação suave de entrada */
 @keyframes fadeInDropdown {
   from {
     opacity: 0;
@@ -524,20 +534,6 @@ main section:hover {
   .progress {
     height: 22px;
   }
-  .stats-cards {
-    flex-wrap: nowrap;       /* Não quebra linha */
-    overflow-x: auto;        /* Rolagem horizontal */
-    padding-bottom: 10px;
-    gap: 15px;
-    justify-content: flex-start;
-  }
-  .card-stat {
-    flex: 0 0 150px;         /* Largura fixa no mobile */
-    max-width: none;
-  }
-  .graphic-card {
-    height: 20em;
-  }
 
   .btn-voltar-topo {
     width: 45px;
@@ -545,6 +541,7 @@ main section:hover {
     bottom: 15px;
     right: 15px;
   }
+
   .footer-pmsjc {
     flex-direction: column;
     font-size: 0.85rem;

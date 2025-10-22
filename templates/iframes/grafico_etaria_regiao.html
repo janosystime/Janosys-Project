@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+<title>Gráfico — Faixa Etária por Região / Censo 2022</title>
+
+<style>
+html, body {
+  margin: 0;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+}
+.wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 20px;
+}
+.wrap h2 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #004d9d;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.wrap p.source {
+  font-size: 0.85rem;
+  color: #666;
+  margin: 0;
+}
+#plot {
+  width: 100%;
+  height: 50vh;
+}
+.age-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 8px;
+  margin-top: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+.age-filters::-webkit-scrollbar { display: none; }
+.age-filters button {
+  flex: 0 0 auto;
+  white-space: nowrap;
+  color: #fff;
+  border: 0;
+  padding: 6px 14px;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.age-filters button.active { transform: scale(0.95); box-shadow: 0 3px 0px rgba(0,0,0,0.08); }
+.age-crianca { background: #004d9d; }
+.age-jovem { background: #1976d2; }
+.age-adulto { background: #64b5f6; }
+.age-idoso { background: #b9dbff; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h2>População por Faixa Etária — Censo 2022</h2>
+  <p class="source">Fonte: IBGE / consolidação municipal (2022).</p>
+  <div class="age-filters" id="age-filters"></div>
+  <div id="plot"></div>
+</div>
+
+<script>
+(async function() {
+  const regions = ["Centro", "Leste", "Norte", "Oeste", "Sudeste", "Sul"];
+  const ageGroups = ["Criança", "Jovem", "Adulto", "Idoso"];
+  const ageColors = { "Criança":"#004d9d", "Jovem":"#1976d2", "Adulto":"#64b5f6", "Idoso":"#b9dbff" };
+
+  // Mapear setores para regiões
+  const regionMap = {
+    "Centro": ["03", "03A", "04", "20", "26"],
+    "Leste": ["05", "05A", "06", "06A", "07", "08", "27", "30", "31", "33"],
+    "Norte": ["01", "01A", "02", "02A", "25", "25A", "32"],
+    "Oeste": ["17", "17A", "18", "19"],
+    "Sudeste": ["09", "10", "29"],
+    "Sul": ["11", "12", "13", "14", "15", "16", "28", "21"],
+  };
+
+  // Lê CSV e agrupa
+  async function carregarCSV(url) {
+    const resp = await fetch(url);
+    const text = await resp.text();
+    const lines = text.split("\n").filter(l => l.trim() !== "");
+
+    const data = {};
+    regions.forEach(r => data[r] = { "Criança":0, "Jovem":0, "Adulto":0, "Idoso":0 });
+
+    lines.slice(1).forEach(line => {
+      const cols = line.split(";");
+      const setor = cols[4].match(/\d+/)?.[0] ?? "";
+      const idade = {
+        "0 a 4": Number(cols[7]?.replace(/\./g,"")) || 0,
+        "5 a 9": Number(cols[10]?.replace(/\./g,"")) || 0,
+        "10 a 14": Number(cols[11]?.replace(/\./g,"")) || 0,
+        "15 a 19": Number(cols[12]?.replace(/\./g,"")) || 0,
+        "20 a 24": Number(cols[15]?.replace(/\./g,"")) || 0,
+        "25 a 29": Number(cols[16]?.replace(/\./g,"")) || 0,
+        "30 a 39": Number(cols[17]?.replace(/\./g,"")) || 0,
+        "40 a 49": Number(cols[18]?.replace(/\./g,"")) || 0,
+        "50 a 59": Number(cols[19]?.replace(/\./g,"")) || 0,
+        "60 a 64": Number(cols[20]?.replace(/\./g,"")) || 0,
+        "65 a 69": Number(cols[21]?.replace(/\./g,"")) || 0,
+        "70+": Number(cols[22]?.replace(/\./g,"")) || 0
+      };
+
+      for(const r of regions){
+        if(regionMap[r].includes(setor)){
+          data[r]["Criança"] += idade["0 a 4"];
+          data[r]["Jovem"] += idade["5 a 9"] + idade["10 a 14"] + idade["15 a 19"];
+          data[r]["Adulto"] += idade["20 a 24"] + idade["25 a 29"] + idade["30 a 39"] + idade["40 a 49"] + idade["50 a 59"] + idade["60 a 64"];
+          data[r]["Idoso"] += idade["65 a 69"] + idade["70+"];
+        }
+      }
+    });
+
+    return data;
+  }
+
+  let regionData;
+  try {
+    regionData = await carregarCSV("/bd/dados_sjc.csv");
+  } catch(e) {
+    console.warn("Falha ao carregar CSV, usando mock");
+    regionData = {};
+    regions.forEach(r => regionData[r] = { "Criança":5000, "Jovem":12000, "Adulto":30000, "Idoso":8000 });
+  }
+
+  let selectedAges = [...ageGroups];
+
+  function makeTraces(filteredAges) {
+    return filteredAges.map(age => ({
+      x: regions,
+      y: regions.map(r => regionData[r][age]),
+      type:"bar",
+      name: age,
+      marker: { color: ageColors[age], line:{width:1,color:"#004d9d"} },
+      text: regions.map(r => regionData[r][age].toLocaleString()),
+      textposition:"auto",
+      hovertemplate: "%{x} - "+age+": %{text}<extra></extra>"
+    }));
+  }
+
+  const layout = {
+    barmode:"stack",
+    margin: { t:40, r:16, l:50, b:40 },
+    xaxis:{ tickangle:-20, automargin:true },
+    yaxis:{ tickformat:",d" },
+    hovermode:"closest",
+    font:{ family:"Segoe UI, Tahoma, Geneva, Verdana, sans-serif", color:"#222" },
+    paper_bgcolor:"rgba(0,0,0,0)",
+    plot_bgcolor:"rgba(0,0,0,0)",
+    transition:{ duration:600, easing:"cubic-in-out" }
+  };
+
+  const config = { responsive:true, displaylogo:false };
+
+  function updatePlot() { Plotly.react("plot", makeTraces(selectedAges), layout, config); }
+
+  // Botões de faixa etária
+  const filterContainer = document.getElementById("age-filters");
+  ageGroups.forEach(group => {
+    const btn = document.createElement("button");
+    btn.textContent = group;
+    btn.classList.add("active","age-"+group.toLowerCase());
+    btn.addEventListener("click", () => {
+      if(selectedAges.includes(group)){
+        selectedAges = selectedAges.filter(a => a !== group);
+        btn.classList.remove("active");
+      } else {
+        selectedAges.push(group);
+        btn.classList.add("active");
+      }
+      updatePlot();
+    });
+    filterContainer.appendChild(btn);
+  });
+
+  updatePlot();
+})();
+</script>
+</body>
+</html>

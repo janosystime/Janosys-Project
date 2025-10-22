@@ -124,7 +124,6 @@ main section:hover {
 }
 
 /* PROGRESS BARS */
-/* PROGRESS BARS */
 .progress {
   height: 28px;
   border-radius: 14px;
@@ -389,6 +388,48 @@ main section:hover {
     opacity: 1;
   }
 }
+
+.dropdown{
+  display: flex;
+  float: left;
+  margin: 0em 0em 0em 1.2em;
+  flex-direction: column;
+  min-width: 10em;
+  max-width: 20em;
+  z-index: 9999;
+}
+
+.dropdown:hover .content{
+  display: block;
+}
+
+.dropdown button{
+  background-color: gray;
+  border: none;
+}
+
+.dropdown a{
+  text-decoration: none;
+  display: block;
+  padding: 1em;
+  cursor: pointer;
+}
+
+.dropdown a:hover{
+  background-color: lightblue;
+}
+
+.content{
+  display: none;
+  flex-flow: column wrap;
+  position: absolute;
+  align-items: center;
+  background-color: lightgray;
+  min-width: 15em;
+  max-width: 30em;
+  margin-top: 1.7em;
+}
+
 
 /* RESPONSIVIDADE */
 @media (max-width: 768px) {

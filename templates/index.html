@@ -36,9 +36,17 @@
 
       <main class="container my-4 flex-grow-1">
         <div class="graphic-container mb-4" id="graphic-container">
+          <div class="dropdown">
+              <button>Gráficos ⬇</button>
+              <div class="content">
+                <a onclick="chamaGraphDensPop()">Densidade Populacional</a>
+                <a onclick="chamaGraphEtariaRegiao()">Feixa Etaria e Região</a>
+                <a onclick="chamaGraphCreche()">Crianças e Creches</a>
+              </div>
+          </div>
           <div class="container-div-helper-img">
             <img
-              src="images/help.png"
+              src="/templates/images/help.png"
               alt="help.png"
               class="help-img"
             />
@@ -58,15 +66,15 @@
         <div class="stats-cards mb-4">
           <div class="card-stat text-center">
             <h4 id="card-total">0</h4>
-            <p>População Total</p>
+            <p id="label-card1">População Total</p>
           </div>
           <div class="card-stat text-center">
             <h4 id="card-criancas">0%</h4>
-            <p>Crianças (0-5)</p>
+            <p id="label-card2">Crianças (0-5)</p>
           </div>
           <div class="card-stat text-center">
             <h4 id="card-idosos">0%</h4>
-            <p>Idosos (60+)</p>
+            <p id="label-card3" >Idosos (60+)</p>
           </div>
         </div>
 
@@ -184,5 +192,6 @@
         }
       });
     </script>
+    <script src="script.js"></script>
   </body>
 </html>

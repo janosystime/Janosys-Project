@@ -2,7 +2,7 @@
 <html lang="pt-BR">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
     <title>Gráfico — Faixa Etária por Região / Censo 2022</title>
 
@@ -43,11 +43,8 @@
         margin-top: 10px;
         overflow-x: auto;
         padding-bottom: 5px;
+        position: relative;
       }
-      .age-filters::-webkit-scrollbar {
-        display: none;
-      }
-
       button {
         border: 0 !important;
         padding: 6px 14px !important;
@@ -59,15 +56,28 @@
         flex: 0 0 auto !important;
         white-space: nowrap !important;
       }
-
       button:hover {
         transform: translateY(-1px) !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
       }
-
       button.ativo {
         transform: scale(0.98) !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+      }
+
+      @media (max-width: 640px) {
+        #plot {
+          height: 50vh;
+        }
+        .wrap {
+          padding: 10px;
+        }
+        .wrap h2 {
+          font-size: 1.1rem;
+        }
+        .wrap p.source {
+          font-size: 0.75rem;
+        }
       }
     </style>
   </head>
@@ -75,7 +85,9 @@
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2022</h2>
       <p class="source">Fonte: IBGE / consolidação municipal (2022).</p>
-      <div class="age-filters" id="age-filters"></div>
+      <div class="age-scroll-container">
+        <div class="age-filters" id="age-filters"></div>
+      </div>
       <div id="plot"></div>
     </div>
 
@@ -184,6 +196,7 @@
         let selectedAges = [...ageGroups];
 
         function makeTraces(filteredAges) {
+          const isMobile = window.innerWidth <= 640;
           return filteredAges.map((age) => ({
             x: regions,
             y: regions.map((r) => regionData[r][age]),
@@ -194,15 +207,15 @@
               line: { width: 1, color: ageColors[age] },
             },
             text: regions.map((r) => regionData[r][age].toLocaleString()),
-            textposition: "outside",
+            textposition: isMobile ? "inside" : "outside",
             textfont: {
-              size: 14,
-              color: "#333",
+              size: isMobile ? 12 : 14,
+              color: isMobile ? "#fff" : "#333",
               family: "Segoe UI, sans-serif",
             },
             insidetextanchor: "middle",
             outsidetextfont: {
-              size: 14,
+              size: isMobile ? 12 : 14,
               color: "#333",
             },
             hovertemplate: "%{x} - " + age + ": %{text}<extra></extra>",
@@ -211,8 +224,8 @@
         }
 
         const layout = {
-          barmode: "group",
-          margin: { t: 60, r: 16, l: 50, b: 40 },
+          barmode: window.innerWidth <= 640 ? "stack" : "group",
+          margin: { t: window.innerWidth <= 640 ? 40 : 60, r: 16, l: 50, b: 40 },
           xaxis: {
             tickangle: 0,
             automargin: true,
@@ -244,6 +257,8 @@
         };
 
         function updatePlot() {
+          layout.barmode = window.innerWidth <= 640 ? "stack" : "group";
+          layout.margin.t = window.innerWidth <= 640 ? 40 : 60;
           Plotly.react("plot", makeTraces(selectedAges), layout, config);
         }
 
@@ -253,7 +268,6 @@
           const btn = document.createElement("button");
           btn.textContent = group;
           btn.classList.add("ativo");
-
           setButtonColor(btn, group, true);
 
           btn.addEventListener("click", () => {
@@ -278,7 +292,21 @@
 
         // Adicionar evento de redimensionamento da janela
         window.addEventListener("resize", () => {
+          updatePlot(); // Atualiza barmode e margens
           Plotly.Plots.resize("plot");
+        });
+
+        // Rolagem com as setas no mobile
+        const scrollContainer = document.getElementById("age-filters");
+        const btnLeft = document.getElementById("scroll-left");
+        const btnRight = document.getElementById("scroll-right");
+
+        btnLeft.addEventListener("click", () => {
+          scrollContainer.scrollBy({ left: -100, behavior: "smooth" });
+        });
+
+        btnRight.addEventListener("click", () => {
+          scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
         });
 
         const totalPopulacao = Object.values(regionDataTotal).reduce(
@@ -317,13 +345,6 @@
           },
           "*"
         );
-
-        console.log("✅ LABELS CORRIGIDOS - SEM ESTOURAR!");
-        console.log("✅ DADOS ENVIADOS PARA CARDS:", {
-          adultos: regionDataTotal["Adulto"],
-          regiaoMaisCriancas,
-          regiaoMaisIdosos,
-        });
       })();
     </script>
   </body>

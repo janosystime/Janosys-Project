@@ -71,121 +71,150 @@
             <p id="label-card3">Menor População</p>
           </div>
         </div>
+      </main>
+    </div>
 
     <script>
-      const iframe = document.getElementById('grafico-iframe')
-      const card1 = document.getElementById('card-total')
-      const labelCard1 = document.getElementById('label-card1')
-      const card2 = document.getElementById('card-criancas')
-      const labelCard2 = document.getElementById('label-card2')
-      const card3 = document.getElementById('card-idosos')
-      const labelCard3 = document.getElementById('label-card3')
+      const iframe = document.getElementById('grafico-iframe');
+      const card1 = document.getElementById('card-total');
+      const labelCard1 = document.getElementById('label-card1');
+      const card2 = document.getElementById('card-criancas');
+      const labelCard2 = document.getElementById('label-card2');
+      const card3 = document.getElementById('card-idosos');
+      const labelCard3 = document.getElementById('label-card3');
 
-      function chamaGraphDensPop(){
-        iframe.src = './iframes/grafico_regioes.html'
-        labelCard1.textContent = 'População Total'
-        labelCard2.textContent = 'Maior População'
-        labelCard3.textContent = 'Menor População'
+      function chamaGraphDensPop() {
+        iframe.src = './iframes/grafico_regioes.html';
+        labelCard1.textContent = 'População Total';
+        labelCard2.textContent = 'Maior População';
+        labelCard3.textContent = 'Menor População';
+        // Limpar cards ao trocar gráfico
+        card1.textContent = '0';
+        card2.textContent = '0';
+        card3.textContent = '0';
       }
 
-      function chamaGraphEtariaRegiao(){
-        iframe.src = './iframes/grafico_etaria_regiao.html'
-        labelCard1.textContent = 'Adultos (20-59)'
-        labelCard2.textContent = 'Região + Crianças'
-        labelCard3.textContent = 'Região + Idosos'
+      function chamaGraphEtariaRegiao() {
+        iframe.src = './iframes/grafico_etaria_regiao.html';
+        labelCard1.textContent = 'Adultos (20-59)';
+        labelCard2.textContent = 'Região + Crianças';
+        labelCard3.textContent = 'Região + Idosos';
+        // Limpar cards ao trocar gráfico
+        card1.textContent = '0';
+        card2.textContent = '0';
+        card3.textContent = '0';
       }
 
-      function chamaGraphCreche(){
-        iframe.src = './iframes/grafico_creche.html'
-        labelCard1.textContent = 'Crianças em Creche'
-        labelCard2.textContent = '% Cobertura Creche'
-        labelCard3.textContent = 'Vagas Disponíveis'
+      function chamaGraphCreche() {
+        iframe.src = './iframes/grafico_creche.html';
+        labelCard1.textContent = 'Crianças em Creche';
+        labelCard2.textContent = '% Cobertura Creche';
+        labelCard3.textContent = 'Vagas Disponíveis';
+        // Limpar cards ao trocar gráfico
+        card1.textContent = '0';
+        card2.textContent = '0';
+        card3.textContent = '0';
       }
 
-      // ✅ SISTEMA DE CARDS INTELIGENTE - FUNCIONA COM TODOS OS GRÁFICOS
+      // SISTEMA DE CARDS CORRIGIDO - AGORA FUNCIONA COM TODOS OS GRÁFICOS
       function atualizarCards(data) {
-        const label1 = labelCard1.textContent
-        
+        const label1 = labelCard1.textContent;
+
         if (label1 === 'Adultos (20-59)') {
-          // 🎯 FAIXA ETÁRIA POR REGIÃO
-          card1.textContent = data.faixasEtarias.adultos.toLocaleString("pt-BR")
-          card2.textContent = data.faixasEtarias.regiaoMaisCriancas
-          card3.textContent = data.faixasEtarias.regiaoMaisIdosos
-          
+          // FAIXA ETÁRIA POR REGIÃO
+          card1.textContent = (data.faixasEtarias && data.faixasEtarias.adultos !== undefined)
+            ? data.faixasEtarias.adultos.toLocaleString("pt-BR")
+            : '0';
+          card2.textContent = (data.faixasEtarias && data.faixasEtarias.regiaoMaisCriancas)
+            ? data.faixasEtarias.regiaoMaisCriancas
+            : 'N/A';
+          card3.textContent = (data.faixasEtarias && data.faixasEtarias.regiaoMaisIdosos)
+            ? data.faixasEtarias.regiaoMaisIdosos
+            : 'N/A';
         } else if (label1 === 'Crianças em Creche') {
-          // 🏫 CRIANÇAS E CRECHES
-          card1.textContent = data.creche.total.toLocaleString("pt-BR")
-          card2.textContent = `${data.creche.cobertura}%`
-          card3.textContent = data.creche.vagas.toLocaleString("pt-BR")
-          
+          // CRIANÇAS E CRECHES
+          card1.textContent = (data.creche && data.creche.total !== undefined)
+            ? data.creche.total.toLocaleString("pt-BR")
+            : '0';
+          card2.textContent = (data.creche && data.creche.cobertura !== undefined)
+            ? `${data.creche.cobertura}%`
+            : '0%';
+          card3.textContent = (data.creche && data.creche.vagas !== undefined)
+            ? data.creche.vagas.toLocaleString("pt-BR")
+            : '0';
         } else {
-          // 📊 DENISDADE POPULACIONAL (PADRÃO)
-          card1.textContent = data.total.toLocaleString("pt-BR")
-          
-          // Maior e menor população
-          const sortedRegioes = [...data.regioes].sort((a, b) => b.valor - a.valor)
-          card2.textContent = `${sortedRegioes[0].nome}: ${sortedRegioes[0].valor.toLocaleString("pt-BR")}`
-          card3.textContent = `${sortedRegioes[sortedRegioes.length-1].nome}: ${sortedRegioes[sortedRegioes.length-1].valor.toLocaleString("pt-BR")}`
+          // DENSIDADE POPULACIONAL
+          card1.textContent = (data.total !== undefined)
+            ? data.total.toLocaleString("pt-BR")
+            : '0';
+          if (data.regioes && data.regioes.length > 0) {
+            const sortedRegioes = [...data.regioes].sort((a, b) => b.valor - a.valor);
+            card2.textContent = `${sortedRegioes[0].nome}: ${sortedRegioes[0].valor.toLocaleString("pt-BR")}`;
+            card3.textContent = `${sortedRegioes[sortedRegioes.length - 1].nome}: ${sortedRegioes[sortedRegioes.length - 1].valor.toLocaleString("pt-BR")}`;
+          } else {
+            card2.textContent = 'N/A';
+            card3.textContent = 'N/A';
+          }
         }
       }
 
-      // ✅ RECEBE DADOS DE QUALQUER GRÁFICO
+      // RECEBE DADOS DE QUALQUER GRÁFICO
       window.addEventListener("message", (event) => {
-        const data = event.data
-        if (!data || data.type !== "updateDemographics") return
-        
-        atualizarCards(data)
-        
+        const data = event.data;
+        if (!data || data.type !== "updateDemographics") return;
+
+        atualizarCards(data);
+
         // Progress bars (só para densidade)
         if (data.regioes && document.getElementById("progress-container")) {
-          const container = document.getElementById("progress-container")
-          container.innerHTML = ""
-          
-          const sorted = [...data.regioes].sort((a, b) => b.valor - a.valor)
+          const container = document.getElementById("progress-container");
+          container.innerHTML = "";
+
+          const sorted = [...data.regioes].sort((a, b) => b.valor - a.valor);
           sorted.forEach((r) => {
-            const perc = ((r.valor / data.total) * 100).toFixed(2)
-            const wrapper = document.createElement("div")
-            wrapper.className = "progress mb-3 progress-gradient"
-            wrapper.setAttribute("data-tooltip", `${r.nome}: ${r.valor.toLocaleString("pt-BR")} hab. (${perc}%)`)
-            
-            const bar = document.createElement("div")
-            bar.className = "progress-bar d-flex justify-content-center align-items-center"
-            bar.style.width = perc + "%"
-            bar.textContent = `${r.nome} - ${perc}%`
-            
-            wrapper.appendChild(bar)
-            container.appendChild(wrapper)
-          })
+            const perc = ((r.valor / data.total) * 100).toFixed(2);
+            const wrapper = document.createElement("div");
+            wrapper.className = "progress mb-3 progress-gradient";
+            wrapper.setAttribute("data-tooltip", `${r.nome}: ${r.valor.toLocaleString("pt-BR")} hab. (${perc}%)`);
+
+            const bar = document.createElement("div");
+            bar.className = "progress-bar d-flex justify-content-center align-items-center";
+            bar.style.width = perc + "%";
+            bar.textContent = `${r.nome} - ${perc}%`;
+
+            wrapper.appendChild(bar);
+            container.appendChild(wrapper);
+          });
         }
-      })
+      });
 
       // Tooltip custom
       document.addEventListener("mouseover", (e) => {
-        const barWrapper = e.target.closest(".progress")
+        const barWrapper = e.target.closest(".progress");
         if (barWrapper) {
-          const tooltip = document.createElement("div")
-          tooltip.className = "tooltip-custom"
-          tooltip.innerText = barWrapper.getAttribute("data-tooltip")
-          document.body.appendChild(tooltip)
+          const tooltip = document.createElement("div");
+          tooltip.className = "tooltip-custom";
+          tooltip.innerText = barWrapper.getAttribute("data-tooltip");
+          document.body.appendChild(tooltip);
 
-          const rect = barWrapper.getBoundingClientRect()
-          tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px"
-          tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + "px"
+          const rect = barWrapper.getBoundingClientRect();
+          tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
+          tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + "px";
 
-          tooltip.style.opacity = 0
-          tooltip.style.transition = "opacity 0.2s ease, transform 0.2s ease"
+          tooltip.style.opacity = 0;
+          tooltip.style.transition = "opacity 0.2s ease, transform 0.2s ease";
           requestAnimationFrame(() => {
-            tooltip.style.opacity = 1
-            tooltip.style.transform = "translateY(-4px)"
-          })
+            tooltip.style.opacity = 1;
+            tooltip.style.transform = "translateY(-4px)";
+          });
 
           barWrapper.addEventListener("mouseleave", () => {
-            tooltip.style.opacity = 0
-            tooltip.style.transform = "translateY(0)"
-            setTimeout(() => tooltip.remove(), 200)
-          }, { once: true })
+            tooltip.style.opacity = 0;
+            tooltip.style.transform = "translateY(0)";
+            setTimeout(() => tooltip.remove(), 200);
+          }, { once: true });
         }
-      })
+      });
     </script>
     <script src="script.js"></script>
   </body>

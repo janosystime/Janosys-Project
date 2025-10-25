@@ -36,6 +36,12 @@
         width: 100%;
         height: 70vh;
       }
+      .age-scroll-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
       .age-filters {
         display: flex;
         flex-wrap: nowrap;
@@ -44,6 +50,38 @@
         overflow-x: auto;
         padding-bottom: 5px;
         position: relative;
+      }
+      .age-filters::-webkit-scrollbar {
+        display: none;
+      }
+      .arrow-btn {
+        display: none;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        background: linear-gradient(90deg, #004d9d, #0066cc);
+        color: #fff;
+        border: none;
+        border-radius: 50%;
+        width: 25px;
+        height: 25px;
+        cursor: pointer;
+        z-index: 5;
+        font-size: 0.8rem;
+        text-align: center;
+        padding-bottom: 0.5em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+      .arrow-btn:hover {
+        transform: translateY(-50%) scale(1.1);
+        filter: brightness(1.15);
+      }
+      .arrow-btn.left {
+        left: 4px;
+      }
+      .arrow-btn.right {
+        right: 4px;
       }
       button {
         border: 0 !important;
@@ -64,7 +102,6 @@
         transform: scale(0.98) !important;
         box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
       }
-
       @media (max-width: 640px) {
         #plot {
           height: 50vh;
@@ -85,9 +122,7 @@
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2022</h2>
       <p class="source">Fonte: IBGE / consolidação municipal (2022).</p>
-      <div class="age-scroll-container">
-        <div class="age-filters" id="age-filters"></div>
-      </div>
+      <div class="age-filters" id="age-filters"></div>
       <div id="plot"></div>
     </div>
 
@@ -256,10 +291,47 @@
           displaylogo: false,
         };
 
+        function sendDemographicsData() {
+          let regiaoMaisCriancas = "",
+            regiaoMaisIdosos = "";
+          let maxCriancas = 0,
+            maxIdosos = 0;
+
+          regions.forEach((regiao) => {
+            if (selectedAges.includes("Criança") && regionData[regiao]["Criança"] > maxCriancas) {
+              maxCriancas = regionData[regiao]["Criança"];
+              regiaoMaisCriancas = `${regiao}: ${maxCriancas.toLocaleString("pt-BR")}`;
+            }
+            if (selectedAges.includes("Idoso") && regionData[regiao]["Idoso"] > maxIdosos) {
+              maxIdosos = regionData[regiao]["Idoso"];
+              regiaoMaisIdosos = `${regiao}: ${maxIdosos.toLocaleString("pt-BR")}`;
+            }
+          });
+
+          window.parent.postMessage(
+            {
+              type: "updateDemographics",
+              faixasEtarias: {
+                adultos: selectedAges.includes("Adulto")
+                  ? regionDataTotal["Adulto"]
+                  : 0,
+                regiaoMaisCriancas: selectedAges.includes("Criança")
+                  ? regiaoMaisCriancas
+                  : "N/A",
+                regiaoMaisIdosos: selectedAges.includes("Idoso")
+                  ? regiaoMaisIdosos
+                  : "N/A",
+              },
+            },
+            "*"
+          );
+        }
+
         function updatePlot() {
           layout.barmode = window.innerWidth <= 640 ? "stack" : "group";
           layout.margin.t = window.innerWidth <= 640 ? 40 : 60;
           Plotly.react("plot", makeTraces(selectedAges), layout, config);
+          sendDemographicsData(); // Enviar dados atualizados ao mudar filtros
         }
 
         const filterContainer = document.getElementById("age-filters");
@@ -292,7 +364,7 @@
 
         // Adicionar evento de redimensionamento da janela
         window.addEventListener("resize", () => {
-          updatePlot(); // Atualiza barmode e margens
+          updatePlot(); // Atualiza barmode, margens e dados
           Plotly.Plots.resize("plot");
         });
 
@@ -309,42 +381,8 @@
           scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
         });
 
-        const totalPopulacao = Object.values(regionDataTotal).reduce(
-          (a, b) => a + b,
-          0
-        );
-
-        let regiaoMaisCriancas = "",
-          regiaoMaisIdosos = "";
-        let maxCriancas = 0,
-          maxIdosos = 0;
-
-        regions.forEach((regiao) => {
-          if (regionData[regiao]["Criança"] > maxCriancas) {
-            maxCriancas = regionData[regiao]["Criança"];
-            regiaoMaisCriancas = `${regiao}: ${maxCriancas.toLocaleString(
-              "pt-BR"
-            )}`;
-          }
-          if (regionData[regiao]["Idoso"] > maxIdosos) {
-            maxIdosos = regionData[regiao]["Idoso"];
-            regiaoMaisIdosos = `${regiao}: ${maxIdosos.toLocaleString(
-              "pt-BR"
-            )}`;
-          }
-        });
-
-        window.parent.postMessage(
-          {
-            type: "updateDemographics",
-            faixasEtarias: {
-              adultos: regionDataTotal["Adulto"],
-              regiaoMaisCriancas: regiaoMaisCriancas,
-              regiaoMaisIdosos: regiaoMaisIdosos,
-            },
-          },
-          "*"
-        );
+        // Enviar dados iniciais
+        sendDemographicsData();
       })();
     </script>
   </body>

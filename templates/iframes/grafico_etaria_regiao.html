@@ -34,7 +34,7 @@
       }
       #plot {
         width: 100%;
-        height: 50vh;
+        height: 70vh;
       }
       .age-filters {
         display: flex;
@@ -183,7 +183,6 @@
 
         let selectedAges = [...ageGroups];
 
-        // ✅ LABELS QUE NÃO ESTOURAM - FORA DAS BARRAS
         function makeTraces(filteredAges) {
           return filteredAges.map((age) => ({
             x: regions,
@@ -195,15 +194,12 @@
               line: { width: 1, color: ageColors[age] },
             },
             text: regions.map((r) => regionData[r][age].toLocaleString()),
-            // ✅ MUDANÇA PRINCIPAL: TEXTO FORA DAS BARRAS
-            textposition: "ouside",
-            // ✅ FONTE MENOR E CONTIDA
+            textposition: "outside",
             textfont: {
               size: 14,
               color: "#333",
               family: "Segoe UI, sans-serif",
             },
-            // ✅ NÃO MOSTRA TEXTO SE NÃO CABE
             insidetextanchor: "middle",
             outsidetextfont: {
               size: 14,
@@ -216,7 +212,6 @@
 
         const layout = {
           barmode: "group",
-          // ✅ MARGEM SUPERIOR AUMENTADA PARA LABELS
           margin: { t: 60, r: 16, l: 50, b: 40 },
           xaxis: {
             tickangle: 0,
@@ -273,8 +268,6 @@
               setButtonColor(btn, group, true);
             }
             updatePlot();
-
-
             Plotly.Plots.resize("plot");
           });
 
@@ -282,6 +275,11 @@
         });
 
         updatePlot();
+
+        // Adicionar evento de redimensionamento da janela
+        window.addEventListener("resize", () => {
+          Plotly.Plots.resize("plot");
+        });
 
         const totalPopulacao = Object.values(regionDataTotal).reduce(
           (a, b) => a + b,

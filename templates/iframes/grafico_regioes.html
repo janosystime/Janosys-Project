@@ -3,7 +3,6 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <script></script>
     <title>Gráfico — Regiões / Censo 2010 vs 2022</title>
     <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
 
@@ -69,11 +68,7 @@
       }
 
       button.year-2022.active {
-        background: linear-gradient(
-          90deg,
-          #b9dbff,
-          #99c2ff
-        ); /* azul clarinho */
+        background: linear-gradient(90deg, #b9dbff, #99c2ff);
       }
 
       button.year-both.active {
@@ -105,22 +100,21 @@
 
       .region-filters {
         display: flex;
-        flex-wrap: nowrap; /* impede que quebre linha */
+        flex-wrap: nowrap;
         gap: 8px;
         margin-top: 10px;
-        overflow-x: auto; /* rolamento horizontal */
-        -webkit-overflow-scrolling: touch; /* suaviza scroll no iOS */
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
         padding-bottom: 5px;
       }
 
-      /* Opcional: esconder barra de rolagem */
       .region-filters::-webkit-scrollbar {
         display: none;
       }
 
       .region-filters button {
-        flex: 0 0 auto; /* impede que o botão encolha */
-        white-space: nowrap; /* impede quebra de texto */
+        flex: 0 0 auto;
+        white-space: nowrap;
       }
       .region-scroll-container {
         position: relative;
@@ -130,7 +124,7 @@
       }
 
       .arrow-btn {
-        display: none; /* desktop: escondido */
+        display: none;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -168,21 +162,21 @@
         }
 
         .wrap > div:first-child {
-          flex-direction: column; /* empilha título e controles */
-          align-items: center; /* centraliza horizontalmente */
+          flex-direction: column;
+          align-items: center;
           gap: 10px;
         }
 
         .controls {
-          justify-content: center; /* centraliza horizontalmente */
-          flex-wrap: nowrap; /* impede que quebre em linha */
-          gap: 8px; /* mantém espaço entre os botões */
-          overflow-x: auto; /* caso não caiba na tela, permite deslizar */
+          justify-content: center;
+          flex-wrap: nowrap;
+          gap: 8px;
+          overflow-x: auto;
         }
 
         .controls button {
-          flex: 0 0 auto; /* evita que encolham */
-          white-space: nowrap; /* impede quebra de texto */
+          flex: 0 0 auto;
+          white-space: nowrap;
         }
 
         .region-filters {
@@ -349,31 +343,29 @@
           font: {
             family: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif",
             color: "#222",
-            size: 14
+            size: 14,
           },
           paper_bgcolor: "rgba(0,0,0,0)",
           plot_bgcolor: "rgba(0,0,0,0)",
           transition: { duration: 600, easing: "cubic-in-out" },
           showlegend: false,
-          
         };
 
-        const config = { responsive: true, displaylogo: false, displayModeBar: false};
+        const config = {
+          responsive: true,
+          displaylogo: false,
+          displayModeBar: false,
+        };
 
         // Primeiro cria o gráfico
         Plotly.newPlot("plot", makeTraces(selectedRegions), layout, config);
 
-        // Depois define função de atualização
+        // Função de atualização
         function updatePlot() {
           const updateData = makeTraces(selectedRegions);
-          Plotly.animate(
-            "plot",
-            { data: updateData, traces: [0, 1], layout: layout },
-            {
-              transition: { duration: 700, easing: "cubic-in-out" },
-              frame: { duration: 700, redraw: true },
-            }
-          );
+
+          // Usa Plotly.react para redesenhar o gráfico completamente
+          Plotly.react("plot", updateData, layout, config);
 
           const plotDiv = document.getElementById("plot");
           plotDiv.style.opacity = 0;
@@ -396,9 +388,7 @@
           yearButtons.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
 
-          const filterBtns = document.querySelectorAll(
-            "#region-filters button"
-          );
+          const filterBtns = document.querySelectorAll("#region-filters button");
           filterBtns.forEach((b) => {
             b.classList.add("active");
             b.classList.remove("year-2010", "year-2022", "year-both");
@@ -413,7 +403,7 @@
         btn2022.addEventListener("click", () => selectYear(btn2022, "2022"));
 
         // Filtros de regiões
-        const filterContainer = document.querySelectorAll("#region-filters")[0]; // usa só o primeiro
+        const filterContainer = document.querySelectorAll("#region-filters")[0];
         regions.forEach((region) => {
           const btn = document.createElement("button");
           btn.textContent = region;

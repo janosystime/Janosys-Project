@@ -196,17 +196,17 @@
             },
             text: regions.map((r) => regionData[r][age].toLocaleString()),
             // ✅ MUDANÇA PRINCIPAL: TEXTO FORA DAS BARRAS
-            textposition: "outside",
+            textposition: "ouside",
             // ✅ FONTE MENOR E CONTIDA
             textfont: {
-              size: 10,
+              size: 14,
               color: "#333",
               family: "Segoe UI, sans-serif",
             },
             // ✅ NÃO MOSTRA TEXTO SE NÃO CABE
             insidetextanchor: "middle",
             outsidetextfont: {
-              size: 10,
+              size: 14,
               color: "#333",
             },
             hovertemplate: "%{x} - " + age + ": %{text}<extra></extra>",
@@ -215,11 +215,11 @@
         }
 
         const layout = {
-          barmode: "stack",
+          barmode: "group",
           // ✅ MARGEM SUPERIOR AUMENTADA PARA LABELS
           margin: { t: 60, r: 16, l: 50, b: 40 },
           xaxis: {
-            tickangle: -20,
+            tickangle: 0,
             automargin: true,
             showgrid: false,
             zeroline: false,
@@ -273,6 +273,9 @@
               setButtonColor(btn, group, true);
             }
             updatePlot();
+
+
+            Plotly.Plots.resize("plot");
           });
 
           filterContainer.appendChild(btn);

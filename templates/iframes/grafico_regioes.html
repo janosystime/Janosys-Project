@@ -343,20 +343,22 @@
           barmode: "group",
           margin: { t: 40, r: 16, l: 50, b: 40 },
           legend: { orientation: "h", y: -0.15 },
-          xaxis: { tickangle: -20, automargin: true },
+          xaxis: { tickangle: 0, automargin: true },
           yaxis: { tickformat: ",d" },
           hovermode: "closest",
           font: {
             family: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif",
             color: "#222",
+            size: 14
           },
           paper_bgcolor: "rgba(0,0,0,0)",
           plot_bgcolor: "rgba(0,0,0,0)",
           transition: { duration: 600, easing: "cubic-in-out" },
           showlegend: false,
+          
         };
 
-        const config = { responsive: true, displaylogo: false };
+        const config = { responsive: true, displaylogo: false, displayModeBar: false};
 
         // Primeiro cria o gráfico
         Plotly.newPlot("plot", makeTraces(selectedRegions), layout, config);

@@ -146,7 +146,7 @@ cd Janosys-Project
 #### 2. Instale as dependências iniciais do projeto
 
 ```bash
-pip install flask pandas plotly
+pip install -r requirements.txt
 ```
 ---
 

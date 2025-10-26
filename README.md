@@ -79,7 +79,7 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 |      Sprint       |  Previsão  |    Status    |     Histórico     |
 | :---------------: | :--------: | :----------: | :---------------: |
 |        01         | 28/09/2025 |  Finalizada  | [MVP](MVP/sp1.md) |
-|        02         | 26/10/2025 |   a fazer    |         -         |
+|        02         | 26/10/2025 |  Finalizada  | [MVP](MVP/sp2.md) |
 |        03         | 23/11/2025 |   a fazer    |         -         |
 | Feira de Soluções | 04/12/2025 |   a fazer    |         -         |
 
@@ -111,7 +111,6 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
       <li> Vídeo de entrega. </li>
   </ul>
  
----
 ---
 
 ## 📦 Manual de Instalação
@@ -156,7 +155,6 @@ pip install -r requirements.txt
 | :---------------: | :-----------: | :---------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
 |   Wagner Costa    | Product Owner | <a href="https://github.com/Costa-Wagner"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>  |     <a href="https://www.linkedin.com/in/wagner-costa-391b0726/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">     |
 |    Lucas Alves    | Scrum Master  | <a href="https://github.com/LuccasLukaDev"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a> | <a href="https://www.linkedin.com/in/lucas-da-silva-alves-18852b2b3"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white"> |
-| Cleverson Feitosa |   Dev Team    |   <a href="https://github.com/clfeitosa"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>   |  <a href="https://www.linkedin.com/in/cleverson-feitosa-447768180/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">  |
 |   Lucas Santos    |   Dev Team    |   <a href="https://github.com/tirolasca"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>   |        <a href="https://www.linkedin.com/in/lucas-santostec/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">        |
 |    Pedro Chaim    |   Dev Team    |  <a href="https://github.com/Spockchaim"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>   |           <a href="https://www.linkedin.com/in/pedrochaim"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">           |
 |    Pedro Lucas    |   Dev Team    | <a href="https://github.com/pedrodevroot"><img src="https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white"></a>  |     <a href="https://www.linkedin.com/in/pedro-lucas-76870237b/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white">     |

@@ -112,7 +112,7 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 ## 8
 
-## 🚀 Próximos Passos <a id="proximo"></a>
+## 🚀 Próximos Passos <a id="proximos"></a>
 
 - Ajustar UI/UX conforme feedback
 - Modelagem do Banco de Dados

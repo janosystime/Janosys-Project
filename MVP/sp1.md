@@ -43,7 +43,7 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 <ul>
   <li> Criação de um site básico acessível via navegador e espansivo;</li>
-  <li> Implementação de painéis de dados iniciais para visualização de infornmações releventas;</li>
+  <li> Implementação de painéis de dados iniciais para visualização de informações releventas;</li>
   <li> Inclusão de filtros simples por região para análise direcionada;</li>
   <li> Visualização gráfica de indicadores populacionais iniciais.</li>
 </ul>
@@ -67,9 +67,9 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 ## 👥 Personas / Usuários-Alvo <a id="usuario"></a>
 
-- **Secretário de Urbanismo e Sustentabilidade** <br>Gestor público municipal responsável pelo planejamento urbano, com a necessidade de valer-se dos dados do CENSO para auxílio na melhor distribuição financeira às regiões, visto falta de ferramentas para anáise de grandes volumes de dados dispersos, consolidando assim as informações.
+- **Secretário de Urbanismo e Sustentabilidade** <br>Gestor público municipal responsável pelo planejamento urbano, com a necessidade de valer-se dos dados do CENSO para auxílio na melhor distribuição financeira às regiões, visto falta de ferramentas para análise de grandes volumes de dados dispersos, consolidando assim as informações.
 
-- **População Joseense:**<br>Moradores da cidade, diretamente impactados pelas políticas públicas e pela má distribuição dos recursos municipais, passando a receber serviços públicos como creches, mais bem distribuídos na cidade, garantindo de que os recursos públicos serão aplicados de forma a suprir a demanda do crescimento populacional.
+- **População Joseense:**<br>Moradores da cidade, diretamente impactados pelas políticas públicas e pela má distribuição dos recursos municipais, passando a receber serviços públicos como creches, mais bem distribuídos na cidade, garantindo que os recursos públicos serão aplicados de forma a suprir a demanda do crescimento populacional.
 
 ---
 
@@ -94,7 +94,7 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 ## 📊 Critérios de Aceitação <a id="criterios"></a>
 
 - O MVP permite que o usuário identifique a região com maior crescimento populacional na cidade
-- Permite filtar os dados por região e faixa etária
+- Permite filtrar os dados por região e faixa etária
 - Dados apresentados correspondem aos números oficiais
 - Interface clara e de fácil navegabilidade
 

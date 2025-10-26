@@ -124,13 +124,13 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 ## 📂 Anexos / Evidências <a id="anexos"></a>
 
 - Prints de tela / Protótipo<br><br>
-  ![Print 1](../Documentos/assets/sp2/MVP2.print.1.jpg)
-  ![Print 2](../Documentos/assets/sp2/MVP2.print.2.jpg)
-  ![Print 3](../Documentos/assets/sp2/MVP2.print.3.jpg)
-  ![Print 4](../Documentos/assets/sp2/MVP2.print.4.jpg)><br>
+  ![Print 1](/Documentos/assets/sp2/MVP2.print.1.jpg)
+  ![Print 2](/Documentos/assets/sp2/MVP2.print.2.jpg)
+  ![Print 3](/Documentos/assets/sp2/MVP2.print.3.jpg)
+  ![Print 4](/Documentos/assets/sp2/MVP2.print.4.jpg)><br>
 
 - Vídeo (MVP)<br>
-  ![MVP GIF](../Documentos/assets/sp2/MVP_gif.gif)
+  ![MVP GIF](/Documentos/assets/sp2/MVP_gif.gif)
 
 ---
 

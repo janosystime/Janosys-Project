@@ -123,11 +123,11 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 ## 📂 Anexos / Evidências <a id="anexos"></a>
 
 - Prints de tela / Protótipo<br><br>
-  ![Print 1](../Documentos/assets/sp1/MVP.print.1.jpg)
-  ![Print 2](../Documentos/assets/sp1/MVP.print.2.jpg)<br><br>
+  ![Print 1](/Documentos/assets/sp1/MVP.print.1.jp)
+  ![Print 2](/Documentos/assets/sp1/MVP.print.2.jpg)<br><br>
 
 - Vídeo (MVP)<br>
-  ![MVP GIF](../Documentos/assets/sp1/MVP.gif)
+  ![MVP GIF](/Documentos/assets/sp1/MVP.gif)
 
 ---
 

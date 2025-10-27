@@ -112,7 +112,7 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 ## 8
 
-## 🚀 Próximos Passos <a id="proximo"></a>
+## 🚀 Próximos Passos <a id="proximos"></a>
 
 - Ajustar UI/UX conforme feedback
 - Modelagem do Banco de Dados
@@ -123,11 +123,11 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 ## 📂 Anexos / Evidências <a id="anexos"></a>
 
 - Prints de tela / Protótipo<br><br>
-  ![Print 1](../Documentos/assets/sp1/MVP.print.1.jpg)
-  ![Print 2](../Documentos/assets/sp1/MVP.print.2.jpg)<br><br>
+  ![Print 1](/Documentos/assets/sp1/mvp_print1.jpg)
+  ![Print 2](/Documentos/assets/sp1/mvp_print2.jpg)<br><br>
 
 - Vídeo (MVP)<br>
-  ![MVP GIF](../Documentos/assets/sp1/MVP.gif)
+  ![MVP GIF](/Documentos/assets/sp1/mvp.gif)
 
 ---
 

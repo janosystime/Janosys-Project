@@ -89,5 +89,7 @@ fig.update_layout(
     bargap=0.2
 )
 
+fig.update_layout(showlegend=False)
+
 fig.show()
 

@@ -12,20 +12,21 @@ const labelCard3 = document.getElementById('label-card3')
 function chamaGraphDensPop(){
     iframe.src = './iframes/grafico_regioes.html'
     labelCard1.textContent = 'População Total';
-    labelCard2.textContent = 'Crianças (0-5)';
-    labelCard3.textContent = 'Idosos (60+)';
+    labelCard2.textContent = 'Maior População';
+    labelCard3.textContent = 'Menor População';
 }
 
 function chamaGraphEtariaRegiao(){
     iframe.src = './iframes/grafico_etaria_regiao.html'
-
-    labelCard1.textContent = 'teste1';
-    labelCard2.textContent = 'teste';
-    labelCard3.textContent = 'teste3)';
+    
+    labelCard1.textContent = 'Adultos (20-59)';
+    labelCard2.textContent = 'Região com + Crianças';
+    labelCard3.textContent = 'Região com + Idosos';
 }
 
-function chamaGraphDensPo(){
-    labelCard1.textContent = 'População Total';
-    labelCard2.textContent = 'Crianças (0-5)';
-    labelCard3.textContent = 'Idosos (60+)';
+function chamaGraphCreche(){
+    iframe.src = './iframes/grafico_creche.html'
+    labelCard1.textContent = 'Crianças em Creche';
+    labelCard2.textContent = '% Cobertura Creche';
+    labelCard3.textContent = 'Vagas Disponíveis';
 }

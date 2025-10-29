@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Relatório Demográfico - PMSJC</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}" />
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
@@ -19,7 +19,7 @@
       <!-- HEADER -->
       <header class="header-pmsjc">
         <img
-          src="images/brasao.png"
+          src="{{ url_for('static', filename='images/brasao.png') }}"
           alt="Brasão de São José dos Campos"
           width="80"
         />
@@ -34,7 +34,7 @@
           </p>
         </div>
         <img
-          src="images/bandeira.jpg"
+          src="{{ url_for('static', filename='images/bandeira.jpg') }}"
           alt="Bandeira de São José dos Campos"
           width="80"
           id="bandeira"
@@ -61,7 +61,7 @@
 
           <div class="container-div-helper-img">
             <img
-              src="images/help.png"
+              src="{{ url_for('static', filename='images/help.png') }}"
               alt="Ajuda"
               class="help-img"
               id="help-btn"
@@ -71,7 +71,7 @@
           </div>
 
           <iframe
-            src="./iframes/grafico_regioes.html"
+            src="{{ url_for('static', filename='iframes/grafico_regioes.html') }}"
             frameborder="0"
             width="100%"
             height="682"
@@ -128,7 +128,7 @@
       const labelCard3 = document.getElementById("label-card3");
 
       function chamaGraphDensPop() {
-        iframe.src = "./iframes/grafico_regioes.html";
+        iframe.src = "{{ url_for('static', filename='iframes/grafico_regioes.html') }}";
         labelCard1.textContent = "População Total";
         labelCard2.textContent = "Maior População";
         labelCard3.textContent = "Menor População";
@@ -138,7 +138,7 @@
       }
 
       function chamaGraphEtariaRegiao() {
-        iframe.src = "./iframes/grafico_etaria_regiao.html";
+        iframe.src = "{{ url_for('static', filename='iframes/grafico_etaria_regiao.html') }}";
         labelCard1.textContent = "Adultos (20-59)";
         labelCard2.textContent = "Região + Crianças";
         labelCard3.textContent = "Região + Idosos";
@@ -148,7 +148,7 @@
       }
 
       function chamaGraphCreche() {
-        iframe.src = "./iframes/grafico_creche.html";
+        iframe.src = "{{ url_for('static', filename='iframes/grafico_regioes.html') }}";
         labelCard1.textContent = "Crianças em Creche";
         labelCard2.textContent = "% Cobertura Creche";
         labelCard3.textContent = "Vagas Disponíveis";
@@ -215,6 +215,6 @@
       });
     </script>
 
-    <script src="script.js"></script>
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
   </body>
 </html>

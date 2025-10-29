@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
     <title>Gráfico — Faixa Etária por Região / Censo 2022</title>
+    <meta
+      name="description"
+      content="Visualização interativa da população por faixa etária e região com base no Censo 2022 (IBGE)."
+    />
 
     <style>
       html,
@@ -34,8 +38,10 @@
       }
       #plot {
         width: 100%;
-        height: 70vh;
+        height: 72vh;
+        transition: opacity 0.6s ease, transform 0.6s ease;
       }
+
       .age-scroll-container {
         position: relative;
         display: flex;
@@ -44,16 +50,23 @@
       }
       .age-filters {
         display: flex;
+        gap: 10px;
         flex-wrap: nowrap;
-        gap: 8px;
-        margin-top: 10px;
+        margin-top: 8px;
         overflow-x: auto;
-        padding-bottom: 5px;
-        position: relative;
+        -webkit-overflow-scrolling: touch;
+        padding: 6px 2px;
       }
       .age-filters::-webkit-scrollbar {
         display: none;
       }
+      .age-scroll-container {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+      }
+
       .arrow-btn {
         display: none;
         position: absolute;
@@ -63,46 +76,118 @@
         color: #fff;
         border: none;
         border-radius: 50%;
-        width: 25px;
-        height: 25px;
+        width: 32px;
+        height: 32px;
         cursor: pointer;
         z-index: 5;
-        font-size: 0.8rem;
+        font-size: 0.85rem;
         text-align: center;
-        padding-bottom: 0.5em;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
       }
+
       .arrow-btn:hover {
         transform: translateY(-50%) scale(1.1);
         filter: brightness(1.15);
       }
+
       .arrow-btn.left {
         left: 4px;
       }
+
       .arrow-btn.right {
         right: 4px;
       }
+
       button {
-        border: 0 !important;
-        padding: 6px 14px !important;
-        border-radius: 10px !important;
-        font-weight: 700 !important;
-        cursor: pointer !important;
-        transition: all 0.2s ease !important;
-        color: white !important;
-        flex: 0 0 auto !important;
-        white-space: nowrap !important;
+        border: none;
+        border-radius: 12px;
+        font-weight: 700;
+        cursor: pointer;
+        padding: 8px 18px;
+        transition: all 0.3s ease;
+        color: white;
+        flex: 0 0 auto;
+        white-space: nowrap;
+        letter-spacing: 0.3px;
       }
+
       button:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+        filter: brightness(1.1);
+        transform: translateY(-1px);
       }
+
       button.ativo {
-        transform: scale(0.98) !important;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+        transform: scale(0.96);
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
       }
-      @media (max-width: 640px) {
+
+      button[data-group="Criança"] {
+        background: linear-gradient(90deg, #e74c3c, #ff7b61);
+      }
+      button[data-group="Jovem"] {
+        background: linear-gradient(90deg, #3498db, #5dade2);
+      }
+      button[data-group="Adulto"] {
+        background: linear-gradient(90deg, #2ecc71, #58d68d);
+      }
+      button[data-group="Idoso"] {
+        background: linear-gradient(90deg, #f39c12, #f5b041);
+      }
+
+      button:not(.ativo) {
+        opacity: 0.6;
+        filter: grayscale(0.2);
+      }
+
+      button.flash-radial {
+        position: relative;
+        overflow: hidden;
+      }
+
+      button.flash-radial::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 0;
+        height: 0;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transform: translate(-50%, -50%);
+        pointer-events: none;
+        animation: radialPulse 0.6s ease-out forwards;
+      }
+
+      button i {
+        font-size: 0.95rem;
+        vertical-align: middle;
+      }
+
+      @keyframes radialPulse {
+        0% {
+          width: 0;
+          height: 0;
+          opacity: 0.6;
+        }
+        50% {
+          width: 150%;
+          height: 150%;
+          opacity: 0.4;
+        }
+        100% {
+          width: 200%;
+          height: 200%;
+          opacity: 0;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .arrow-btn {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
         #plot {
           height: 50vh;
         }
@@ -117,12 +202,27 @@
         }
       }
     </style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2022</h2>
-      <p class="source">Fonte: IBGE / consolidação municipal (2022).</p>
-      <div class="age-filters" id="age-filters"></div>
+      <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2022).</p>
+      <div class="age-filter-box">
+        <button class="arrow-btn left" id="scroll-left">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+
+        <div class="age-filters" id="age-filters"></div>
+
+        <button class="arrow-btn right" id="scroll-right">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
       <div id="plot"></div>
     </div>
 
@@ -139,9 +239,21 @@
         };
 
         function setButtonColor(btn, group, isActive) {
-          const color = ageColors[group];
-          btn.style.backgroundColor = isActive ? color : color + "66";
-          btn.style.transform = isActive ? "scale(0.98)" : "none";
+          // define o atributo data-group (necessário pro CSS aplicar o gradiente)
+          btn.dataset.group = group;
+
+          // animações suaves
+          btn.style.transition = "all 0.3s ease";
+
+          if (isActive) {
+            btn.style.opacity = "1";
+            btn.style.filter = "none";
+            btn.style.transform = "scale(0.97)";
+          } else {
+            btn.style.opacity = "0.55";
+            btn.style.filter = "grayscale(0.4)";
+            btn.style.transform = "scale(1)";
+          }
         }
 
         const regionMap = {
@@ -232,16 +344,23 @@
 
         function makeTraces(filteredAges) {
           const isMobile = window.innerWidth <= 640;
-          return filteredAges.map((age) => ({
+          return ageGroups.map((age) => ({
             x: regions,
-            y: regions.map((r) => regionData[r][age]),
+            y: regions.map(
+              (r) => (filteredAges.includes(age) ? regionData[r][age] : 0) // mantém a barra no lugar
+            ),
             type: "bar",
             name: age,
             marker: {
               color: ageColors[age],
               line: { width: 1, color: ageColors[age] },
             },
-            text: regions.map((r) => regionData[r][age].toLocaleString()),
+            text: regions.map(
+              (r) =>
+                filteredAges.includes(age)
+                  ? regionData[r][age].toLocaleString()
+                  : "" // texto some
+            ),
             textposition: isMobile ? "inside" : "outside",
             textfont: {
               size: isMobile ? 12 : 14,
@@ -249,10 +368,6 @@
               family: "Segoe UI, sans-serif",
             },
             insidetextanchor: "middle",
-            outsidetextfont: {
-              size: isMobile ? 12 : 14,
-              color: "#333",
-            },
             hovertemplate: "%{x} - " + age + ": %{text}<extra></extra>",
             showlegend: false,
           }));
@@ -260,7 +375,12 @@
 
         const layout = {
           barmode: window.innerWidth <= 640 ? "stack" : "group",
-          margin: { t: window.innerWidth <= 640 ? 40 : 60, r: 16, l: 50, b: 40 },
+          margin: {
+            t: window.innerWidth <= 640 ? 40 : 60,
+            r: 16,
+            l: 50,
+            b: 40,
+          },
           xaxis: {
             tickangle: 0,
             automargin: true,
@@ -298,13 +418,23 @@
             maxIdosos = 0;
 
           regions.forEach((regiao) => {
-            if (selectedAges.includes("Criança") && regionData[regiao]["Criança"] > maxCriancas) {
+            if (
+              selectedAges.includes("Criança") &&
+              regionData[regiao]["Criança"] > maxCriancas
+            ) {
               maxCriancas = regionData[regiao]["Criança"];
-              regiaoMaisCriancas = `${regiao}: ${maxCriancas.toLocaleString("pt-BR")}`;
+              regiaoMaisCriancas = `${regiao}: ${maxCriancas.toLocaleString(
+                "pt-BR"
+              )}`;
             }
-            if (selectedAges.includes("Idoso") && regionData[regiao]["Idoso"] > maxIdosos) {
+            if (
+              selectedAges.includes("Idoso") &&
+              regionData[regiao]["Idoso"] > maxIdosos
+            ) {
               maxIdosos = regionData[regiao]["Idoso"];
-              regiaoMaisIdosos = `${regiao}: ${maxIdosos.toLocaleString("pt-BR")}`;
+              regiaoMaisIdosos = `${regiao}: ${maxIdosos.toLocaleString(
+                "pt-BR"
+              )}`;
             }
           });
 
@@ -336,10 +466,22 @@
 
         const filterContainer = document.getElementById("age-filters");
 
+        const ageIcons = {
+          Criança: "fa-solid fa-baby",
+          Jovem: "fa-solid fa-user-graduate",
+          Adulto: "fa-solid fa-briefcase",
+          Idoso: "fa-solid fa-person-cane",
+        };
+
         ageGroups.forEach((group) => {
           const btn = document.createElement("button");
-          btn.textContent = group;
           btn.classList.add("ativo");
+          btn.dataset.group = group;
+          btn.title = `Exibir faixa: ${group}`;
+
+          // Adiciona ícone + texto
+          btn.innerHTML = `<i class="${ageIcons[group]}" style="margin-right:8px"></i>${group}`;
+
           setButtonColor(btn, group, true);
 
           btn.addEventListener("click", () => {
@@ -353,6 +495,11 @@
               btn.classList.add("ativo");
               setButtonColor(btn, group, true);
             }
+
+            // Efeito radial
+            btn.classList.add("flash-radial");
+            setTimeout(() => btn.classList.remove("flash-radial"), 600);
+
             updatePlot();
             Plotly.Plots.resize("plot");
           });
@@ -367,23 +514,37 @@
           updatePlot(); // Atualiza barmode, margens e dados
           Plotly.Plots.resize("plot");
         });
-
-        // Rolagem com as setas no mobile
-        const scrollContainer = document.getElementById("age-filters");
-        const btnLeft = document.getElementById("scroll-left");
-        const btnRight = document.getElementById("scroll-right");
-
-        btnLeft.addEventListener("click", () => {
-          scrollContainer.scrollBy({ left: -100, behavior: "smooth" });
-        });
-
-        btnRight.addEventListener("click", () => {
-          scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
-        });
-
         // Enviar dados iniciais
         sendDemographicsData();
       })();
+
+      // === CONTROLES DE SCROLL DOS FILTROS (MOBILE) ===
+      const scrollContainer = document.getElementById("age-filters");
+      const btnLeft = document.getElementById("scroll-left");
+      const btnRight = document.getElementById("scroll-right");
+
+      if (scrollContainer && btnLeft && btnRight) {
+        btnLeft.addEventListener("click", () => {
+          scrollContainer.scrollBy({ left: -120, behavior: "smooth" });
+        });
+
+        btnRight.addEventListener("click", () => {
+          scrollContainer.scrollBy({ left: 120, behavior: "smooth" });
+        });
+
+        // Mostra ou oculta as setas conforme a rolagem
+        function updateArrowVisibility() {
+          btnLeft.style.opacity = scrollContainer.scrollLeft > 10 ? "1" : "0.4";
+          const maxScroll =
+            scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
+          btnRight.style.opacity =
+            scrollContainer.scrollLeft < maxScroll ? "1" : "0.4";
+        }
+
+        scrollContainer.addEventListener("scroll", updateArrowVisibility);
+        window.addEventListener("resize", updateArrowVisibility);
+        updateArrowVisibility();
+      }
     </script>
   </body>
 </html>

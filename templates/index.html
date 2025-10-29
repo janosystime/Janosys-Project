@@ -5,10 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Relatório Demográfico - PMSJC</title>
     <link rel="stylesheet" href="style.css" />
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"/>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"
+    />
   </head>
   <body id="topo">
     <div class="page-wrapper">
+      <!-- HEADER -->
       <header class="header-pmsjc">
         <img
           src="images/brasao.png"
@@ -16,8 +24,14 @@
           width="80"
         />
         <div class="header-text text-center">
-          <h1>Prefeitura de São José dos Campos</h1>
-          <p style="text-align: center;">Compromisso com a cidade e seus cidadãos</p>
+          <h1>
+            <i class="fas fa-city icon-animated pulse"></i> Prefeitura de São
+            José dos Campos
+          </h1>
+          <p style="text-align: center">
+            <i class="fas fa-handshake icon-animated float"></i> Compromisso com
+            a cidade e seus cidadãos
+          </p>
         </div>
         <img
           src="images/bandeira.jpg"
@@ -27,15 +41,24 @@
         />
       </header>
 
+      <!-- MAIN -->
       <main class="container my-4 flex-grow-1">
         <div class="graphic-container mb-4" id="graphic-container">
           <div class="dropdown">
-            <button>Gráficos ⬇</button>
+            <button><i class="fas fa-chart-pie"></i> Gráficos</button>
             <div class="content">
-              <a onclick="chamaGraphDensPop()">Densidade Populacional</a>
-              <a onclick="chamaGraphEtariaRegiao()">Faixa Etária e Região</a>
+              <a onclick="chamaGraphDensPop()">
+                <i class="fas fa-users"></i> Densidade Populacional
+              </a>
+              <a onclick="chamaGraphEtariaRegiao()">
+                <i class="fas fa-chart-line"></i> Faixa Etária e Região
+              </a>
+              <a onclick="chamaGraphCreche()">
+                <i class="fas fa-child"></i> Crianças e Creches
+              </a>
             </div>
           </div>
+
           <div class="container-div-helper-img">
             <img
               src="images/help.png"
@@ -43,8 +66,10 @@
               class="help-img"
               id="help-btn"
               style="cursor: pointer"
+              title="Ajuda"
             />
           </div>
+
           <iframe
             src="./iframes/grafico_regioes.html"
             frameborder="0"
@@ -58,164 +83,138 @@
 
         <!-- CARDS -->
         <div class="stats-cards mb-4">
-          <div class="card-stat text-center">
+          <div class="card-stat text-center icon-animated">
+            <i class="fas fa-users fa-2x mb-2 pulse"></i>
             <h4 id="card-total">0</h4>
             <p id="label-card1">População Total</p>
           </div>
-          <div class="card-stat text-center">
+          <div class="card-stat text-center icon-animated">
+            <i class="fas fa-chart-bar fa-2x mb-2 pulse"></i>
             <h4 id="card-criancas">0</h4>
             <p id="label-card2">Maior População</p>
           </div>
-          <div class="card-stat text-center">
+          <div class="card-stat text-center icon-animated">
+            <i class="fas fa-chart-area fa-2x mb-2 pulse"></i>
             <h4 id="card-idosos">0</h4>
             <p id="label-card3">Menor População</p>
           </div>
         </div>
       </main>
+
+      <!-- BOTÃO VOLTAR AO TOPO -->
+      <button
+        class="btn-voltar-topo"
+        onclick="window.scrollTo({ top: 0, behavior: 'smooth' });"
+        title="Voltar ao topo"
+      ></button>
+
+      <!-- FOOTER -->
+      <footer class="footer-pmsjc text-center p-3">
+        <i class="fas fa-landmark icon-animated float"></i>
+        <span class="fw-bold"> PMSJC</span> |
+        <i class="fas fa-code icon-animated pulse"></i>
+        <span class="fw-bold"> JanoSys Technologies</span>
+      </footer>
     </div>
 
+    <!-- SCRIPTS -->
     <script>
-      const iframe = document.getElementById('grafico-iframe');
-      const card1 = document.getElementById('card-total');
-      const labelCard1 = document.getElementById('label-card1');
-      const card2 = document.getElementById('card-criancas');
-      const labelCard2 = document.getElementById('label-card2');
-      const card3 = document.getElementById('card-idosos');
-      const labelCard3 = document.getElementById('label-card3');
+      const iframe = document.getElementById("grafico-iframe");
+      const card1 = document.getElementById("card-total");
+      const labelCard1 = document.getElementById("label-card1");
+      const card2 = document.getElementById("card-criancas");
+      const labelCard2 = document.getElementById("label-card2");
+      const card3 = document.getElementById("card-idosos");
+      const labelCard3 = document.getElementById("label-card3");
 
       function chamaGraphDensPop() {
-        iframe.src = './iframes/grafico_regioes.html';
-        labelCard1.textContent = 'População Total';
-        labelCard2.textContent = 'Maior População';
-        labelCard3.textContent = 'Menor População';
-        // Limpar cards ao trocar gráfico
-        card1.textContent = '0';
-        card2.textContent = '0';
-        card3.textContent = '0';
+        iframe.src = "./iframes/grafico_regioes.html";
+        labelCard1.textContent = "População Total";
+        labelCard2.textContent = "Maior População";
+        labelCard3.textContent = "Menor População";
+        card1.textContent = "0";
+        card2.textContent = "0";
+        card3.textContent = "0";
       }
 
       function chamaGraphEtariaRegiao() {
-        iframe.src = './iframes/grafico_etaria_regiao.html';
-        labelCard1.textContent = 'Adultos (20-59)';
-        labelCard2.textContent = 'Região + Crianças';
-        labelCard3.textContent = 'Região + Idosos';
-        // Limpar cards ao trocar gráfico
-        card1.textContent = '0';
-        card2.textContent = '0';
-        card3.textContent = '0';
+        iframe.src = "./iframes/grafico_etaria_regiao.html";
+        labelCard1.textContent = "Adultos (20-59)";
+        labelCard2.textContent = "Região + Crianças";
+        labelCard3.textContent = "Região + Idosos";
+        card1.textContent = "0";
+        card2.textContent = "0";
+        card3.textContent = "0";
       }
 
       function chamaGraphCreche() {
-        iframe.src = './iframes/grafico_creche.html';
-        labelCard1.textContent = 'Crianças em Creche';
-        labelCard2.textContent = '% Cobertura Creche';
-        labelCard3.textContent = 'Vagas Disponíveis';
-        // Limpar cards ao trocar gráfico
-        card1.textContent = '0';
-        card2.textContent = '0';
-        card3.textContent = '0';
+        iframe.src = "./iframes/grafico_creche.html";
+        labelCard1.textContent = "Crianças em Creche";
+        labelCard2.textContent = "% Cobertura Creche";
+        labelCard3.textContent = "Vagas Disponíveis";
+        card1.textContent = "0";
+        card2.textContent = "0";
+        card3.textContent = "0";
       }
 
-      // SISTEMA DE CARDS CORRIGIDO - AGORA FUNCIONA COM TODOS OS GRÁFICOS
       function atualizarCards(data) {
         const label1 = labelCard1.textContent;
 
-        if (label1 === 'Adultos (20-59)') {
-          // FAIXA ETÁRIA POR REGIÃO
-          card1.textContent = (data.faixasEtarias && data.faixasEtarias.adultos !== undefined)
-            ? data.faixasEtarias.adultos.toLocaleString("pt-BR")
-            : '0';
-          card2.textContent = (data.faixasEtarias && data.faixasEtarias.regiaoMaisCriancas)
-            ? data.faixasEtarias.regiaoMaisCriancas
-            : 'N/A';
-          card3.textContent = (data.faixasEtarias && data.faixasEtarias.regiaoMaisIdosos)
-            ? data.faixasEtarias.regiaoMaisIdosos
-            : 'N/A';
-        } else if (label1 === 'Crianças em Creche') {
-          // CRIANÇAS E CRECHES
-          card1.textContent = (data.creche && data.creche.total !== undefined)
-            ? data.creche.total.toLocaleString("pt-BR")
-            : '0';
-          card2.textContent = (data.creche && data.creche.cobertura !== undefined)
-            ? `${data.creche.cobertura}%`
-            : '0%';
-          card3.textContent = (data.creche && data.creche.vagas !== undefined)
-            ? data.creche.vagas.toLocaleString("pt-BR")
-            : '0';
+        if (label1 === "Adultos (20-59)") {
+          card1.textContent =
+            data.faixasEtarias && data.faixasEtarias.adultos !== undefined
+              ? data.faixasEtarias.adultos.toLocaleString("pt-BR")
+              : "0";
+          card2.textContent =
+            data.faixasEtarias && data.faixasEtarias.regiaoMaisCriancas
+              ? data.faixasEtarias.regiaoMaisCriancas
+              : "N/A";
+          card3.textContent =
+            data.faixasEtarias && data.faixasEtarias.regiaoMaisIdosos
+              ? data.faixasEtarias.regiaoMaisIdosos
+              : "N/A";
+        } else if (label1 === "Crianças em Creche") {
+          card1.textContent =
+            data.creche && data.creche.total !== undefined
+              ? data.creche.total.toLocaleString("pt-BR")
+              : "0";
+          card2.textContent =
+            data.creche && data.creche.cobertura !== undefined
+              ? `${data.creche.cobertura}%`
+              : "0%";
+          card3.textContent =
+            data.creche && data.creche.vagas !== undefined
+              ? data.creche.vagas.toLocaleString("pt-BR")
+              : "0";
         } else {
-          // DENSIDADE POPULACIONAL
-          card1.textContent = (data.total !== undefined)
-            ? data.total.toLocaleString("pt-BR")
-            : '0';
+          card1.textContent =
+            data.total !== undefined ? data.total.toLocaleString("pt-BR") : "0";
           if (data.regioes && data.regioes.length > 0) {
-            const sortedRegioes = [...data.regioes].sort((a, b) => b.valor - a.valor);
-            card2.textContent = `${sortedRegioes[0].nome}: ${sortedRegioes[0].valor.toLocaleString("pt-BR")}`;
-            card3.textContent = `${sortedRegioes[sortedRegioes.length - 1].nome}: ${sortedRegioes[sortedRegioes.length - 1].valor.toLocaleString("pt-BR")}`;
+            const sortedRegioes = [...data.regioes].sort(
+              (a, b) => b.valor - a.valor
+            );
+            card2.textContent = `${
+              sortedRegioes[0].nome
+            }: ${sortedRegioes[0].valor.toLocaleString("pt-BR")}`;
+            card3.textContent = `${
+              sortedRegioes[sortedRegioes.length - 1].nome
+            }: ${sortedRegioes[sortedRegioes.length - 1].valor.toLocaleString(
+              "pt-BR"
+            )}`;
           } else {
-            card2.textContent = 'N/A';
-            card3.textContent = 'N/A';
+            card2.textContent = "N/A";
+            card3.textContent = "N/A";
           }
         }
       }
 
-      // RECEBE DADOS DE QUALQUER GRÁFICO
       window.addEventListener("message", (event) => {
         const data = event.data;
         if (!data || data.type !== "updateDemographics") return;
-
         atualizarCards(data);
-
-        // Progress bars (só para densidade)
-        if (data.regioes && document.getElementById("progress-container")) {
-          const container = document.getElementById("progress-container");
-          container.innerHTML = "";
-
-          const sorted = [...data.regioes].sort((a, b) => b.valor - a.valor);
-          sorted.forEach((r) => {
-            const perc = ((r.valor / data.total) * 100).toFixed(2);
-            const wrapper = document.createElement("div");
-            wrapper.className = "progress mb-3 progress-gradient";
-            wrapper.setAttribute("data-tooltip", `${r.nome}: ${r.valor.toLocaleString("pt-BR")} hab. (${perc}%)`);
-
-            const bar = document.createElement("div");
-            bar.className = "progress-bar d-flex justify-content-center align-items-center";
-            bar.style.width = perc + "%";
-            bar.textContent = `${r.nome} - ${perc}%`;
-
-            wrapper.appendChild(bar);
-            container.appendChild(wrapper);
-          });
-        }
-      });
-
-      // Tooltip custom
-      document.addEventListener("mouseover", (e) => {
-        const barWrapper = e.target.closest(".progress");
-        if (barWrapper) {
-          const tooltip = document.createElement("div");
-          tooltip.className = "tooltip-custom";
-          tooltip.innerText = barWrapper.getAttribute("data-tooltip");
-          document.body.appendChild(tooltip);
-
-          const rect = barWrapper.getBoundingClientRect();
-          tooltip.style.left = rect.left + rect.width / 2 - tooltip.offsetWidth / 2 + "px";
-          tooltip.style.top = rect.top - tooltip.offsetHeight - 8 + "px";
-
-          tooltip.style.opacity = 0;
-          tooltip.style.transition = "opacity 0.2s ease, transform 0.2s ease";
-          requestAnimationFrame(() => {
-            tooltip.style.opacity = 1;
-            tooltip.style.transform = "translateY(-4px)";
-          });
-
-          barWrapper.addEventListener("mouseleave", () => {
-            tooltip.style.opacity = 0;
-            tooltip.style.transform = "translateY(0)";
-            setTimeout(() => tooltip.remove(), 200);
-          }, { once: true });
-        }
       });
     </script>
+
     <script src="script.js"></script>
   </body>
 </html>

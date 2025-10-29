@@ -1,9 +1,16 @@
+* {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
+  width: 100%;
+  overflow-x: hidden;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   background: #cfe2f3;
   color: #222;
@@ -209,9 +216,15 @@ main section:hover {
   animation: fadeUp 0.6s ease forwards;
 }
 
-.card-stat:nth-child(1) { animation-delay: 0s; }
-.card-stat:nth-child(2) { animation-delay: 0.1s; }
-.card-stat:nth-child(3) { animation-delay: 0.2s; }
+.card-stat:nth-child(1) {
+  animation-delay: 0s;
+}
+.card-stat:nth-child(2) {
+  animation-delay: 0.1s;
+}
+.card-stat:nth-child(3) {
+  animation-delay: 0.2s;
+}
 
 .card-stat:hover {
   transform: translateY(-5px) scale(1.05);
@@ -357,6 +370,21 @@ main section:hover {
   box-shadow: 0 6px 14px rgba(0, 0, 0, 0.2);
 }
 
+.dropdown button::after {
+  content: "";
+  display: inline-block;
+  margin-left: 8px;
+  border-left: 6px solid transparent;
+  border-right: 6px solid transparent;
+  border-top: 8px solid #fff;
+  transition: transform 0.3s ease;
+}
+
+.dropdown:hover button::after {
+  transform: rotate(180deg);
+}
+
+
 .dropdown .content {
   display: none;
   position: absolute;
@@ -399,6 +427,51 @@ main section:hover {
     opacity: 1;
     transform: translateY(0);
   }
+}
+
+/* 💫 ANIMAÇÕES DOS ÍCONES */
+.icon-animated {
+  transition: transform 0.3s ease, color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.icon-animated:hover {
+  transform: scale(1.15);
+  color: #007bff;
+  text-shadow: 0 0 8px rgba(0, 123, 255, 0.5);
+}
+
+/* 🫧 PULSE SUTIL PARA ÍCONES IMPORTANTES */
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.08);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.pulse {
+  animation: pulse 2.5s infinite;
+}
+
+/* EFEITO FLUTUANTE MAIS LENTO */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.float {
+  animation: float 3s ease-in-out infinite;
 }
 
 /* BOTÃO VOLTAR AO TOPO */
@@ -503,6 +576,10 @@ main section:hover {
   .header-pmsjc img.logo {
     margin-bottom: 15px;
     height: 60px;
+  }
+
+  #bandeira {
+    margin-top: 10px;
   }
 
   .header-pmsjc h1 {

@@ -123,14 +123,12 @@ Terá como entrega um primeira versão funcional de um site com painéis de dado
 
 ## 📂 Anexos / Evidências <a id="anexos"></a>
 
-- Prints de tela / Protótipo<br><br>
-  ![Print 1](../Documentos/assets/sp2/mvp2_print1.jpg)
-  ![Print 2](../Documentos/assets/sp2/mvp2_print2.jpg)
-  ![Print 3](../Documentos/assets/sp2/mvp2_print3.jpg)
-  ![Print 4](../Documentos/assets/sp2/mvp2_print4.jpg)><br>
+- Prints de tela / Protótipo<br><br>    
+![mvp2_print1](https://github.com/user-attachments/assets/c25f861a-17d3-4fc5-90a2-37d828e6e58d)
+![mvp2_print3](https://github.com/user-attachments/assets/d90d4f5f-1683-42be-a079-6b89f6f1c8d3)
 
 - Vídeo (MVP)<br>
-  ![MVP GIF](../Documentos/assets/sp2/mpv2.gif)
+  ![mpv2](https://github.com/user-attachments/assets/860ee4fa-fcff-43f2-9835-2f86206894ca)
 
 ---
 

@@ -70,7 +70,7 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 |  4   | Filtro por faixa etária                            |   MÉDIA    | Como secretário municipal de planejamento urbano, quero painéis com filtros por faixa etária para planejar a melhor distribuição dos recursos financeiros a cada região.                                                      |     8      |   2    |
 |  5   | Mensurar população idosa                           |   MÉDIA    | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos para mensurar a demanda de atendimento à população idosa, para ampliar as unidades especializadas no atendimento geriátrico.                       |     8      |   2    |
 |  6   | Mensurar população infantil                        |   MÉDIA    | Como secretário municipal de planejamento urbano, quero painéis mensurando a demanda infantil, para construir creches em regiões com crescimento populacional infantil.                                                       |     6      |   2    |
-|  7   | Mensurar região com maior crescimento populacional |   MÉDIA    | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos mensurando as regiões com maior crescimento populacional, para ampliar os horários e linhas de transporte público nos bairros que mais necessitam. |     6      |   3    |
+|  7   | Mensurar região com maior crescimento populacional |   ALTA    | Como secretário municipal de planejamento urbano, quero gráficos dinâmicos mensurando as regiões com maior crescimento populacional idosa, para ampliar a construção/atendimentos nas UBS´s nos bairros que mais necessitam. |     6      |   3    |
 
 ---
 
@@ -88,9 +88,9 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 ## 🏃‍ DoR - Definition of Ready <a id="dor"></a>
   <ul>
       <li> User Stories com critérios de aceitação definidos no formato “Como [persona], quero [ação] para que [objetivo]";</li>
-      <li> Subtarefas divididas a partir das US; </li>
-      <li> Compreensão do time da necessidade do cliente; </li>
-      <li> Design no Figma; </li>
+      <li> Subtarefas derivadas da User Storie estão identificadas; </li>
+      <li> Compreensão do time da necessidade do cliente e do valor de negócio; </li>
+      <li> Design disponível no Figma; </li>
       <li> Esforço estimado pelo planning poker; </li>
       <li> Definição dos valores do negócio; </li>
       <li> A história pode ser implementada sem depender de outra tarefa da mesma Sprint; </li> 
@@ -101,14 +101,14 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 
 ## 🏆 DoD - Definition of Done <a id="dod"></a>
   <ul>
-      <li> Código desenvolvido; </li>
-      <li> Testes básicos de funcionalidade e usabilidade; </li>
-      <li> Código versionado; </li>
+      <li> Código desenvolvido conforme critérios de aceitação; </li>
+      <li> Testes funcionais de usabilidade realizados com sucesso; </li>
+      <li> Código versionado e revisado; </li>
       <li> Manual de Usuário; </li>
       <li> Manual da Aplicação; </li>
       <li> Documentação atualizada; </li>
       <li> A funcionalidade está disponível em ambiente de teste/homologação. </li>
-      <li> Vídeo de entrega. </li>
+      <li> Vídeo de entrega anexado à documentação. </li>
   </ul>
  
 ---

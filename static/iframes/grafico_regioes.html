@@ -44,7 +44,7 @@
         height: 30.5em;
         transition: opacity 0.6s ease, transform 0.6s ease;
       }
-      
+
       /* Botões de ano e filtros */
       button {
         color: #fff;
@@ -200,6 +200,10 @@
         }
       }
     </style>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"
+    />
   </head>
   <body>
     <div class="wrap bg-all" id="wrap-container">
@@ -215,16 +219,21 @@
         <div>
           <h2 id="chart-title">População por Região — Censo 2010 × 2022</h2>
           <p class="source">
-            Fonte: IBGE / consolidação municipal (Censo 2010 e 2022).
+            Fonte: IBGE / Consolidação Municipal (Censo 2010 e 2022).
           </p>
         </div>
         <div class="controls">
-          <button id="show-both" class="year-both active">Todos</button>
-          <button id="show-2022" class="year-2022">2022</button>
-          <button id="show-2010" class="year-2010">2010</button>
+          <button id="show-both" class="year-both active">
+            <i class="fa-solid fa-layer-group"></i>Todos
+          </button>
+          <button id="show-2022" class="year-2022">
+            <i class="fa-solid fa-chart-column"></i> 2022
+          </button>
+          <button id="show-2010" class="year-2010">
+            <i class="fa-solid fa-chart-bar"></i> 2010
+          </button>
         </div>
       </div>
-
       <div class="region-scroll-container">
         <button class="arrow-btn left" id="scroll-left">&#9664;</button>
         <div class="region-filters" id="region-filters"></div>
@@ -388,7 +397,9 @@
           yearButtons.forEach((b) => b.classList.remove("active"));
           btn.classList.add("active");
 
-          const filterBtns = document.querySelectorAll("#region-filters button");
+          const filterBtns = document.querySelectorAll(
+            "#region-filters button"
+          );
           filterBtns.forEach((b) => {
             b.classList.add("active");
             b.classList.remove("year-2010", "year-2022", "year-both");

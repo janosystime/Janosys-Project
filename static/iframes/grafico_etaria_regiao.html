@@ -38,7 +38,7 @@
       }
       #plot {
         width: 100%;
-        height: 72vh;
+        height: 70vh;
         transition: opacity 0.6s ease, transform 0.6s ease;
       }
 
@@ -60,13 +60,30 @@
       .age-filters::-webkit-scrollbar {
         display: none;
       }
-      .age-scroll-container {
+      .region-scroll-container {
         position: relative;
         display: flex;
         align-items: center;
         width: 100%;
       }
 
+      /* Box de filtros sem borda por padrão */
+      .region-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: nowrap;
+        margin: 10px 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 5px 10px;
+      }
+
+      /* Scrollbars escondidas */
+      .region-filters::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Setas inicialmente escondidas */
       .arrow-btn {
         display: none;
         position: absolute;
@@ -76,12 +93,13 @@
         color: #fff;
         border: none;
         border-radius: 50%;
-        width: 32px;
-        height: 32px;
+        width: 25px;
+        height: 25px;
         cursor: pointer;
         z-index: 5;
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         text-align: center;
+        padding-bottom: 0.5em;
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
       }
@@ -91,52 +109,80 @@
         filter: brightness(1.15);
       }
 
-      .arrow-btn.left {
-        left: 4px;
-      }
-
-      .arrow-btn.right {
-        right: 4px;
-      }
-
       button {
         border: none;
         border-radius: 12px;
         font-weight: 700;
         cursor: pointer;
         padding: 8px 18px;
-        transition: all 0.3s ease;
         color: white;
         flex: 0 0 auto;
         white-space: nowrap;
         letter-spacing: 0.3px;
+        transition: all 0.3s ease;
+        opacity: 1;
+        filter: none;
       }
 
+      /* Adiciona brilho ao passar o mouse */
       button:hover {
-        filter: brightness(1.1);
-        transform: translateY(-1px);
+        transform: translateY(100px); /* só sobe 2px ao invés de 5px */
+        filter: brightness(1.08) !important; /* brilho mais suave */
+        border-radius: 100%;
       }
 
-      button.ativo {
+      /* Botões dentro da região */
+.region-filters button {
+  border-radius: 12px;     /* arredondamento padrão */
+  padding: 8px 18px;       /* padding fixo */
+  overflow: hidden;        /* evita que o box-shadow/vibração ultrapasse o botão */
+  transition: all 0.3s ease;
+}
+
+/* Hover dos botões */
+.region-filters button:hover {
+  transform: translateY(-2px); /* leve elevação */
+  filter: brightness(1.08);    /* brilho sutil */
+  border-radius: 16px;         /* aumenta o radius no hover */
+  padding: 8px 18px;           /* padding fixo, não cresce */
+}
+
+/* Hover colorido por grupo */
+.region-filters button[data-group="Criança"]:hover {
+  box-shadow: 0 0 12px 3px rgba(231, 76, 60, 0.6);
+}
+.region-filters button[data-group="Jovem"]:hover {
+  box-shadow: 0 0 12px 3px rgba(52, 152, 219, 0.6);
+}
+.region-filters button[data-group="Adulto"]:hover {
+  box-shadow: 0 0 12px 3px rgba(46, 204, 113, 0.6);
+}
+.region-filters button[data-group="Idoso"]:hover {
+  box-shadow: 0 0 12px 3px rgba(243, 156, 18, 0.6);
+}
+
+  button.ativo {
         transform: scale(0.96);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
       }
 
-      button[data-group="Criança"] {
-        background: linear-gradient(90deg, #e74c3c, #ff7b61);
+
+      /* 
+      button[data-group="Criança"]:hover {
+        box-shadow: 0 0 20px 6px rgba(231, 76, 60, 0.6) !important;
       }
-      button[data-group="Jovem"] {
-        background: linear-gradient(90deg, #3498db, #5dade2);
+      button[data-group="Jovem"]:hover {
+        box-shadow: 0 0 20px 6px rgba(52, 152, 219, 0.6) !important;
       }
-      button[data-group="Adulto"] {
-        background: linear-gradient(90deg, #2ecc71, #58d68d);
+      button[data-group="Adulto"]:hover {
+        box-shadow: 0 0 20px 6px rgba(46, 204, 113, 0.6) !important;
       }
-      button[data-group="Idoso"] {
-        background: linear-gradient(90deg, #f39c12, #f5b041);
-      }
+      button[data-group="Idoso"]:hover {
+        box-shadow: 0 0 20px 6px rgba(243, 156, 18, 0.6) !important;
+      } */
 
       button:not(.ativo) {
-        opacity: 0.6;
+        opacity: 0.55;
         filter: grayscale(0.2);
       }
 
@@ -183,10 +229,33 @@
       }
 
       @media (max-width: 768px) {
+        .region-filters {
+          gap: 6px;
+          margin: 0 50px;
+          border: 2px solid #004d9d;
+          border-radius: 10px;
+          box-shadow: 0 2px 6px rgba(0, 77, 157, 0.1);
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+        }
+
+        .region-filters button {
+          padding: 6px 12px;
+          font-size: 0.85rem;
+        }
+
         .arrow-btn {
           display: flex;
-          align-items: center;
           justify-content: center;
+          align-items: center;
+          text-align: center;
+        }
+
+        .arrow-btn.left {
+          left: -4px; /* fora da box */
+        }
+        .arrow-btn.right {
+          right: -4px; /* fora da box */
         }
         #plot {
           height: 50vh;
@@ -211,16 +280,15 @@
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2022</h2>
       <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2022).</p>
-      <div class="age-filter-box">
-        <button class="arrow-btn left" id="scroll-left">
-          <i class="fas fa-chevron-left"></i>
-        </button>
+      <div class="region-scroll-container">
+        <!-- setas fora da box -->
+        <button class="arrow-btn left" id="scroll-left">&#9664;</button>
 
-        <div class="age-filters" id="age-filters"></div>
+        <div class="region-filters" id="age-filters">
+          <!-- botões de filtros serão inseridos aqui via JS -->
+        </div>
 
-        <button class="arrow-btn right" id="scroll-right">
-          <i class="fas fa-chevron-right"></i>
-        </button>
+        <button class="arrow-btn right" id="scroll-right">&#9654;</button>
       </div>
 
       <div id="plot"></div>
@@ -239,20 +307,39 @@
         };
 
         function setButtonColor(btn, group, isActive) {
-          // define o atributo data-group (necessário pro CSS aplicar o gradiente)
           btn.dataset.group = group;
-
-          // animações suaves
           btn.style.transition = "all 0.3s ease";
 
           if (isActive) {
+            btn.classList.add("ativo");
             btn.style.opacity = "1";
-            btn.style.filter = "none";
             btn.style.transform = "scale(0.97)";
+            btn.style.filter = "none";
+            // Gradiente colorido para ativo
+            switch (group) {
+              case "Criança":
+                btn.style.background =
+                  "linear-gradient(90deg, #e74c3c, #c0392b)";
+                break;
+              case "Jovem":
+                btn.style.background =
+                  "linear-gradient(90deg, #3498db, #2980b9)";
+                break;
+              case "Adulto":
+                btn.style.background =
+                  "linear-gradient(90deg, #2ecc71, #27ae60)";
+                break;
+              case "Idoso":
+                btn.style.background =
+                  "linear-gradient(90deg, #f39c12, #d35400)";
+                break;
+            }
           } else {
-            btn.style.opacity = "0.55";
-            btn.style.filter = "grayscale(0.4)";
+            btn.classList.remove("ativo");
+            btn.style.opacity = "0.6";
             btn.style.transform = "scale(1)";
+            btn.style.filter = "grayscale(0.3)";
+            btn.style.background = "#aaa"; // cinza
           }
         }
 
@@ -525,13 +612,12 @@
 
       if (scrollContainer && btnLeft && btnRight) {
         btnLeft.addEventListener("click", () => {
-          scrollContainer.scrollBy({ left: -120, behavior: "smooth" });
+          scrollContainer.scrollBy({ left: -100, behavior: "smooth" });
         });
 
         btnRight.addEventListener("click", () => {
-          scrollContainer.scrollBy({ left: 120, behavior: "smooth" });
+          scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
         });
-
         // Mostra ou oculta as setas conforme a rolagem
         function updateArrowVisibility() {
           btnLeft.style.opacity = scrollContainer.scrollLeft > 10 ? "1" : "0.4";

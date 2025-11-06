@@ -461,7 +461,7 @@
         }
 
         const layout = {
-          barmode: window.innerWidth <= 640 ? "stack" : "group",
+          barmode: window.innerWidth <= 640 ? "stack" : "stack",
           margin: {
             t: window.innerWidth <= 640 ? 40 : 60,
             r: 16,
@@ -545,7 +545,7 @@
         }
 
         function updatePlot() {
-          layout.barmode = window.innerWidth <= 640 ? "stack" : "group";
+          layout.barmode = "stack";
           layout.margin.t = window.innerWidth <= 640 ? 40 : 60;
           Plotly.react("plot", makeTraces(selectedAges), layout, config);
           sendDemographicsData(); // Enviar dados atualizados ao mudar filtros

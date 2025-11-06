@@ -32,30 +32,54 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 ## 💻 Tecnologias Utilizadas no Projeto <a id="tecnologias"></a>
 
 <h4 align="center">
-<a href="https://www.python.org" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python" width="100px;">
-</a>&emsp;
-<a href="https://flask.palletsprojects.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" width="100px">
-</a>&emsp;
-<a href="https://www.mysql.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" width="100px">
-</a>&emsp;
-<a href="https://www.atlassian.com/br/software/jira" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=jira&logoColor=white" alt="Jira" width="70px">
-</a>&emsp;
-<a href="https://github.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub" width="100px0">
-</a>&emsp;
-<a href="https://www.figma.com" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" alt="Figma" width="90px">
-</a>&emsp;
-<a href="https://pandas.pydata.org" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white" alt="Pandas" width="100px">
-</a>&emsp;
-<a href="https://colab.google/" target="_blank" rel="">
-  <img src="https://img.shields.io/badge/GoogleColab-F9AB00?style=flat&logo=googlecolab&logoColor=white" alt="GoogleColab" width="150px">
-</a>&emsp;
+
+  <a href="https://developer.mozilla.org/docs/Web/HTML" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/HTML5-E34F26?style=flat&logo=html5&logoColor=white" alt="HTML5" height="50px">
+  </a>&nbsp;
+
+  <a href="https://developer.mozilla.org/docs/Web/CSS" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/CSS3-1572B6?style=flat&logo=css3&logoColor=white" alt="CSS3" height="50px">
+  </a>&nbsp;
+
+  <a href="https://developer.mozilla.org/docs/Web/JavaScript" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=flat&logo=javascript&logoColor=black" alt="JavaScript" height="50px">
+  </a>&nbsp;
+
+  <a href="https://www.python.org" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Python-3776AB?style=flat&logo=python&logoColor=white" alt="Python" height="50px">
+  </a>&nbsp;
+
+  <a href="https://flask.palletsprojects.com" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" height="50px">
+  </a>&nbsp;
+
+  <a href="https://www.mysql.com" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" height="50px">
+  </a>&nbsp;
+
+  <a href="https://www.atlassian.com/br/software/jira" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=jira&logoColor=white" alt="Jira" height="50px">
+  </a>&nbsp;
+
+  <a href="https://github.com" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white" alt="GitHub" height="50px">
+  </a>&nbsp;
+
+  <a href="https://www.figma.com" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Figma-F24E1E?style=flat&logo=figma&logoColor=white" alt="Figma" height="50px">
+  </a>&nbsp;
+
+  <a href="https://pandas.pydata.org" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Pandas-150458?style=flat&logo=pandas&logoColor=white" alt="Pandas" height="60px">
+  </a>&nbsp;
+
+  <a href="https://colab.research.google.com/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/GoogleColab-F9AB00?style=flat&logo=googlecolab&logoColor=white" alt="Google Colab" height="60px">
+  </a>&nbsp;
+
+  <a href="https://matplotlib.org/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Matplotlib-11557C?style=flat&logo=matplotlib&logoColor=white" alt="Matplotlib" height="50px">
+  </a>&nbsp;
 </h4>
 
 ---

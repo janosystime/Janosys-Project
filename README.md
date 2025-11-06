@@ -77,8 +77,8 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
     <img src="https://img.shields.io/badge/GoogleColab-F9AB00?style=flat&logo=googlecolab&logoColor=white" alt="Google Colab" height="60px">
   </a>&nbsp;
 
-  <a href="https://matplotlib.org/" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/Matplotlib-11557C?style=flat&logo=matplotlib&logoColor=white" alt="Matplotlib" height="50px">
+  <a href="https://plotly.com/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Plotly-11557C?style=flat&logo=plotly&logoColor=white" alt="Plotly" height="50px">
   </a>&nbsp;
 </h4>
 

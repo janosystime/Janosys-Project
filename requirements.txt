@@ -1,4 +1,4 @@
 flask==3.1.2
 pandas==2.3.3
 plotly==6.3.1
-livereload==2.6.3
+livereload==2.7.1

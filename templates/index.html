@@ -1,13 +1,50 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Relatório Demográfico - PMSJC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Relatório Demográfico da Prefeitura de São José dos Campos — visualização interativa de dados populacionais, faixas etárias e cobertura de creches."
+    />
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="Relatório Demográfico — PMSJC" />
+    <meta
+      property="og:description"
+      content="Visualize dados populacionais e demográficos de São José dos Campos de forma interativa."
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='images/brasao.png') }}"
+    />
+    <meta property="og:type" content="website" />
+
+    <title>Relatório Demográfico — PMSJC</title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/brasao.png') }}"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="{{ url_for('static', filename='images/brasao.png') }}"
+    />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    <link
+      rel="preload"
+      href="{{ url_for('static', filename='css/style.css') }}"
+      as="style"
+    />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
@@ -17,6 +54,7 @@
       href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"
     />
   </head>
+
   <body id="topo">
     <div class="page-wrapper">
       <!-- HEADER -->

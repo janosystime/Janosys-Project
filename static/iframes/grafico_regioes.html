@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
     <title>Gráfico — Regiões / Censo 2010 vs 2022</title>
-    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-3.2.0.min.js"></script>
 
     <style>
       html,
@@ -286,15 +286,17 @@
         let selectedRegions = [...regions];
 
         function makeTraces(filteredRegions) {
-          const y2010 = data2010.map((v, i) =>
-            filteredRegions.includes(regions[i]) ? v : 0
-          );
-          const y2022 = data2022.map((v, i) =>
-            filteredRegions.includes(regions[i]) ? v : 0
-          );
+          // Filtra os índices das regiões selecionadas
+          const indices = regions
+            .map((r, i) => (filteredRegions.includes(r) ? i : -1))
+            .filter((i) => i !== -1);
+
+          const filteredNames = indices.map((i) => regions[i]);
+          const y2010 = indices.map((i) => data2010[i]);
+          const y2022 = indices.map((i) => data2022[i]);
 
           const trace2010 = {
-            x: regions,
+            x: filteredNames,
             y: y2010,
             name: "Censo 2010",
             type: "bar",
@@ -315,13 +317,13 @@
           };
 
           const trace2022 = {
-            x: regions,
+            x: filteredNames,
             y: y2022,
             name: "Censo 2022",
             type: "bar",
             marker: { color: "#b9dbff", line: { width: 1, color: "#004d9d" } },
             text: y2022.map((n, i) => {
-              const diff = n - data2010[i];
+              const diff = n - y2010[i];
               const sign = diff >= 0 ? "+" : "";
               return `${n.toLocaleString("pt-BR")} (${(
                 (n / total2022) *
@@ -371,18 +373,33 @@
 
         // Função de atualização
         function updatePlot() {
-          const updateData = makeTraces(selectedRegions);
+          const traces = makeTraces(selectedRegions);
 
-          // Usa Plotly.react para redesenhar o gráfico completamente
-          Plotly.react("plot", updateData, layout, config);
-
-          const plotDiv = document.getElementById("plot");
-          plotDiv.style.opacity = 0;
-          plotDiv.style.transform = "scale(0.97)";
-          setTimeout(() => {
-            plotDiv.style.opacity = 1;
-            plotDiv.style.transform = "scale(1)";
-          }, 50);
+          Plotly.react("plot", traces, layout, config).then(() => {
+            Plotly.animate(
+              "plot",
+              {
+                data: traces,
+                traces: [0, 1],
+                layout: {
+                  transition: {
+                    duration: 600,
+                    easing: "cubic-in-out",
+                  },
+                },
+              },
+              {
+                transition: {
+                  duration: 600,
+                  easing: "cubic-in-out",
+                },
+                frame: {
+                  duration: 500,
+                  redraw: false,
+                },
+              }
+            );
+          });
         }
 
         // Botões de ano

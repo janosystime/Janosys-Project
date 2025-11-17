@@ -308,9 +308,9 @@
           regions.forEach(r => {
             if (regionMap[r].includes(setor)) {
               // Criança: 0-14 anos
-              regionData[r].Criança += (data["0 a 4 anos"] || 0) + (data["5 a 9 anos"] || 0) + (data["10 a 14 anos"] || 0);
+              regionData[r].Criança += (data["0 a 4 anos"] || 0);
               // Jovem: 15-19 anos
-              regionData[r].Jovem += (data["15 a 17 anos"] || 0) + (data["18 anos"] || 0) + (data["19 anos"] || 0);
+              regionData[r].Jovem += (data["15 a 17 anos"] || 0) + (data["18 anos"] || 0) + (data["19 anos"] || 0) + (data["5 a 9 anos"] || 0) + (data["10 a 14 anos"] || 0);
               // Adulto: 20-64 anos
               regionData[r].Adulto += 
                 (data["20 a 24 anos"] || 0) + (data["25 a 29 anos"] || 0) + (data["30 a 34 anos"] || 0) +
@@ -440,10 +440,12 @@
       const btn2010 = document.getElementById("btn-2010");
       const btn2022 = document.getElementById("btn-2022");
 
+
       btn2010.addEventListener("click", () => {
         if (btn2010.classList.contains("ativo")) return;
         btn2010.classList.add("ativo");
         btn2022.classList.remove("ativo");
+
         // Troca o src do iframe pai
         window.parent.document.querySelector("#grafico-iframe").src ="/static/iframes/grafico_etaria_regiao_2010.html";
       });

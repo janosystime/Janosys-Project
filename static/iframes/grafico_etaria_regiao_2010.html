@@ -156,6 +156,26 @@
         vertical-align: middle;
       }
 
+        /* Botões de ano (2010 / 2022) */
+        .year-switcher {
+          display: flex;
+          gap: 8px;
+          margin-top: 8px;
+          align-self: flex-end;
+        }
+        .year-switcher button {
+          background: #0066cc;
+          font-size: 0.9rem;
+          padding: 6px 14px;
+        }
+        .year-switcher button.ativo {
+          background: #004d9d;
+          transform: scale(0.96);
+        }
+        .year-switcher button:hover {
+          background: #0055aa;
+        }
+
       @keyframes radialPulse {
         0% { width: 0; height: 0; opacity: 0.6; }
         50% { width: 150%; height: 150%; opacity: 0.4; }
@@ -201,7 +221,14 @@
   <body>
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2010</h2>
-      <p class="source">Fonte: IBGE / Censo Demográfico 2010 — Setores Socioeconômicos (São José dos Campos).</p>
+      <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2010)</p>
+        <!-- Botões de troca de ano (2010 / 2022) -->
+        <div class="year-switcher">
+          <button id="btn-2010" class="ativo">Censo 2010</button>
+          <button id="btn-2022">Censo 2022</button>
+        </div>
+      </div>
       <div class="region-scroll-container">
         <button class="arrow-btn left" id="scroll-left">Left Arrow</button>
 
@@ -408,6 +435,25 @@
           Plotly.Plots.resize("plot");
         });
       })();
+
+       // === BOTÕES DE TROCA DE ANO (2010 / 2022) ===
+      const btn2010 = document.getElementById("btn-2010");
+      const btn2022 = document.getElementById("btn-2022");
+
+      btn2010.addEventListener("click", () => {
+        if (btn2010.classList.contains("ativo")) return;
+        btn2010.classList.add("ativo");
+        btn2022.classList.remove("ativo");
+        // Troca o src do iframe pai
+        window.parent.document.querySelector("#grafico-iframe").src ="/static/iframes/grafico_etaria_regiao_2010.html";
+      });
+
+      btn2022.addEventListener("click", () => {
+        if (btn2022.classList.contains("ativo")) return;
+        btn2022.classList.add("ativo");
+        btn2010.classList.remove("ativo");
+        window.parent.document.querySelector("#grafico-iframe").src = "/static/iframes/grafico_etaria_regiao.html";
+      });
     </script>
   </body>
 </html>

@@ -21,7 +21,7 @@
       .wrap {
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 5px;
         padding: 20px;
       }
       .wrap h2 {
@@ -127,7 +127,7 @@
 
       /* Adiciona brilho ao passar o mouse */
       button:hover {
-        transform: translateY(100px); /* só sobe 2px ao invés de 5px */
+        transform: translateY(2px); /* só sobe 2px ao invés de 5px */
         filter: brightness(1.08) !important; /* brilho mais suave */
         border-radius: 100%;
       }
@@ -166,20 +166,6 @@
         transform: scale(0.96);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
       }
-
-      /* 
-      button[data-group="Criança"]:hover {
-        box-shadow: 0 0 20px 6px rgba(231, 76, 60, 0.6) !important;
-      }
-      button[data-group="Jovem"]:hover {
-        box-shadow: 0 0 20px 6px rgba(52, 152, 219, 0.6) !important;
-      }
-      button[data-group="Adulto"]:hover {
-        box-shadow: 0 0 20px 6px rgba(46, 204, 113, 0.6) !important;
-      }
-      button[data-group="Idoso"]:hover {
-        box-shadow: 0 0 20px 6px rgba(243, 156, 18, 0.6) !important;
-      } */
 
       button:not(.ativo) {
         opacity: 0.55;
@@ -270,6 +256,26 @@
           font-size: 0.75rem;
         }
       }
+
+      /* Botões de ano (2010 / 2022) */
+      .year-switcher {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+        align-self: flex-end;
+      }
+      .year-switcher button {
+        background: #0066cc;
+        font-size: 0.9rem;
+        padding: 6px 14px;
+      }
+      .year-switcher button.ativo {
+        background: #004d9d;
+        transform: scale(0.96);
+      }
+      .year-switcher button:hover {
+        background: #0055aa;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -279,7 +285,15 @@
   <body>
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2022</h2>
-      <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2022).</p>
+      <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+        <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2022).</p>
+        <!-- Botões de troca de ano (2010 / 2022) -->
+        <div class="year-switcher">
+          <button id="btn-2010">Censo 2010</button>
+          <button id="btn-2022" class="ativo">Censo 2022</button>
+        </div>
+      </div>
+
       <div class="region-scroll-container">
         <!-- setas fora da box -->
         <button class="arrow-btn left" id="scroll-left">&#9664;</button>
@@ -631,6 +645,25 @@
         window.addEventListener("resize", updateArrowVisibility);
         updateArrowVisibility();
       }
+
+      // === BOTÕES DE TROCA DE ANO (2010 / 2022) ===
+      const btn2010 = document.getElementById("btn-2010");
+      const btn2022 = document.getElementById("btn-2022");
+
+      btn2010.addEventListener("click", () => {
+        if (btn2010.classList.contains("ativo")) return;
+        btn2010.classList.add("ativo");
+        btn2022.classList.remove("ativo");
+        // Troca o src do iframe pai
+        window.parent.document.querySelector("#grafico-iframe").src ="/static/iframes/grafico_etaria_regiao_2010.html";
+      });
+
+      btn2022.addEventListener("click", () => {
+        if (btn2022.classList.contains("ativo")) return;
+        btn2022.classList.add("ativo");
+        btn2010.classList.remove("ativo");
+        window.parent.document.querySelector("#grafico-iframe").src = "/static/iframes/grafico_etaria_regiao_2010.html";
+      });
     </script>
   </body>
 </html>

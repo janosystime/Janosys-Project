@@ -1,13 +1,56 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Relatório Demográfico - PMSJC</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+
+    <!-- SEO -->
+    <meta
+      name="description"
+      content="Relatório Demográfico — Prefeitura Municipal de São José dos Campos. Visualize dados populacionais, faixas etárias e cobertura de creches com gráficos interativos e informações atualizadas."
+    />
+
+    <!-- Open Graph -->
+    <meta
+      property="og:title"
+      content="Prefeitura de São José dos Campos — Relatório Demográfico"
+    />
+    <meta
+      property="og:description"
+      content="Portal de dados demográficos da Prefeitura de São José dos Campos. Explore gráficos e estatísticas sobre população, regiões e serviços municipais."
+    />
+    <meta
+      property="og:image"
+      content="{{ url_for('static', filename='images/brasao.png') }}"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="pt_BR" />
+
+    <title>
+      Prefeitura de São José dos Campos — Relatório Demográfico
+    </title>
+
+    <!-- Favicon -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="{{ url_for('static', filename='images/brasao.png') }}"
+    />
+    <link
+      rel="apple-touch-icon"
+      href="{{ url_for('static', filename='images/brasao.png') }}"
+    />
+
     <link
       rel="stylesheet"
       href="{{ url_for('static', filename='css/style.css') }}"
     />
+    <link
+      rel="preload"
+      href="{{ url_for('static', filename='css/style.css') }}"
+      as="style"
+    />
+
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.css"
@@ -17,6 +60,7 @@
       href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@7.1.0/css/all.min.css"
     />
   </head>
+
   <body id="topo">
     <div class="page-wrapper">
       <!-- HEADER -->

@@ -3,7 +3,8 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-3.2.0.min.js"></script>
+
     <title>Gráfico — Faixa Etária por Região / Censo 2022</title>
     <meta
       name="description"
@@ -132,40 +133,39 @@
       }
 
       /* Botões dentro da região */
-.region-filters button {
-  border-radius: 12px;     /* arredondamento padrão */
-  padding: 8px 18px;       /* padding fixo */
-  overflow: hidden;        /* evita que o box-shadow/vibração ultrapasse o botão */
-  transition: all 0.3s ease;
-}
+      .region-filters button {
+        border-radius: 12px; /* arredondamento padrão */
+        padding: 8px 18px; /* padding fixo */
+        overflow: hidden; /* evita que o box-shadow/vibração ultrapasse o botão */
+        transition: all 0.3s ease;
+      }
 
-/* Hover dos botões */
-.region-filters button:hover {
-  transform: translateY(-2px); /* leve elevação */
-  filter: brightness(1.08);    /* brilho sutil */
-  border-radius: 16px;         /* aumenta o radius no hover */
-  padding: 8px 18px;           /* padding fixo, não cresce */
-}
+      /* Hover dos botões */
+      .region-filters button:hover {
+        transform: translateY(-2px); /* leve elevação */
+        filter: brightness(1.08); /* brilho sutil */
+        border-radius: 16px; /* aumenta o radius no hover */
+        padding: 8px 18px; /* padding fixo, não cresce */
+      }
 
-/* Hover colorido por grupo */
-.region-filters button[data-group="Criança"]:hover {
-  box-shadow: 0 0 12px 3px rgba(231, 76, 60, 0.6);
-}
-.region-filters button[data-group="Jovem"]:hover {
-  box-shadow: 0 0 12px 3px rgba(52, 152, 219, 0.6);
-}
-.region-filters button[data-group="Adulto"]:hover {
-  box-shadow: 0 0 12px 3px rgba(46, 204, 113, 0.6);
-}
-.region-filters button[data-group="Idoso"]:hover {
-  box-shadow: 0 0 12px 3px rgba(243, 156, 18, 0.6);
-}
+      /* Hover colorido por grupo */
+      .region-filters button[data-group="Criança"]:hover {
+        box-shadow: 0 0 12px 3px rgba(231, 76, 60, 0.6);
+      }
+      .region-filters button[data-group="Jovem"]:hover {
+        box-shadow: 0 0 12px 3px rgba(52, 152, 219, 0.6);
+      }
+      .region-filters button[data-group="Adulto"]:hover {
+        box-shadow: 0 0 12px 3px rgba(46, 204, 113, 0.6);
+      }
+      .region-filters button[data-group="Idoso"]:hover {
+        box-shadow: 0 0 12px 3px rgba(243, 156, 18, 0.6);
+      }
 
-  button.ativo {
+      button.ativo {
         transform: scale(0.96);
         box-shadow: 0 3px 6px rgba(0, 0, 0, 0.15);
       }
-
 
       /* 
       button[data-group="Criança"]:hover {

@@ -204,18 +204,7 @@
         card2.textContent = "0";
         card3.textContent = "0";
       }
-
-      function chamaGraphEtariaRegiao2010() {
-        iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_etaria_regiao_2010.html') }}";
-        labelCard1.textContent = "Adultos (20-59)";
-        labelCard2.textContent = "Região + Crianças";
-        labelCard3.textContent = "Região + Idosos";
-        card1.textContent = "0";
-        card2.textContent = "0";
-        card3.textContent = "0";
-      }
-
+      
       function atualizarCards(data) {
         const label1 = labelCard1.textContent;
 

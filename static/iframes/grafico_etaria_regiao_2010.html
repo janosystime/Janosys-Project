@@ -1180,10 +1180,12 @@
       const btn2010 = document.getElementById("btn-2010");
       const btn2022 = document.getElementById("btn-2022");
 
+
       btn2010.addEventListener("click", () => {
         if (btn2010.classList.contains("ativo")) return;
         btn2010.classList.add("ativo");
         btn2022.classList.remove("ativo");
+
         // Troca o src do iframe pai
         window.parent.document.querySelector("#grafico-iframe").src =
           "/static/iframes/grafico_etaria_regiao_2010.html";

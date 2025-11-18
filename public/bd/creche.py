@@ -33,7 +33,7 @@ fig.update_layout(xaxis_title="Região",yaxis_title="Criança por Creche", title
 
 
 #Criando Grafico com relação ao total/tegião" 
-fig = px.bar(df_populacao_creche,x="Região",y=["Crianças %Total", "Creches %Total"],barmode="group",labels={"value": "Quantidade", "variable": "Tipo"},title="Crianças e Creches por Região em Relação ao Total", text_auto=True)
+fig = px.bar(df_populacao_creche,x="Região",y=["Crianças %Total", "Creches %Total"],barmode="group",labels={"value": "Quantidade", "variable": "Tipo"},title="Crianças e Creches por Região em Relação ao Total da Cidade", text_auto=True)
 fig.update_layout(xaxis_title="Região",yaxis_title="%", title_x=0.5, plot_bgcolor="white", bargap=0.2)
 
 fig.show()

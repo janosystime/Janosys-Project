@@ -12,6 +12,13 @@
     />
 
     <style>
+      :root {
+        --cor-crianca: #e74c3c;
+        --cor-jovem: #3498db;
+        --cor-adulto: #2ecc71;
+        --cor-idoso: #f39c12;
+      }
+
       html,
       body {
         margin: 0;
@@ -68,22 +75,6 @@
         width: 100%;
       }
 
-      /* Box de filtros sem borda por padrão */
-      .region-filters {
-        display: flex;
-        gap: 8px;
-        flex-wrap: nowrap;
-        margin: 10px 0;
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        padding: 5px 10px;
-      }
-
-      /* Scrollbars escondidas */
-      .region-filters::-webkit-scrollbar {
-        display: none;
-      }
-
       /* Setas inicialmente escondidas */
       .arrow-btn {
         display: none;
@@ -130,6 +121,22 @@
         transform: translateY(2px); /* só sobe 2px ao invés de 5px */
         filter: brightness(1.08) !important; /* brilho mais suave */
         border-radius: 100%;
+      }
+
+      /* Box de filtros sem borda por padrão */
+      .region-filters {
+        display: flex;
+        gap: 8px;
+        flex-wrap: nowrap;
+        margin: 10px 0;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 5px 10px;
+      }
+
+      /* Scrollbars escondidas */
+      .region-filters::-webkit-scrollbar {
+        display: none;
       }
 
       /* Botões dentro da região */
@@ -214,6 +221,18 @@
         }
       }
 
+      @keyframes gradMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
+
       @media (max-width: 768px) {
         .region-filters {
           gap: 6px;
@@ -264,17 +283,134 @@
         margin-top: 8px;
         align-self: flex-end;
       }
+      /* Botões de ano (2010/2022) agora com animação + gradiente */
       .year-switcher button {
-        background: #0066cc;
         font-size: 0.9rem;
-        padding: 6px 14px;
+        padding: 8px 18px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+        color: white;
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.35),
+          rgba(255, 255, 255, 0) 70%
+        );
+
+        transition: all 0.35s ease, background 0.5s ease;
+        position: relative;
+        overflow: hidden;
       }
-      .year-switcher button.ativo {
-        background: #004d9d;
-        transform: scale(0.96);
+
+      .year-switcher button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: inherit;
+        background: conic-gradient(
+          var(--cor-crianca),
+          var(--cor-jovem),
+          var(--cor-adulto),
+          var(--cor-idoso),
+          var(--cor-crianca)
+        );
+        z-index: -1;
       }
+
+      .year-switcher button:active::after {
+        animation: radialPulse 0.6s ease-out forwards;
+      }
+
+      /* --- SOMBRA COLORIDA DE ACORDO COM AS FAIXAS ATIVAS (dinâmico) --- */
+      .year-switcher button.shadow-crianca {
+        box-shadow: 0 0 20px rgba(231, 76, 60, 0.55) !important;
+      }
+      .year-switcher button.shadow-jovem {
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.55) !important;
+      }
+      .year-switcher button.shadow-adulto {
+        box-shadow: 0 0 20px rgba(46, 204, 113, 0.55) !important;
+      }
+      .year-switcher button.shadow-idoso {
+        box-shadow: 0 0 20px rgba(243, 156, 18, 0.55) !important;
+      }
+
+      /* Para quando 2+ faixas estiverem ativas */
+      .year-switcher button.shadow-multi {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
+      }
+
+      /* Quando só algumas cores devem aparecer no gradiente */
+      .year-switcher button.grad-crianca {
+        background: linear-gradient(90deg, var(--cor-crianca));
+      }
+
+      .year-switcher button.grad-jovem {
+        background: linear-gradient(90deg, var(--cor-jovem));
+      }
+
+      .year-switcher button.grad-adulto {
+        background: linear-gradient(90deg, var(--cor-adulto));
+      }
+
+      .year-switcher button.grad-idoso {
+        background: linear-gradient(90deg, var(--cor-idoso));
+      }
+
+      /* combinações */
+      .year-switcher button.grad-cj {
+        background: linear-gradient(
+          90deg,
+          var(--cor-crianca),
+          var(--cor-jovem)
+        );
+      }
+
+      .year-switcher button.grad-cja {
+        background: linear-gradient(
+          90deg,
+          var(--cor-crianca),
+          var(--cor-jovem),
+          var(--cor-adulto)
+        );
+      }
+
+      /* Hover animado */
       .year-switcher button:hover {
-        background: #0055aa;
+        filter: brightness(1.18);
+        transform: translateY(-2px) scale(1.03);
+        border-radius: 14px;
+        box-shadow: 0 0 14px rgba(255, 255, 255, 0.55);
+        transition: all 0.25s ease-out;
+      }
+
+      /* Flash radial igual aos filtros */
+      .year-switcher button.flash-radial::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.4),
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+
+        animation: flashPulse 0.6s ease-out forwards;
+      }
+
+      @keyframes flashPulse {
+        0% {
+          opacity: 1;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.6);
+        }
       }
     </style>
     <link
@@ -285,12 +421,20 @@
   <body>
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2022</h2>
-      <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        "
+      >
         <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2022).</p>
         <!-- Botões de troca de ano (2010 / 2022) -->
         <div class="year-switcher">
-          <button id="btn-2010">Censo 2010</button>
-          <button id="btn-2022" class="ativo">Censo 2022</button>
+          <button id="btn-2010">2010</button>
+          <button id="btn-2022" class="ativo">2022</button>
         </div>
       </div>
 
@@ -429,6 +573,98 @@
           }
         }
 
+        function atualizarGradienteAno() {
+          const botoesAno = [
+            document.getElementById("btn-2010"),
+            document.getElementById("btn-2022"),
+          ];
+
+          if (selectedAges.length === 0) {
+            botoesAno.forEach((btn) => {
+              btn.style.background = "#777";
+              btn.style.animation = "none";
+              btn.style.filter = "none";
+            });
+            return;
+          }
+
+          // LIMPAR ESTILOS ANTIGOS
+          botoesAno.forEach((btn) => {
+            btn.style.background = "none";
+            btn.style.backgroundImage = "none";
+            btn.style.filter = "none";
+            btn.style.animation = "none";
+            btn.style.backgroundSize = "auto";
+          });
+
+          const mapa = { Criança: "c", Jovem: "j", Adulto: "a", Idoso: "i" };
+          const cores = {
+            c: "#e74c3c",
+            j: "#3498db",
+            a: "#2ecc71",
+            i: "#f39c12",
+          };
+
+          const selecionadas = selectedAges.map((a) => mapa[a]);
+
+          let gradient = "";
+
+          if (selecionadas.length === 1) {
+            const key = selecionadas[0];
+            const cor = cores[key];
+
+            gradient = `linear-gradient(
+      90deg,
+      ${cor} 0%,
+      ${cor}CC 50%,
+      ${cor} 100%
+    )`;
+          } else {
+            gradient = `linear-gradient(90deg, ${selecionadas
+              .map((key) => cores[key])
+              .join(", ")})`;
+          }
+
+          botoesAno.forEach((btn) => {
+            btn.style.transition = "background 0.6s ease, filter 0.3s ease";
+            btn.style.background = gradient;
+            btn.style.filter = "brightness(1.05)";
+          });
+
+          botoesAno.forEach((btn) => {
+            btn.style.backgroundSize = "200% 200%";
+            btn.style.animation = "gradMove 6s ease infinite";
+          });
+        }
+
+        function atualizarSombraAno() {
+          const btn2010 = document.getElementById("btn-2010");
+          const btn2022 = document.getElementById("btn-2022");
+
+          // remover classes antigas
+          const allClasses = [
+            "shadow-crianca",
+            "shadow-jovem",
+            "shadow-adulto",
+            "shadow-idoso",
+            "shadow-multi",
+          ];
+
+          [btn2010, btn2022].forEach((btn) => {
+            allClasses.forEach((c) => btn.classList.remove(c));
+          });
+
+          // aplicar nova
+          if (selectedAges.length === 1) {
+            const faixa = selectedAges[0].toLowerCase();
+            btn2010.classList.add(`shadow-${faixa}`);
+            btn2022.classList.add(`shadow-${faixa}`);
+          } else {
+            btn2010.classList.add("shadow-multi");
+            btn2022.classList.add("shadow-multi");
+          }
+        }
+
         const regionData = await carregarCSV("dados_sjc.csv");
 
         const regionDataTotal = {
@@ -441,7 +677,9 @@
           Idoso: regions.reduce((sum, r) => sum + regionData[r]["Idoso"], 0),
         };
 
-        let selectedAges = [...ageGroups];
+        let selectedAges = ["Criança", "Jovem", "Adulto", "Idoso"];
+
+        const ageFiltersContainer = document.getElementById("age-filters");
 
         function makeTraces(filteredAges) {
           const isMobile = window.innerWidth <= 640;
@@ -576,7 +814,7 @@
 
         ageGroups.forEach((group) => {
           const btn = document.createElement("button");
-          btn.classList.add("ativo");
+          btn.textContent = group;
           btn.dataset.group = group;
           btn.title = `Exibir faixa: ${group}`;
 
@@ -587,19 +825,22 @@
 
           btn.addEventListener("click", () => {
             const index = selectedAges.indexOf(group);
-            if (index > -1) {
-              selectedAges.splice(index, 1);
-              btn.classList.remove("ativo");
-              setButtonColor(btn, group, false);
-            } else {
+
+            if (index === -1) {
+              // ativar
               selectedAges.push(group);
-              btn.classList.add("ativo");
               setButtonColor(btn, group, true);
+            } else {
+              // desativar
+              selectedAges.splice(index, 1);
+              setButtonColor(btn, group, false);
             }
 
             // Efeito radial
             btn.classList.add("flash-radial");
             setTimeout(() => btn.classList.remove("flash-radial"), 600);
+
+            atualizarGradienteAno();
 
             updatePlot();
             Plotly.Plots.resize("plot");
@@ -646,24 +887,39 @@
         updateArrowVisibility();
       }
 
-      // === BOTÕES DE TROCA DE ANO (2010 / 2022) ===
+      // === BOTÕES DE TROCA DE ANO (2010 / 2022) — versão animada ===
       const btn2010 = document.getElementById("btn-2010");
       const btn2022 = document.getElementById("btn-2022");
 
-      btn2010.addEventListener("click", () => {
-        if (btn2010.classList.contains("ativo")) return;
-        btn2010.classList.add("ativo");
-        btn2022.classList.remove("ativo");
-        // Troca o src do iframe pai
-        window.parent.document.querySelector("#grafico-iframe").src ="/static/iframes/grafico_etaria_regiao_2010.html";
-      });
+      function toggleYear(selectedBtn, otherBtn, iframeSrc) {
+        if (selectedBtn.classList.contains("ativo")) return;
 
-      btn2022.addEventListener("click", () => {
-        if (btn2022.classList.contains("ativo")) return;
-        btn2022.classList.add("ativo");
-        btn2010.classList.remove("ativo");
-        window.parent.document.querySelector("#grafico-iframe").src = "/static/iframes/grafico_etaria_regiao_2010.html";
-      });
+        otherBtn.classList.remove("ativo");
+        selectedBtn.classList.add("ativo");
+
+        // efeito radial de clique
+        selectedBtn.classList.add("flash-radial");
+        setTimeout(() => selectedBtn.classList.remove("flash-radial"), 600);
+
+        // troca o iframe
+        window.parent.document.querySelector("#grafico-iframe").src = iframeSrc;
+      }
+
+      btn2010.addEventListener("click", () =>
+        toggleYear(
+          btn2010,
+          btn2022,
+          "/static/iframes/grafico_etaria_regiao_2010.html"
+        )
+      );
+
+      btn2022.addEventListener("click", () =>
+        toggleYear(
+          btn2022,
+          btn2010,
+          "/static/iframes/grafico_etaria_regiao_2022.html"
+        )
+      );
     </script>
   </body>
 </html>

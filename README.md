@@ -53,10 +53,6 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
     <img src="https://img.shields.io/badge/Flask-000000?style=flat&logo=flask&logoColor=white" alt="Flask" height="50px">
   </a>&nbsp;
 
-  <a href="https://www.mysql.com" target="_blank" rel="noopener noreferrer">
-    <img src="https://img.shields.io/badge/MySQL-4479A1?style=flat&logo=mysql&logoColor=white" alt="MySQL" height="50px">
-  </a>&nbsp;
-
   <a href="https://www.atlassian.com/br/software/jira" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/Jira-0052CC?style=flat&logo=jira&logoColor=white" alt="Jira" height="50px">
   </a>&nbsp;
@@ -79,6 +75,14 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 
   <a href="https://plotly.com/" target="_blank" rel="noopener noreferrer">
     <img src="https://img.shields.io/badge/Plotly-11557C?style=flat&logo=plotly&logoColor=white" alt="Plotly" height="50px">
+  </a>&nbsp;
+
+  <a href="https://aws.amazon.com/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/AWS-232F3E?style=flat&logo=amazon-aws&logoColor=white" alt="AWS" height="50px">
+  </a>&nbsp;
+
+  <a href="https://www.docker.com/" target="_blank" rel="noopener noreferrer">
+    <img src="https://img.shields.io/badge/Docker-2496ED?style=flat&logo=docker&logoColor=white" alt="Docker" height="50px">
   </a>&nbsp;
 </h4>
 

@@ -103,6 +103,10 @@
               <a onclick="chamaGraphCreche()">
                 <i class="fas fa-child"></i> Crianças e Creches
               </a>
+              <a onclick="chamaGraphIdoso()">
+                <i class="fas fa-user"></i> Idosos e Ubs
+              </a>
+
             </div>
           </div>
 
@@ -116,7 +120,7 @@
           </div>
 
           <iframe
-            src="{{ url_for('static', filename='iframes/grafico_etaria_regiao_2010.html') }}"
+            src="{{ url_for('static', filename='iframes/grafico_regioes.html') }}"
             frameborder="0"
             width="100%"
             height="682"
@@ -185,7 +189,7 @@
 
       function chamaGraphEtariaRegiao() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_regioes.html') }}";
+          "{{ url_for('static', filename='iframes/grafico_etaria_regiao.html') }}";
         labelCard1.textContent = "Adultos (20-59)";
         labelCard2.textContent = "Região + Crianças";
         labelCard3.textContent = "Região + Idosos";
@@ -196,7 +200,18 @@
 
       function chamaGraphCreche() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_cricanca_creche.html') }}";
+          "{{ url_for('static', filename='iframes/grafico_crianca_creche.html') }}";
+        labelCard1.textContent = "Crianças em Creche";
+        labelCard2.textContent = "% Cobertura Creche";
+        labelCard3.textContent = "Vagas Disponíveis";
+        card1.textContent = "0";
+        card2.textContent = "0";
+        card3.textContent = "0";
+      }
+
+      function chamaGraphIdoso(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/grafico_idoso_ubs.html') }}";
         labelCard1.textContent = "Crianças em Creche";
         labelCard2.textContent = "% Cobertura Creche";
         labelCard3.textContent = "Vagas Disponíveis";

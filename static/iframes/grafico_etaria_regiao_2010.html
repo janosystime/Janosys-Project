@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-3.2.0.min.js"></script>
     <title>Gráfico — Faixa Etária por Região / Censo 2010</title>
     <meta
       name="description"
@@ -11,6 +11,17 @@
     />
 
     <style>
+      :root {
+        --cor-crianca: #c0392b; /* vermelho mais escuro */
+        --cor-jovem: #2471a3; /* azul mais escuro */
+        --cor-adulto: #27ae60; /* verde mais escuro */
+        --cor-idoso: #d68910; /* amarelo/laranja mais escuro */
+        --rgb-crianca: 192, 57, 43;
+        --rgb-jovem: 36, 113, 163;
+        --rgb-adulto: 39, 174, 96;
+        --rgb-idoso: 214, 137, 16;
+      }
+
       html,
       body {
         margin: 0;
@@ -110,16 +121,16 @@
       }
 
       .region-filters button[data-group="Criança"]:hover {
-        box-shadow: 0 0 12px 3px rgba(231, 76, 60, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-crianca), 0.6);
       }
       .region-filters button[data-group="Jovem"]:hover {
-        box-shadow: 0 0 12px 3px rgba(52, 152, 219, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-jovem), 0.6);
       }
       .region-filters button[data-group="Adulto"]:hover {
-        box-shadow: 0 0 12px 3px rgba(46, 204, 113, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-adulto), 0.6);
       }
       .region-filters button[data-group="Idoso"]:hover {
-        box-shadow: 0 0 12px 3px rgba(243, 156, 18, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-idoso), 0.6);
       }
 
       button.ativo {
@@ -156,30 +167,152 @@
         vertical-align: middle;
       }
 
-        /* Botões de ano (2010 / 2022) */
-        .year-switcher {
-          display: flex;
-          gap: 8px;
-          margin-top: 8px;
-          align-self: flex-end;
-        }
-        .year-switcher button {
-          background: #0066cc;
-          font-size: 0.9rem;
-          padding: 6px 14px;
-        }
-        .year-switcher button.ativo {
-          background: #004d9d;
-          transform: scale(0.96);
-        }
-        .year-switcher button:hover {
-          background: #0055aa;
-        }
+      /* Botões de ano (2010 / 2022) */
+      .year-switcher {
+        display: flex;
+        gap: 8px;
+        margin-top: 8px;
+        align-self: flex-end;
+      }
+      /* Botões de ano (2010/2022) agora com animação + gradiente */
+      .year-switcher button {
+        font-size: 0.9rem;
+        padding: 8px 18px;
+        border-radius: 10px;
+        border: none;
+        font-weight: 700;
+        cursor: pointer;
+        color: white;
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.35),
+          rgba(255, 255, 255, 0) 70%
+        );
 
-      @keyframes radialPulse {
-        0% { width: 0; height: 0; opacity: 0.6; }
-        50% { width: 150%; height: 150%; opacity: 0.4; }
-        100% { width: 200%; height: 200%; opacity: 0; }
+        transition: all 0.35s ease, background 0.5s ease;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .year-switcher button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: inherit;
+        background: conic-gradient(
+          var(--cor-crianca),
+          var(--cor-jovem),
+          var(--cor-adulto),
+          var(--cor-idoso),
+          var(--cor-crianca)
+        );
+        z-index: -1;
+      }
+
+      .year-switcher button:active::after {
+        animation: radialPulse 0.6s ease-out forwards;
+      }
+
+      /* --- SOMBRA COLORIDA DE ACORDO COM AS FAIXAS ATIVAS (dinâmico) --- */
+      .year-switcher button.shadow-crianca {
+        box-shadow: 0 0 20px rgba(231, 76, 60, 0.55) !important;
+      }
+      .year-switcher button.shadow-jovem {
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.55) !important;
+      }
+      .year-switcher button.shadow-adulto {
+        box-shadow: 0 0 20px rgba(46, 204, 113, 0.55) !important;
+      }
+      .year-switcher button.shadow-idoso {
+        box-shadow: 0 0 20px rgba(243, 156, 18, 0.55) !important;
+      }
+
+      /* Para quando 2+ faixas estiverem ativas */
+      .year-switcher button.shadow-multi {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
+      }
+
+      /* Quando só algumas cores devem aparecer no gradiente */
+      .year-switcher button.grad-crianca {
+        background: linear-gradient(90deg, var(--cor-crianca));
+      }
+
+      .year-switcher button.grad-jovem {
+        background: linear-gradient(90deg, var(--cor-jovem));
+      }
+
+      .year-switcher button.grad-adulto {
+        background: linear-gradient(90deg, var(--cor-adulto));
+      }
+
+      .year-switcher button.grad-idoso {
+        background: linear-gradient(90deg, var(--cor-idoso));
+      }
+
+      /* combinações */
+      .year-switcher button.grad-cj {
+        background: linear-gradient(
+          90deg,
+          var(--cor-crianca),
+          var(--cor-jovem)
+        );
+      }
+
+      .year-switcher button.grad-cja {
+        background: linear-gradient(
+          90deg,
+          var(--cor-crianca),
+          var(--cor-jovem),
+          var(--cor-adulto)
+        );
+      }
+
+      /* Hover animado */
+      .year-switcher button:hover {
+        filter: brightness(1.18);
+        transform: translateY(-2px) scale(1.03);
+        border-radius: 14px;
+        box-shadow: 0 0 14px rgba(255, 255, 255, 0.55);
+        transition: all 0.25s ease-out;
+      }
+
+      /* Flash radial igual aos filtros */
+      .year-switcher button.flash-radial::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.4),
+          transparent 70%
+        );
+        transform: translate(-50%, -50%);
+
+        animation: flashPulse 0.6s ease-out forwards;
+      }
+
+      @keyframes flashPulse {
+        0% {
+          opacity: 1;
+          transform: scale(0.8);
+        }
+        100% {
+          opacity: 0;
+          transform: scale(1.6);
+        }
+      }
+      @keyframes gradMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
       }
 
       @media (max-width: 768px) {
@@ -205,12 +338,24 @@
           text-align: center;
         }
 
-        .arrow-btn.left { left: -4px; }
-        .arrow-btn.right { right: -4px; }
-        #plot { height: 50vh; }
-        .wrap { padding: 10px; }
-        .wrap h2 { font-size: 1.1rem; }
-        .wrap p.source { font-size: 0.75rem; }
+        .arrow-btn.left {
+          left: -4px;
+        }
+        .arrow-btn.right {
+          right: -4px;
+        }
+        #plot {
+          height: 50vh;
+        }
+        .wrap {
+          padding: 10px;
+        }
+        .wrap h2 {
+          font-size: 1.1rem;
+        }
+        .wrap p.source {
+          font-size: 0.75rem;
+        }
       }
     </style>
     <link
@@ -221,66 +366,804 @@
   <body>
     <div class="wrap">
       <h2>População por Faixa Etária — Censo 2010</h2>
-      <div style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; flex-wrap: wrap;">
-      <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2010)</p>
+      <div
+        style="
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+        "
+      >
+        <p class="source">Fonte: IBGE / Consolidação Municipal (Censo 2010)</p>
         <!-- Botões de troca de ano (2010 / 2022) -->
         <div class="year-switcher">
-          <button id="btn-2010" class="ativo">Censo 2010</button>
-          <button id="btn-2022">Censo 2022</button>
+          <button id="btn-2010" class="ativo">2010</button>
+          <button id="btn-2022">2022</button>
         </div>
       </div>
       <div class="region-scroll-container">
-        <button class="arrow-btn left" id="scroll-left">Left Arrow</button>
+        <button class="arrow-btn left" id="scroll-left">&#9664;</button>
 
         <div class="region-filters" id="age-filters">
           <!-- botões de filtros serão inseridos aqui via JS -->
         </div>
 
-        <button class="arrow-btn right" id="scroll-right">Right Arrow</button>
+        <button class="arrow-btn right" id="scroll-right">&#9654;</button>
       </div>
 
       <div id="plot"></div>
     </div>
 
     <script>
+      const cssVars = getComputedStyle(document.documentElement);
+
+      const ageColors = {
+        Criança: cssVars.getPropertyValue("--cor-crianca").trim(),
+        Jovem: cssVars.getPropertyValue("--cor-jovem").trim(),
+        Adulto: cssVars.getPropertyValue("--cor-adulto").trim(),
+        Idoso: cssVars.getPropertyValue("--cor-idoso").trim(),
+      };
+
+      function atualizarGradienteAno() {
+        const botoesAno = [
+          document.getElementById("btn-2010"),
+          document.getElementById("btn-2022"),
+        ];
+
+        if (selectedAges.length === 0) {
+          botoesAno.forEach((btn) => {
+            btn.style.background = "#777";
+            btn.style.animation = "none";
+            btn.style.filter = "none";
+          });
+          return;
+        }
+
+        // LIMPAR ESTILOS ANTIGOS
+        botoesAno.forEach((btn) => {
+          btn.style.background = "none";
+          btn.style.backgroundImage = "none";
+          btn.style.filter = "none";
+          btn.style.animation = "none";
+          btn.style.backgroundSize = "auto";
+        });
+
+        const mapa = { Criança: "c", Jovem: "j", Adulto: "a", Idoso: "i" };
+        const cores = {
+          c: ageColors["Criança"],
+          j: ageColors["Jovem"],
+          a: ageColors["Adulto"],
+          i: ageColors["Idoso"],
+        };
+
+        const selecionadas = selectedAges.map((a) => mapa[a]);
+
+        let gradient = "";
+
+        if (selecionadas.length === 1) {
+          const key = selecionadas[0];
+          const cor = cores[key];
+
+          gradient = `linear-gradient(
+      90deg,
+      ${cor} 0%,
+      ${cor}CC 50%,
+      ${cor} 100%
+    )`;
+        } else {
+          gradient = `linear-gradient(90deg, ${selecionadas
+            .map((key) => cores[key])
+            .join(", ")})`;
+        }
+
+        botoesAno.forEach((btn) => {
+          btn.style.transition = "background 0.6s ease, filter 0.3s ease";
+          btn.style.background = gradient;
+          btn.style.filter = "brightness(1.05)";
+        });
+
+        botoesAno.forEach((btn) => {
+          btn.style.backgroundSize = "200% 200%";
+          btn.style.animation = "gradMove 6s ease infinite";
+        });
+      }
+
+      function atualizarSombraAno() {
+        const btn2010 = document.getElementById("btn-2010");
+        const btn2022 = document.getElementById("btn-2022");
+
+        // remover classes antigas
+        const allClasses = [
+          "shadow-crianca",
+          "shadow-jovem",
+          "shadow-adulto",
+          "shadow-idoso",
+          "shadow-multi",
+        ];
+
+        [btn2010, btn2022].forEach((btn) => {
+          allClasses.forEach((c) => btn.classList.remove(c));
+        });
+
+        // aplicar nova
+        if (selectedAges.length === 1) {
+          const faixa = selectedAges[0].toLowerCase();
+          btn2010.classList.add(`shadow-${faixa}`);
+          btn2022.classList.add(`shadow-${faixa}`);
+        } else {
+          btn2010.classList.add("shadow-multi");
+          btn2022.classList.add("shadow-multi");
+        }
+      }
       (function () {
         // === DADOS DIRETAMENTE NO CÓDIGO (sem CSV) ===
         const rawData = {
-          "01": { "0 a 4 anos": 2713, "5 a 9 anos": 2907, "10 a 14 anos": 3612, "15 a 17 anos": 2166, "18 anos": 753, "19 anos": 724, "20 a 24 anos": 3857, "25 a 29 anos": 3668, "30 a 34 anos": 3109, "35 a 39 anos": 2971, "40 a 44 anos": 3096, "45 a 49 anos": 2900, "50 a 54 anos": 2342, "55 a 59 anos": 1749, "60 a 64 anos": 1320, "65 a 69 anos": 962, "70 anos ou mais": 1509 },
-          "01A": { "0 a 4 anos": 22, "5 a 9 anos": 24, "10 a 14 anos": 42, "15 a 17 anos": 18, "18 anos": 2, "19 anos": 8, "20 a 24 anos": 26, "25 a 29 anos": 21, "30 a 34 anos": 15, "35 a 39 anos": 28, "40 a 44 anos": 21, "45 a 49 anos": 24, "50 a 54 anos": 13, "55 a 59 anos": 9, "60 a 64 anos": 7, "65 a 69 anos": 6, "70 anos ou mais": 13 },
-          "02": { "0 a 4 anos": 957, "5 a 9 anos": 1094, "10 a 14 anos": 1267, "15 a 17 anos": 752, "18 anos": 267, "19 anos": 305, "20 a 24 anos": 1470, "25 a 29 anos": 1524, "30 a 34 anos": 1381, "35 a 39 anos": 1218, "40 a 44 anos": 1309, "45 a 49 anos": 1278, "50 a 54 anos": 1137, "55 a 59 anos": 902, "60 a 64 anos": 727, "65 a 69 anos": 547, "70 anos ou mais": 1252 },
-          "02A": { "0 a 4 anos": 10, "5 a 9 anos": 17, "10 a 14 anos": 22, "15 a 17 anos": 7, "18 anos": 3, "19 anos": 2, "20 a 24 anos": 21, "25 a 29 anos": 21, "30 a 34 anos": 21, "35 a 39 anos": 5, "40 a 44 anos": 13, "45 a 49 anos": 6, "50 a 54 anos": 13, "55 a 59 anos": 21, "60 a 64 anos": 11, "65 a 69 anos": 8, "70 anos ou mais": 13 },
-          "03": { "0 a 4 anos": 907, "5 a 9 anos": 993, "10 a 14 anos": 1202, "15 a 17 anos": 730, "18 anos": 336, "19 anos": 324, "20 a 24 anos": 1616, "25 a 29 anos": 1717, "30 a 34 anos": 1455, "35 a 39 anos": 1198, "40 a 44 anos": 1144, "45 a 49 anos": 1302, "50 a 54 anos": 1391, "55 a 59 anos": 1214, "60 a 64 anos": 935, "65 a 69 anos": 715, "70 anos ou mais": 1859 },
-          "03A": { "0 a 4 anos": 135, "5 a 9 anos": 149, "10 a 14 anos": 172, "15 a 17 anos": 95, "18 anos": 21, "19 anos": 19, "20 a 24 anos": 120, "25 a 29 anos": 108, "30 a 34 anos": 101, "35 a 39 anos": 93, "40 a 44 anos": 72, "45 a 49 anos": 55, "50 a 54 anos": 44, "55 a 59 anos": 35, "60 a 64 anos": 25, "65 a 69 anos": 22, "70 anos ou mais": 36 },
-          "04": { "0 a 4 anos": 1168, "5 a 9 anos": 1167, "10 a 14 anos": 1488, "15 a 17 anos": 978, "18 anos": 336, "19 anos": 344, "20 a 24 anos": 1858, "25 a 29 anos": 1864, "30 a 34 anos": 1789, "35 a 39 anos": 1599, "40 a 44 anos": 1542, "45 a 49 anos": 1476, "50 a 54 anos": 1365, "55 a 59 anos": 1066, "60 a 64 anos": 954, "65 a 69 anos": 818, "70 anos ou mais": 1660 },
-          "05": { "0 a 4 anos": 2021, "5 a 9 anos": 2042, "10 a 14 anos": 2577, "15 a 17 anos": 1598, "18 anos": 579, "19 anos": 566, "20 a 24 anos": 3345, "25 a 29 anos": 3537, "30 a 34 anos": 3034, "35 a 39 anos": 2684, "40 a 44 anos": 2544, "45 a 49 anos": 2489, "50 a 54 anos": 2389, "55 a 59 anos": 2030, "60 a 64 anos": 1677, "65 a 69 anos": 1055, "70 anos ou mais": 1583 },
-          "05A": { "0 a 4 anos": 46, "5 a 9 anos": 47, "10 a 14 anos": 50, "15 a 17 anos": 26, "18 anos": 15, "19 anos": 15, "20 a 24 anos": 58, "25 a 29 anos": 39, "30 a 34 anos": 32, "35 a 39 anos": 34, "40 a 44 anos": 28, "45 a 49 anos": 17, "50 a 54 anos": 21, "55 a 59 anos": 18, "60 a 64 anos": 19, "65 a 69 anos": 8, "70 anos ou mais": 14 },
-          "07": { "0 a 4 anos": 2438, "5 a 9 anos": 2464, "10 a 14 anos": 2909, "15 a 17 anos": 1636, "18 anos": 575, "19 anos": 549, "20 a 24 anos": 2986, "25 a 29 anos": 3162, "30 a 34 anos": 2861, "35 a 39 anos": 2513, "40 a 44 anos": 2306, "45 a 49 anos": 1965, "50 a 54 anos": 1529, "55 a 59 anos": 1134, "60 a 64 anos": 735, "65 a 69 anos": 434, "70 anos ou mais": 620 },
-          "08": { "0 a 4 anos": 849, "5 a 9 anos": 928, "10 a 14 anos": 1061, "15 a 17 anos": 639, "18 anos": 229, "19 anos": 248, "20 a 24 anos": 1299, "25 a 29 anos": 1399, "30 a 34 anos": 1300, "35 a 39 anos": 1117, "40 a 44 anos": 1112, "45 a 49 anos": 1089, "50 a 54 anos": 1124, "55 a 59 anos": 964, "60 a 64 anos": 720, "65 a 69 anos": 412, "70 anos ou mais": 657 },
-          "09": { "0 a 4 anos": 1435, "5 a 9 anos": 1458, "10 a 14 anos": 1677, "15 a 17 anos": 934, "18 anos": 342, "19 anos": 339, "20 a 24 anos": 1829, "25 a 29 anos": 1890, "30 a 34 anos": 1802, "35 a 39 anos": 1624, "40 a 44 anos": 1500, "45 a 49 anos": 1383, "50 a 54 anos": 1158, "55 a 59 anos": 895, "60 a 64 anos": 700, "65 a 69 anos": 489, "70 anos ou mais": 698 },
-          "10": { "0 a 4 anos": 177, "5 a 9 anos": 175, "10 a 14 anos": 246, "15 a 17 anos": 148, "18 anos": 55, "19 anos": 43, "20 a 24 anos": 200, "25 a 29 anos": 205, "30 a 34 anos": 206, "35 a 39 anos": 234, "40 a 44 anos": 305, "45 a 49 anos": 318, "50 a 54 anos": 102, "55 a 59 anos": 58, "60 a 64 anos": 45, "65 a 69 anos": 22, "70 anos ou mais": 22 },
-          "11": { "0 a 4 anos": 686, "5 a 9 anos": 768, "10 a 14 anos": 937, "15 a 17 anos": 548, "18 anos": 166, "19 anos": 158, "20 a 24 anos": 826, "25 a 29 anos": 810, "30 a 34 anos": 836, "35 a 39 anos": 783, "40 a 44 anos": 722, "45 a 49 anos": 582, "50 a 54 anos": 437, "55 a 59 anos": 292, "60 a 64 anos": 184, "65 a 69 anos": 102, "70 anos ou mais": 164 },
-          "12": { "0 a 4 anos": 5387, "5 a 9 anos": 5675, "10 a 14 anos": 6531, "15 a 17 anos": 3726, "18 anos": 1186, "19 anos": 1130, "20 a 24 anos": 6035, "25 a 29 anos": 6077, "30 a 34 anos": 5600, "35 a 39 anos": 4579, "40 a 44 anos": 3852, "45 a 49 anos": 3246, "50 a 54 anos": 2772, "55 a 59 anos": 2377, "60 a 64 anos": 1520, "65 a 69 anos": 941, "70 anos ou mais": 1230 },
-          "13": { "0 a 4 anos": 2036, "5 a 9 anos": 2091, "10 a 14 anos": 2543, "15 a 17 anos": 1643, "18 anos": 519, "19 anos": 666, "20 a 24 anos": 3502, "25 a 29 anos": 3626, "30 a 34 anos": 3085, "35 a 39 anos": 2618, "40 a 44 anos": 2554, "45 a 49 anos": 2777, "50 a 54 anos": 2791, "55 a 59 anos": 2331, "60 a 64 anos": 1558, "65 a 69 anos": 816, "70 anos ou mais": 1288 },
-          "14": { "0 a 4 anos": 1574, "5 a 9 anos": 1463, "10 a 14 anos": 1688, "15 a 17 anos": 1059, "18 anos": 375, "19 anos": 451, "20 a 24 anos": 2497, "25 a 29 anos": 2875, "30 a 34 anos": 2812, "35 a 39 anos": 2174, "40 a 44 anos": 1918, "45 a 49 anos": 1813, "50 a 54 anos": 1773, "55 a 59 anos": 1653, "60 a 64 anos": 1401, "65 a 69 anos": 968, "70 anos ou mais": 1406 },
-          "15": { "0 a 4 anos": 3803, "5 a 9 anos": 3982, "10 a 14 anos": 4396, "15 a 17 anos": 2586, "18 anos": 924, "19 anos": 913, "20 a 24 anos": 4908, "25 a 29 anos": 5873, "30 a 34 anos": 5630, "35 a 39 anos": 4845, "40 a 44 anos": 4252, "45 a 49 anos": 3809, "50 a 54 anos": 3344, "55 a 59 anos": 2716, "60 a 64 anos": 1740, "65 a 69 anos": 1023, "70 anos ou mais": 1548 },
-          "16": { "0 a 4 anos": 2234, "5 a 9 anos": 2314, "10 a 14 anos": 2435, "15 a 17 anos": 1503, "18 anos": 534, "19 anos": 614, "20 a 24 anos": 3180, "25 a 29 anos": 4002, "30 a 34 anos": 3608, "35 a 39 anos": 2815, "40 a 44 anos": 2382, "45 a 49 anos": 2280, "50 a 54 anos": 2242, "55 a 59 anos": 1994, "60 a 64 anos": 1394, "65 a 69 anos": 866, "70 anos ou mais": 1310 },
-          "17": { "0 a 4 anos": 1058, "5 a 9 anos": 1082, "10 a 14 anos": 1224, "15 a 17 anos": 771, "18 anos": 262, "19 anos": 289, "20 a 24 anos": 1404, "25 a 29 anos": 1706, "30 a 34 anos": 1745, "35 a 39 anos": 1506, "40 a 44 anos": 1357, "45 a 49 anos": 1342, "50 a 54 anos": 1186, "55 a 59 anos": 995, "60 a 64 anos": 775, "65 a 69 anos": 424, "70 anos ou mais": 686 },
-          "17A": { "0 a 4 anos": 49, "5 a 9 anos": 43, "10 a 14 anos": 64, "15 a 17 anos": 36, "18 anos": 10, "19 anos": 14, "20 a 24 anos": 77, "25 a 29 anos": 71, "30 a 34 anos": 58, "35 a 39 anos": 52, "40 a 44 anos": 58, "45 a 49 anos": 55, "50 a 54 anos": 42, "55 a 59 anos": 39, "60 a 64 anos": 21, "65 a 69 anos": 23, "70 anos ou mais": 18 },
-          "18": { "0 a 4 anos": 506, "5 a 9 anos": 531, "10 a 14 anos": 594, "15 a 17 anos": 346, "18 anos": 107, "19 anos": 92, "20 a 24 anos": 440, "25 a 29 anos": 443, "30 a 34 anos": 601, "35 a 39 anos": 647, "40 a 44 anos": 743, "45 a 49 anos": 716, "50 a 54 anos": 490, "55 a 59 anos": 335, "60 a 64 anos": 202, "65 a 69 anos": 115, "70 anos ou mais": 161 },
-          "19": { "0 a 4 anos": 1006, "5 a 9 anos": 882, "10 a 14 anos": 907, "15 a 17 anos": 614, "18 anos": 220, "19 anos": 179, "20 a 24 anos": 949, "25 a 29 anos": 1259, "30 a 34 anos": 1780, "35 a 39 anos": 1490, "40 a 44 anos": 1217, "45 a 49 anos": 1332, "50 a 54 anos": 1221, "55 a 59 anos": 974, "60 a 64 anos": 653, "65 a 69 anos": 373, "70 anos ou mais": 496 },
-          "20": { "0 a 4 anos": 953, "5 a 9 anos": 871, "10 a 14 anos": 1012, "15 a 17 anos": 645, "18 anos": 225, "19 anos": 279, "20 a 24 anos": 1390, "25 a 29 anos": 1781, "30 a 34 anos": 1711, "35 a 39 anos": 1474, "40 a 44 anos": 1405, "45 a 49 anos": 1556, "50 a 54 anos": 1512, "55 a 59 anos": 1483, "60 a 64 anos": 1161, "65 a 69 anos": 860, "70 anos ou mais": 1962 },
-          "25": { "0 a 4 anos": 302, "5 a 9 anos": 311, "10 a 14 anos": 324, "15 a 17 anos": 207, "18 anos": 64, "19 anos": 65, "20 a 24 anos": 304, "25 a 29 anos": 288, "30 a 34 anos": 252, "35 a 39 anos": 248, "40 a 44 anos": 236, "45 a 49 anos": 203, "50 a 54 anos": 166, "55 a 59 anos": 117, "60 a 64 anos": 85, "65 a 69 anos": 56, "70 anos ou mais": 69 },
-          "25A": { "0 a 4 anos": 26, "5 a 9 anos": 24, "10 a 14 anos": 38, "15 a 17 anos": 15, "18 anos": 4, "19 anos": 6, "20 a 24 anos": 16, "25 a 29 anos": 18, "30 a 34 anos": 24, "35 a 39 anos": 24, "40 a 44 anos": 22, "45 a 49 anos": 18, "50 a 54 anos": 15, "55 a 59 anos": 10, "60 a 64 anos": 5, "65 a 69 anos": 8, "70 anos ou mais": 9 },
-          "26": { "0 a 4 anos": 483, "5 a 9 anos": 465, "10 a 14 anos": 637, "15 a 17 anos": 476, "18 anos": 169, "19 anos": 173, "20 a 24 anos": 852, "25 a 29 anos": 1078, "30 a 34 anos": 1049, "35 a 39 anos": 731, "40 a 44 anos": 709, "45 a 49 anos": 916, "50 a 54 anos": 1040, "55 a 59 anos": 871, "60 a 64 anos": 689, "65 a 69 anos": 485, "70 anos ou mais": 900 },
-          "27": { "0 a 4 anos": 2999, "5 a 9 anos": 3199, "10 a 14 anos": 3787, "15 a 17 anos": 2255, "18 anos": 742, "19 anos": 784, "20 a 24 anos": 3808, "25 a 29 anos": 4015, "30 a 34 anos": 3489, "35 a 39 anos": 3097, "40 a 44 anos": 2896, "45 a 49 anos": 2575, "50 a 54 anos": 2109, "55 a 59 anos": 1534, "60 a 64 anos": 968, "65 a 69 anos": 537, "70 anos ou mais": 736 },
-          "28": { "0 a 4 anos": 392, "5 a 9 anos": 474, "10 a 14 anos": 504, "15 a 17 anos": 319, "18 anos": 99, "19 anos": 103, "20 a 24 anos": 622, "25 a 29 anos": 518, "30 a 34 anos": 514, "35 a 39 anos": 467, "40 a 44 anos": 445, "45 a 49 anos": 376, "50 a 54 anos": 335, "55 a 59 anos": 296, "60 a 64 anos": 252, "65 a 69 anos": 193, "70 anos ou mais": 419 },
-          "29": { "0 a 4 anos": 1731, "5 a 9 anos": 1874, "10 a 14 anos": 2263, "15 a 17 anos": 1300, "18 anos": 377, "19 anos": 454, "20 a 24 anos": 2204, "25 a 29 anos": 2107, "30 a 34 anos": 2027, "35 a 39 anos": 1856, "40 a 44 anos": 1720, "45 a 49 anos": 1337, "50 a 54 anos": 1083, "55 a 59 anos": 732, "60 a 64 anos": 562, "65 a 69 anos": 344, "70 anos ou mais": 493 },
-          "31": { "0 a 4 anos": 400, "5 a 9 anos": 402, "10 a 14 anos": 493, "15 a 17 anos": 240, "18 anos": 63, "19 anos": 71, "20 a 24 anos": 342, "25 a 29 anos": 416, "30 a 34 anos": 403, "35 a 39 anos": 358, "40 a 44 anos": 281, "45 a 49 anos": 239, "50 a 54 anos": 192, "55 a 59 anos": 137, "60 a 64 anos": 114, "65 a 69 anos": 59, "70 anos ou mais": 93 },
-          "06": { "0 a 4 anos": 1477, "5 a 9 anos": 1490, "10 a 14 anos": 1736, "15 a 17 anos": 1124, "18 anos": 394, "19 anos": 371, "20 a 24 anos": 1942, "25 a 29 anos": 1952, "30 a 34 anos": 1757, "35 a 39 anos": 1496, "40 a 44 anos": 1475, "45 a 49 anos": 1501, "50 a 54 anos": 1186, "55 a 59 anos": 846, "60 a 64 anos": 555, "65 a 69 anos": 373, "70 anos ou mais": 500 },
-          "06A": { "0 a 4 anos": 30, "5 a 9 anos": 37, "10 a 14 anos": 34, "15 a 17 anos": 25, "18 anos": 12, "19 anos": 7, "20 a 24 anos": 36, "25 a 29 anos": 35, "30 a 34 anos": 34, "35 a 39 anos": 31, "40 a 44 anos": 24, "45 a 49 anos": 27, "50 a 54 anos": 26, "55 a 59 anos": 16, "60 a 64 anos": 15, "65 a 69 anos": 9, "70 anos ou mais": 14 },
-          "30": { "0 a 4 anos": 1101, "5 a 9 anos": 1145, "10 a 14 anos": 1418, "15 a 17 anos": 781, "18 anos": 246, "19 anos": 238, "20 a 24 anos": 1199, "25 a 29 anos": 1156, "30 a 34 anos": 1056, "35 a 39 anos": 997, "40 a 44 anos": 922, "45 a 49 anos": 803, "50 a 54 anos": 708, "55 a 59 anos": 538, "60 a 64 anos": 391, "65 a 69 anos": 235, "70 anos ou mais": 410 },
-          "21": { "0 a 4 anos": 125, "5 a 9 anos": 124, "10 a 14 anos": 163, "15 a 17 anos": 80, "18 anos": 27, "19 anos": 18, "20 a 24 anos": 130, "25 a 29 anos": 137, "30 a 34 anos": 127, "35 a 39 anos": 132, "40 a 44 anos": 102, "45 a 49 anos": 111, "50 a 54 anos": 85, "55 a 59 anos": 94, "60 a 64 anos": 73, "65 a 69 anos": 42, "70 anos ou mais": 95 }
+          "01": {
+            "0 a 4 anos": 2713,
+            "5 a 9 anos": 2907,
+            "10 a 14 anos": 3612,
+            "15 a 17 anos": 2166,
+            "18 anos": 753,
+            "19 anos": 724,
+            "20 a 24 anos": 3857,
+            "25 a 29 anos": 3668,
+            "30 a 34 anos": 3109,
+            "35 a 39 anos": 2971,
+            "40 a 44 anos": 3096,
+            "45 a 49 anos": 2900,
+            "50 a 54 anos": 2342,
+            "55 a 59 anos": 1749,
+            "60 a 64 anos": 1320,
+            "65 a 69 anos": 962,
+            "70 anos ou mais": 1509,
+          },
+          "01A": {
+            "0 a 4 anos": 22,
+            "5 a 9 anos": 24,
+            "10 a 14 anos": 42,
+            "15 a 17 anos": 18,
+            "18 anos": 2,
+            "19 anos": 8,
+            "20 a 24 anos": 26,
+            "25 a 29 anos": 21,
+            "30 a 34 anos": 15,
+            "35 a 39 anos": 28,
+            "40 a 44 anos": 21,
+            "45 a 49 anos": 24,
+            "50 a 54 anos": 13,
+            "55 a 59 anos": 9,
+            "60 a 64 anos": 7,
+            "65 a 69 anos": 6,
+            "70 anos ou mais": 13,
+          },
+          "02": {
+            "0 a 4 anos": 957,
+            "5 a 9 anos": 1094,
+            "10 a 14 anos": 1267,
+            "15 a 17 anos": 752,
+            "18 anos": 267,
+            "19 anos": 305,
+            "20 a 24 anos": 1470,
+            "25 a 29 anos": 1524,
+            "30 a 34 anos": 1381,
+            "35 a 39 anos": 1218,
+            "40 a 44 anos": 1309,
+            "45 a 49 anos": 1278,
+            "50 a 54 anos": 1137,
+            "55 a 59 anos": 902,
+            "60 a 64 anos": 727,
+            "65 a 69 anos": 547,
+            "70 anos ou mais": 1252,
+          },
+          "02A": {
+            "0 a 4 anos": 10,
+            "5 a 9 anos": 17,
+            "10 a 14 anos": 22,
+            "15 a 17 anos": 7,
+            "18 anos": 3,
+            "19 anos": 2,
+            "20 a 24 anos": 21,
+            "25 a 29 anos": 21,
+            "30 a 34 anos": 21,
+            "35 a 39 anos": 5,
+            "40 a 44 anos": 13,
+            "45 a 49 anos": 6,
+            "50 a 54 anos": 13,
+            "55 a 59 anos": 21,
+            "60 a 64 anos": 11,
+            "65 a 69 anos": 8,
+            "70 anos ou mais": 13,
+          },
+          "03": {
+            "0 a 4 anos": 907,
+            "5 a 9 anos": 993,
+            "10 a 14 anos": 1202,
+            "15 a 17 anos": 730,
+            "18 anos": 336,
+            "19 anos": 324,
+            "20 a 24 anos": 1616,
+            "25 a 29 anos": 1717,
+            "30 a 34 anos": 1455,
+            "35 a 39 anos": 1198,
+            "40 a 44 anos": 1144,
+            "45 a 49 anos": 1302,
+            "50 a 54 anos": 1391,
+            "55 a 59 anos": 1214,
+            "60 a 64 anos": 935,
+            "65 a 69 anos": 715,
+            "70 anos ou mais": 1859,
+          },
+          "03A": {
+            "0 a 4 anos": 135,
+            "5 a 9 anos": 149,
+            "10 a 14 anos": 172,
+            "15 a 17 anos": 95,
+            "18 anos": 21,
+            "19 anos": 19,
+            "20 a 24 anos": 120,
+            "25 a 29 anos": 108,
+            "30 a 34 anos": 101,
+            "35 a 39 anos": 93,
+            "40 a 44 anos": 72,
+            "45 a 49 anos": 55,
+            "50 a 54 anos": 44,
+            "55 a 59 anos": 35,
+            "60 a 64 anos": 25,
+            "65 a 69 anos": 22,
+            "70 anos ou mais": 36,
+          },
+          "04": {
+            "0 a 4 anos": 1168,
+            "5 a 9 anos": 1167,
+            "10 a 14 anos": 1488,
+            "15 a 17 anos": 978,
+            "18 anos": 336,
+            "19 anos": 344,
+            "20 a 24 anos": 1858,
+            "25 a 29 anos": 1864,
+            "30 a 34 anos": 1789,
+            "35 a 39 anos": 1599,
+            "40 a 44 anos": 1542,
+            "45 a 49 anos": 1476,
+            "50 a 54 anos": 1365,
+            "55 a 59 anos": 1066,
+            "60 a 64 anos": 954,
+            "65 a 69 anos": 818,
+            "70 anos ou mais": 1660,
+          },
+          "05": {
+            "0 a 4 anos": 2021,
+            "5 a 9 anos": 2042,
+            "10 a 14 anos": 2577,
+            "15 a 17 anos": 1598,
+            "18 anos": 579,
+            "19 anos": 566,
+            "20 a 24 anos": 3345,
+            "25 a 29 anos": 3537,
+            "30 a 34 anos": 3034,
+            "35 a 39 anos": 2684,
+            "40 a 44 anos": 2544,
+            "45 a 49 anos": 2489,
+            "50 a 54 anos": 2389,
+            "55 a 59 anos": 2030,
+            "60 a 64 anos": 1677,
+            "65 a 69 anos": 1055,
+            "70 anos ou mais": 1583,
+          },
+          "05A": {
+            "0 a 4 anos": 46,
+            "5 a 9 anos": 47,
+            "10 a 14 anos": 50,
+            "15 a 17 anos": 26,
+            "18 anos": 15,
+            "19 anos": 15,
+            "20 a 24 anos": 58,
+            "25 a 29 anos": 39,
+            "30 a 34 anos": 32,
+            "35 a 39 anos": 34,
+            "40 a 44 anos": 28,
+            "45 a 49 anos": 17,
+            "50 a 54 anos": 21,
+            "55 a 59 anos": 18,
+            "60 a 64 anos": 19,
+            "65 a 69 anos": 8,
+            "70 anos ou mais": 14,
+          },
+          "07": {
+            "0 a 4 anos": 2438,
+            "5 a 9 anos": 2464,
+            "10 a 14 anos": 2909,
+            "15 a 17 anos": 1636,
+            "18 anos": 575,
+            "19 anos": 549,
+            "20 a 24 anos": 2986,
+            "25 a 29 anos": 3162,
+            "30 a 34 anos": 2861,
+            "35 a 39 anos": 2513,
+            "40 a 44 anos": 2306,
+            "45 a 49 anos": 1965,
+            "50 a 54 anos": 1529,
+            "55 a 59 anos": 1134,
+            "60 a 64 anos": 735,
+            "65 a 69 anos": 434,
+            "70 anos ou mais": 620,
+          },
+          "08": {
+            "0 a 4 anos": 849,
+            "5 a 9 anos": 928,
+            "10 a 14 anos": 1061,
+            "15 a 17 anos": 639,
+            "18 anos": 229,
+            "19 anos": 248,
+            "20 a 24 anos": 1299,
+            "25 a 29 anos": 1399,
+            "30 a 34 anos": 1300,
+            "35 a 39 anos": 1117,
+            "40 a 44 anos": 1112,
+            "45 a 49 anos": 1089,
+            "50 a 54 anos": 1124,
+            "55 a 59 anos": 964,
+            "60 a 64 anos": 720,
+            "65 a 69 anos": 412,
+            "70 anos ou mais": 657,
+          },
+          "09": {
+            "0 a 4 anos": 1435,
+            "5 a 9 anos": 1458,
+            "10 a 14 anos": 1677,
+            "15 a 17 anos": 934,
+            "18 anos": 342,
+            "19 anos": 339,
+            "20 a 24 anos": 1829,
+            "25 a 29 anos": 1890,
+            "30 a 34 anos": 1802,
+            "35 a 39 anos": 1624,
+            "40 a 44 anos": 1500,
+            "45 a 49 anos": 1383,
+            "50 a 54 anos": 1158,
+            "55 a 59 anos": 895,
+            "60 a 64 anos": 700,
+            "65 a 69 anos": 489,
+            "70 anos ou mais": 698,
+          },
+          10: {
+            "0 a 4 anos": 177,
+            "5 a 9 anos": 175,
+            "10 a 14 anos": 246,
+            "15 a 17 anos": 148,
+            "18 anos": 55,
+            "19 anos": 43,
+            "20 a 24 anos": 200,
+            "25 a 29 anos": 205,
+            "30 a 34 anos": 206,
+            "35 a 39 anos": 234,
+            "40 a 44 anos": 305,
+            "45 a 49 anos": 318,
+            "50 a 54 anos": 102,
+            "55 a 59 anos": 58,
+            "60 a 64 anos": 45,
+            "65 a 69 anos": 22,
+            "70 anos ou mais": 22,
+          },
+          11: {
+            "0 a 4 anos": 686,
+            "5 a 9 anos": 768,
+            "10 a 14 anos": 937,
+            "15 a 17 anos": 548,
+            "18 anos": 166,
+            "19 anos": 158,
+            "20 a 24 anos": 826,
+            "25 a 29 anos": 810,
+            "30 a 34 anos": 836,
+            "35 a 39 anos": 783,
+            "40 a 44 anos": 722,
+            "45 a 49 anos": 582,
+            "50 a 54 anos": 437,
+            "55 a 59 anos": 292,
+            "60 a 64 anos": 184,
+            "65 a 69 anos": 102,
+            "70 anos ou mais": 164,
+          },
+          12: {
+            "0 a 4 anos": 5387,
+            "5 a 9 anos": 5675,
+            "10 a 14 anos": 6531,
+            "15 a 17 anos": 3726,
+            "18 anos": 1186,
+            "19 anos": 1130,
+            "20 a 24 anos": 6035,
+            "25 a 29 anos": 6077,
+            "30 a 34 anos": 5600,
+            "35 a 39 anos": 4579,
+            "40 a 44 anos": 3852,
+            "45 a 49 anos": 3246,
+            "50 a 54 anos": 2772,
+            "55 a 59 anos": 2377,
+            "60 a 64 anos": 1520,
+            "65 a 69 anos": 941,
+            "70 anos ou mais": 1230,
+          },
+          13: {
+            "0 a 4 anos": 2036,
+            "5 a 9 anos": 2091,
+            "10 a 14 anos": 2543,
+            "15 a 17 anos": 1643,
+            "18 anos": 519,
+            "19 anos": 666,
+            "20 a 24 anos": 3502,
+            "25 a 29 anos": 3626,
+            "30 a 34 anos": 3085,
+            "35 a 39 anos": 2618,
+            "40 a 44 anos": 2554,
+            "45 a 49 anos": 2777,
+            "50 a 54 anos": 2791,
+            "55 a 59 anos": 2331,
+            "60 a 64 anos": 1558,
+            "65 a 69 anos": 816,
+            "70 anos ou mais": 1288,
+          },
+          14: {
+            "0 a 4 anos": 1574,
+            "5 a 9 anos": 1463,
+            "10 a 14 anos": 1688,
+            "15 a 17 anos": 1059,
+            "18 anos": 375,
+            "19 anos": 451,
+            "20 a 24 anos": 2497,
+            "25 a 29 anos": 2875,
+            "30 a 34 anos": 2812,
+            "35 a 39 anos": 2174,
+            "40 a 44 anos": 1918,
+            "45 a 49 anos": 1813,
+            "50 a 54 anos": 1773,
+            "55 a 59 anos": 1653,
+            "60 a 64 anos": 1401,
+            "65 a 69 anos": 968,
+            "70 anos ou mais": 1406,
+          },
+          15: {
+            "0 a 4 anos": 3803,
+            "5 a 9 anos": 3982,
+            "10 a 14 anos": 4396,
+            "15 a 17 anos": 2586,
+            "18 anos": 924,
+            "19 anos": 913,
+            "20 a 24 anos": 4908,
+            "25 a 29 anos": 5873,
+            "30 a 34 anos": 5630,
+            "35 a 39 anos": 4845,
+            "40 a 44 anos": 4252,
+            "45 a 49 anos": 3809,
+            "50 a 54 anos": 3344,
+            "55 a 59 anos": 2716,
+            "60 a 64 anos": 1740,
+            "65 a 69 anos": 1023,
+            "70 anos ou mais": 1548,
+          },
+          16: {
+            "0 a 4 anos": 2234,
+            "5 a 9 anos": 2314,
+            "10 a 14 anos": 2435,
+            "15 a 17 anos": 1503,
+            "18 anos": 534,
+            "19 anos": 614,
+            "20 a 24 anos": 3180,
+            "25 a 29 anos": 4002,
+            "30 a 34 anos": 3608,
+            "35 a 39 anos": 2815,
+            "40 a 44 anos": 2382,
+            "45 a 49 anos": 2280,
+            "50 a 54 anos": 2242,
+            "55 a 59 anos": 1994,
+            "60 a 64 anos": 1394,
+            "65 a 69 anos": 866,
+            "70 anos ou mais": 1310,
+          },
+          17: {
+            "0 a 4 anos": 1058,
+            "5 a 9 anos": 1082,
+            "10 a 14 anos": 1224,
+            "15 a 17 anos": 771,
+            "18 anos": 262,
+            "19 anos": 289,
+            "20 a 24 anos": 1404,
+            "25 a 29 anos": 1706,
+            "30 a 34 anos": 1745,
+            "35 a 39 anos": 1506,
+            "40 a 44 anos": 1357,
+            "45 a 49 anos": 1342,
+            "50 a 54 anos": 1186,
+            "55 a 59 anos": 995,
+            "60 a 64 anos": 775,
+            "65 a 69 anos": 424,
+            "70 anos ou mais": 686,
+          },
+          "17A": {
+            "0 a 4 anos": 49,
+            "5 a 9 anos": 43,
+            "10 a 14 anos": 64,
+            "15 a 17 anos": 36,
+            "18 anos": 10,
+            "19 anos": 14,
+            "20 a 24 anos": 77,
+            "25 a 29 anos": 71,
+            "30 a 34 anos": 58,
+            "35 a 39 anos": 52,
+            "40 a 44 anos": 58,
+            "45 a 49 anos": 55,
+            "50 a 54 anos": 42,
+            "55 a 59 anos": 39,
+            "60 a 64 anos": 21,
+            "65 a 69 anos": 23,
+            "70 anos ou mais": 18,
+          },
+          18: {
+            "0 a 4 anos": 506,
+            "5 a 9 anos": 531,
+            "10 a 14 anos": 594,
+            "15 a 17 anos": 346,
+            "18 anos": 107,
+            "19 anos": 92,
+            "20 a 24 anos": 440,
+            "25 a 29 anos": 443,
+            "30 a 34 anos": 601,
+            "35 a 39 anos": 647,
+            "40 a 44 anos": 743,
+            "45 a 49 anos": 716,
+            "50 a 54 anos": 490,
+            "55 a 59 anos": 335,
+            "60 a 64 anos": 202,
+            "65 a 69 anos": 115,
+            "70 anos ou mais": 161,
+          },
+          19: {
+            "0 a 4 anos": 1006,
+            "5 a 9 anos": 882,
+            "10 a 14 anos": 907,
+            "15 a 17 anos": 614,
+            "18 anos": 220,
+            "19 anos": 179,
+            "20 a 24 anos": 949,
+            "25 a 29 anos": 1259,
+            "30 a 34 anos": 1780,
+            "35 a 39 anos": 1490,
+            "40 a 44 anos": 1217,
+            "45 a 49 anos": 1332,
+            "50 a 54 anos": 1221,
+            "55 a 59 anos": 974,
+            "60 a 64 anos": 653,
+            "65 a 69 anos": 373,
+            "70 anos ou mais": 496,
+          },
+          20: {
+            "0 a 4 anos": 953,
+            "5 a 9 anos": 871,
+            "10 a 14 anos": 1012,
+            "15 a 17 anos": 645,
+            "18 anos": 225,
+            "19 anos": 279,
+            "20 a 24 anos": 1390,
+            "25 a 29 anos": 1781,
+            "30 a 34 anos": 1711,
+            "35 a 39 anos": 1474,
+            "40 a 44 anos": 1405,
+            "45 a 49 anos": 1556,
+            "50 a 54 anos": 1512,
+            "55 a 59 anos": 1483,
+            "60 a 64 anos": 1161,
+            "65 a 69 anos": 860,
+            "70 anos ou mais": 1962,
+          },
+          25: {
+            "0 a 4 anos": 302,
+            "5 a 9 anos": 311,
+            "10 a 14 anos": 324,
+            "15 a 17 anos": 207,
+            "18 anos": 64,
+            "19 anos": 65,
+            "20 a 24 anos": 304,
+            "25 a 29 anos": 288,
+            "30 a 34 anos": 252,
+            "35 a 39 anos": 248,
+            "40 a 44 anos": 236,
+            "45 a 49 anos": 203,
+            "50 a 54 anos": 166,
+            "55 a 59 anos": 117,
+            "60 a 64 anos": 85,
+            "65 a 69 anos": 56,
+            "70 anos ou mais": 69,
+          },
+          "25A": {
+            "0 a 4 anos": 26,
+            "5 a 9 anos": 24,
+            "10 a 14 anos": 38,
+            "15 a 17 anos": 15,
+            "18 anos": 4,
+            "19 anos": 6,
+            "20 a 24 anos": 16,
+            "25 a 29 anos": 18,
+            "30 a 34 anos": 24,
+            "35 a 39 anos": 24,
+            "40 a 44 anos": 22,
+            "45 a 49 anos": 18,
+            "50 a 54 anos": 15,
+            "55 a 59 anos": 10,
+            "60 a 64 anos": 5,
+            "65 a 69 anos": 8,
+            "70 anos ou mais": 9,
+          },
+          26: {
+            "0 a 4 anos": 483,
+            "5 a 9 anos": 465,
+            "10 a 14 anos": 637,
+            "15 a 17 anos": 476,
+            "18 anos": 169,
+            "19 anos": 173,
+            "20 a 24 anos": 852,
+            "25 a 29 anos": 1078,
+            "30 a 34 anos": 1049,
+            "35 a 39 anos": 731,
+            "40 a 44 anos": 709,
+            "45 a 49 anos": 916,
+            "50 a 54 anos": 1040,
+            "55 a 59 anos": 871,
+            "60 a 64 anos": 689,
+            "65 a 69 anos": 485,
+            "70 anos ou mais": 900,
+          },
+          27: {
+            "0 a 4 anos": 2999,
+            "5 a 9 anos": 3199,
+            "10 a 14 anos": 3787,
+            "15 a 17 anos": 2255,
+            "18 anos": 742,
+            "19 anos": 784,
+            "20 a 24 anos": 3808,
+            "25 a 29 anos": 4015,
+            "30 a 34 anos": 3489,
+            "35 a 39 anos": 3097,
+            "40 a 44 anos": 2896,
+            "45 a 49 anos": 2575,
+            "50 a 54 anos": 2109,
+            "55 a 59 anos": 1534,
+            "60 a 64 anos": 968,
+            "65 a 69 anos": 537,
+            "70 anos ou mais": 736,
+          },
+          28: {
+            "0 a 4 anos": 392,
+            "5 a 9 anos": 474,
+            "10 a 14 anos": 504,
+            "15 a 17 anos": 319,
+            "18 anos": 99,
+            "19 anos": 103,
+            "20 a 24 anos": 622,
+            "25 a 29 anos": 518,
+            "30 a 34 anos": 514,
+            "35 a 39 anos": 467,
+            "40 a 44 anos": 445,
+            "45 a 49 anos": 376,
+            "50 a 54 anos": 335,
+            "55 a 59 anos": 296,
+            "60 a 64 anos": 252,
+            "65 a 69 anos": 193,
+            "70 anos ou mais": 419,
+          },
+          29: {
+            "0 a 4 anos": 1731,
+            "5 a 9 anos": 1874,
+            "10 a 14 anos": 2263,
+            "15 a 17 anos": 1300,
+            "18 anos": 377,
+            "19 anos": 454,
+            "20 a 24 anos": 2204,
+            "25 a 29 anos": 2107,
+            "30 a 34 anos": 2027,
+            "35 a 39 anos": 1856,
+            "40 a 44 anos": 1720,
+            "45 a 49 anos": 1337,
+            "50 a 54 anos": 1083,
+            "55 a 59 anos": 732,
+            "60 a 64 anos": 562,
+            "65 a 69 anos": 344,
+            "70 anos ou mais": 493,
+          },
+          31: {
+            "0 a 4 anos": 400,
+            "5 a 9 anos": 402,
+            "10 a 14 anos": 493,
+            "15 a 17 anos": 240,
+            "18 anos": 63,
+            "19 anos": 71,
+            "20 a 24 anos": 342,
+            "25 a 29 anos": 416,
+            "30 a 34 anos": 403,
+            "35 a 39 anos": 358,
+            "40 a 44 anos": 281,
+            "45 a 49 anos": 239,
+            "50 a 54 anos": 192,
+            "55 a 59 anos": 137,
+            "60 a 64 anos": 114,
+            "65 a 69 anos": 59,
+            "70 anos ou mais": 93,
+          },
+          "06": {
+            "0 a 4 anos": 1477,
+            "5 a 9 anos": 1490,
+            "10 a 14 anos": 1736,
+            "15 a 17 anos": 1124,
+            "18 anos": 394,
+            "19 anos": 371,
+            "20 a 24 anos": 1942,
+            "25 a 29 anos": 1952,
+            "30 a 34 anos": 1757,
+            "35 a 39 anos": 1496,
+            "40 a 44 anos": 1475,
+            "45 a 49 anos": 1501,
+            "50 a 54 anos": 1186,
+            "55 a 59 anos": 846,
+            "60 a 64 anos": 555,
+            "65 a 69 anos": 373,
+            "70 anos ou mais": 500,
+          },
+          "06A": {
+            "0 a 4 anos": 30,
+            "5 a 9 anos": 37,
+            "10 a 14 anos": 34,
+            "15 a 17 anos": 25,
+            "18 anos": 12,
+            "19 anos": 7,
+            "20 a 24 anos": 36,
+            "25 a 29 anos": 35,
+            "30 a 34 anos": 34,
+            "35 a 39 anos": 31,
+            "40 a 44 anos": 24,
+            "45 a 49 anos": 27,
+            "50 a 54 anos": 26,
+            "55 a 59 anos": 16,
+            "60 a 64 anos": 15,
+            "65 a 69 anos": 9,
+            "70 anos ou mais": 14,
+          },
+          30: {
+            "0 a 4 anos": 1101,
+            "5 a 9 anos": 1145,
+            "10 a 14 anos": 1418,
+            "15 a 17 anos": 781,
+            "18 anos": 246,
+            "19 anos": 238,
+            "20 a 24 anos": 1199,
+            "25 a 29 anos": 1156,
+            "30 a 34 anos": 1056,
+            "35 a 39 anos": 997,
+            "40 a 44 anos": 922,
+            "45 a 49 anos": 803,
+            "50 a 54 anos": 708,
+            "55 a 59 anos": 538,
+            "60 a 64 anos": 391,
+            "65 a 69 anos": 235,
+            "70 anos ou mais": 410,
+          },
+          21: {
+            "0 a 4 anos": 125,
+            "5 a 9 anos": 124,
+            "10 a 14 anos": 163,
+            "15 a 17 anos": 80,
+            "18 anos": 27,
+            "19 anos": 18,
+            "20 a 24 anos": 130,
+            "25 a 29 anos": 137,
+            "30 a 34 anos": 127,
+            "35 a 39 anos": 132,
+            "40 a 44 anos": 102,
+            "45 a 49 anos": 111,
+            "50 a 54 anos": 85,
+            "55 a 59 anos": 94,
+            "60 a 64 anos": 73,
+            "65 a 69 anos": 42,
+            "70 anos ou mais": 95,
+          },
         };
 
         const regionMap = {
@@ -289,35 +1172,57 @@
           Norte: ["01", "01A", "02", "02A", "25", "25A", "32"],
           Oeste: ["17", "17A", "18", "19"],
           Sudeste: ["09", "10", "29"],
-          Sul: ["11", "12", "13", "14", "15", "16", "28", "21"]
+          Sul: ["11", "12", "13", "14", "15", "16", "28", "21"],
         };
 
         const regions = Object.keys(regionMap);
         const ageGroups = ["Criança", "Jovem", "Adulto", "Idoso"];
-        const ageColors = { Criança: "#e74c3c", Jovem: "#3498db", Adulto: "#2ecc71", Idoso: "#f39c12" };
-        const ageIcons = { Criança: "fa-baby", Jovem: "fa-user-graduate", Adulto: "fa-briefcase", Idoso: "fa-person-cane" };
+        const ageColors = {
+          Criança: "#e74c3c",
+          Jovem: "#3498db",
+          Adulto: "#2ecc71",
+          Idoso: "#f39c12",
+        };
+        const ageIcons = {
+          Criança: "fa-baby",
+          Jovem: "fa-user-graduate",
+          Adulto: "fa-briefcase",
+          Idoso: "fa-person-cane",
+        };
 
         // === CÁLCULO DOS DADOS POR REGIÃO ===
         const regionData = {};
-        regions.forEach(r => {
+        regions.forEach((r) => {
           regionData[r] = { Criança: 0, Jovem: 0, Adulto: 0, Idoso: 0 };
         });
 
-        Object.keys(rawData).forEach(setor => {
+        Object.keys(rawData).forEach((setor) => {
           const data = rawData[setor];
-          regions.forEach(r => {
+          regions.forEach((r) => {
             if (regionMap[r].includes(setor)) {
               // Criança: 0-14 anos
-              regionData[r].Criança += (data["0 a 4 anos"] || 0);
+              regionData[r].Criança += data["0 a 4 anos"] || 0;
               // Jovem: 15-19 anos
-              regionData[r].Jovem += (data["15 a 17 anos"] || 0) + (data["18 anos"] || 0) + (data["19 anos"] || 0) + (data["5 a 9 anos"] || 0) + (data["10 a 14 anos"] || 0);
+              regionData[r].Jovem +=
+                (data["15 a 17 anos"] || 0) +
+                (data["18 anos"] || 0) +
+                (data["19 anos"] || 0) +
+                (data["5 a 9 anos"] || 0) +
+                (data["10 a 14 anos"] || 0);
               // Adulto: 20-64 anos
-              regionData[r].Adulto += 
-                (data["20 a 24 anos"] || 0) + (data["25 a 29 anos"] || 0) + (data["30 a 34 anos"] || 0) +
-                (data["35 a 39 anos"] || 0) + (data["40 a 44 anos"] || 0) + (data["45 a 49 anos"] || 0) +
-                (data["50 a 54 anos"] || 0) + (data["55 a 59 anos"] || 0) + (data["60 a 64 anos"] || 0);
+              regionData[r].Adulto +=
+                (data["20 a 24 anos"] || 0) +
+                (data["25 a 29 anos"] || 0) +
+                (data["30 a 34 anos"] || 0) +
+                (data["35 a 39 anos"] || 0) +
+                (data["40 a 44 anos"] || 0) +
+                (data["45 a 49 anos"] || 0) +
+                (data["50 a 54 anos"] || 0) +
+                (data["55 a 59 anos"] || 0) +
+                (data["60 a 64 anos"] || 0);
               // Idoso: 65+
-              regionData[r].Idoso += (data["65 a 69 anos"] || 0) + (data["70 anos ou mais"] || 0);
+              regionData[r].Idoso +=
+                (data["65 a 69 anos"] || 0) + (data["70 anos ou mais"] || 0);
             }
           });
         });
@@ -338,7 +1243,7 @@
               Criança: "#e74c3c,#c0392b",
               Jovem: "#3498db,#2980b9",
               Adulto: "#2ecc71,#27ae60",
-              Idoso: "#f39c12,#d35400"
+              Idoso: "#f39c12,#d35400",
             };
             btn.style.background = `linear-gradient(90deg, ${grads[group]})`;
           } else {
@@ -355,32 +1260,53 @@
            ------------------------------------------------- */
         function makeTraces(filtered) {
           const isMobile = window.innerWidth <= 640;
-          return ageGroups.map(age => ({
+
+          return ageGroups.map((age) => ({
             x: regions,
-            y: regions.map(r => filtered.includes(age) ? regionData[r][age] : 0),
+            y: regions.map((r) =>
+              filtered.includes(age) ? regionData[r][age] : 0
+            ),
             type: "bar",
             name: age,
-            marker: { color: ageColors[age], line: { width: 1, color: ageColors[age] } },
-            text: regions.map(r => filtered.includes(age) ? regionData[r][age].toLocaleString("pt-BR") : ""),
+            marker: {
+              color: ageColors[age], // <<<<<<<<<< AQUI
+              line: { width: 1, color: ageColors[age] },
+            },
+            text: regions.map((r) =>
+              filtered.includes(age)
+                ? regionData[r][age].toLocaleString("pt-BR")
+                : ""
+            ),
             textposition: isMobile ? "inside" : "outside",
-            textfont: { size: isMobile ? 12 : 14, color: isMobile ? "#fff" : "#333" },
-            insidetextanchor: "middle",
+            textfont: {
+              size: isMobile ? 12 : 14,
+              color: isMobile ? "#fff" : "#333",
+            },
             hovertemplate: "%{x} - " + age + ": %{text}<extra></extra>",
-            showlegend: false
+            showlegend: false,
           }));
         }
 
         const layout = {
           barmode: "stack",
-          margin: { t: window.innerWidth <= 640 ? 40 : 60, r: 16, l: 50, b: 40 },
+          margin: {
+            t: window.innerWidth <= 640 ? 40 : 60,
+            r: 16,
+            l: 50,
+            b: 40,
+          },
           xaxis: { tickangle: 0, automargin: true, showgrid: false },
           yaxis: { tickformat: ",d", showgrid: false },
           hovermode: "closest",
           font: { family: "Segoe UI, sans-serif", color: "#222" },
           paper_bgcolor: "rgba(0,0,0,0)",
-          plot_bgcolor: "rgba(0,0,0,0)"
+          plot_bgcolor: "rgba(0,0,0,0)",
         };
-        const config = { responsive: true, displayModeBar: false, displaylogo: false };
+        const config = {
+          responsive: true,
+          displayModeBar: false,
+          displaylogo: false,
+        };
 
         function updatePlot() {
           layout.margin.t = window.innerWidth <= 640 ? 40 : 60;
@@ -391,7 +1317,7 @@
            BOTÕES DE FAIXA ETÁRIA
            ------------------------------------------------- */
         const filterContainer = document.getElementById("age-filters");
-        ageGroups.forEach(group => {
+        ageGroups.forEach((group) => {
           const btn = document.createElement("button");
           btn.classList.add("ativo");
           btn.innerHTML = `<i class="fa-solid ${ageIcons[group]}" style="margin-right:8px"></i>${group}`;
@@ -399,17 +1325,54 @@
 
           btn.onclick = () => {
             const idx = selectedAges.indexOf(group);
+
             if (idx > -1) {
+              // desselecionar
               selectedAges.splice(idx, 1);
               setButtonColor(btn, group, false);
             } else {
+              // selecionar
               selectedAges.push(group);
               setButtonColor(btn, group, true);
             }
+
+            // animação do botão (já existia)
             btn.classList.add("flash-radial");
             setTimeout(() => btn.classList.remove("flash-radial"), 600);
-            updatePlot();
+
+            // --- Atualiza o gráfico e anima SOMENTE depois que o react terminar ---
+            const newTraces = makeTraces(selectedAges); // cria os traces atualizados
+            // índices dinâmicos: [0,1,2,...]
+            const traceIndices = newTraces.map((_, i) => i);
+
+            // atualiza e quando terminar anima a transição
+            Plotly.react("plot", newTraces, layout, config).then(() => {
+              Plotly.animate(
+                "plot",
+                {
+                  data: newTraces,
+                  traces: traceIndices,
+                  layout: {
+                    transition: {
+                      duration: 600,
+                      easing: "cubic-in-out",
+                    },
+                  },
+                },
+                {
+                  transition: {
+                    duration: 600,
+                    easing: "cubic-in-out",
+                  },
+                  frame: {
+                    duration: 500,
+                    redraw: false,
+                  },
+                }
+              );
+            });
           };
+
           filterContainer.appendChild(btn);
         });
 
@@ -417,13 +1380,17 @@
         const btnLeft = document.getElementById("scroll-left");
         const btnRight = document.getElementById("scroll-right");
 
-        btnLeft.onclick = () => scrollContainer.scrollBy({ left: -100, behavior: "smooth" });
-        btnRight.onclick = () => scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
+        btnLeft.onclick = () =>
+          scrollContainer.scrollBy({ left: -100, behavior: "smooth" });
+        btnRight.onclick = () =>
+          scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
 
         function updateArrows() {
           btnLeft.style.opacity = scrollContainer.scrollLeft > 10 ? "1" : "0.4";
-          const max = scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
-          btnRight.style.opacity = scrollContainer.scrollLeft < max ? "1" : "0.4";
+          const max =
+            scrollContainer.scrollWidth - scrollContainer.clientWidth - 10;
+          btnRight.style.opacity =
+            scrollContainer.scrollLeft < max ? "1" : "0.4";
         }
         scrollContainer.addEventListener("scroll", updateArrows);
         window.addEventListener("resize", updateArrows);
@@ -436,10 +1403,9 @@
         });
       })();
 
-       // === BOTÕES DE TROCA DE ANO (2010 / 2022) ===
+      // === BOTÕES DE TROCA DE ANO (2010 / 2022) ===
       const btn2010 = document.getElementById("btn-2010");
       const btn2022 = document.getElementById("btn-2022");
-
 
       btn2010.addEventListener("click", () => {
         if (btn2010.classList.contains("ativo")) return;
@@ -447,14 +1413,16 @@
         btn2022.classList.remove("ativo");
 
         // Troca o src do iframe pai
-        window.parent.document.querySelector("#grafico-iframe").src ="/static/iframes/grafico_etaria_regiao_2010.html";
+        window.parent.document.querySelector("#grafico-iframe").src =
+          "/static/iframes/grafico_etaria_regiao_2010.html";
       });
 
       btn2022.addEventListener("click", () => {
         if (btn2022.classList.contains("ativo")) return;
         btn2022.classList.add("ativo");
         btn2010.classList.remove("ativo");
-        window.parent.document.querySelector("#grafico-iframe").src = "/static/iframes/grafico_etaria_regiao.html";
+        window.parent.document.querySelector("#grafico-iframe").src =
+          "/static/iframes/grafico_etaria_regiao.html";
       });
     </script>
   </body>

@@ -303,6 +303,17 @@
           transform: scale(1.6);
         }
       }
+      @keyframes gradMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
+        }
+      }
 
       @media (max-width: 768px) {
         .region-filters {
@@ -1190,15 +1201,14 @@
           regions.forEach((r) => {
             if (regionMap[r].includes(setor)) {
               // Criança: 0-14 anos
-              regionData[r].Criança +=
-                (data["0 a 4 anos"] || 0)
+              regionData[r].Criança += data["0 a 4 anos"] || 0;
               // Jovem: 15-19 anos
               regionData[r].Jovem +=
                 (data["15 a 17 anos"] || 0) +
                 (data["18 anos"] || 0) +
                 (data["19 anos"] || 0) +
                 (data["5 a 9 anos"] || 0) +
-                (data["10 a 14 anos"] || 0);;
+                (data["10 a 14 anos"] || 0);
               // Adulto: 20-64 anos
               regionData[r].Adulto +=
                 (data["20 a 24 anos"] || 0) +
@@ -1330,13 +1340,36 @@
             btn.classList.add("flash-radial");
             setTimeout(() => btn.classList.remove("flash-radial"), 600);
 
-            // atualiza o gráfico
-            updatePlot();
+            // --- Atualiza o gráfico e anima SOMENTE depois que o react terminar ---
+            const newTraces = makeTraces(selectedAges); // cria os traces atualizados
+            // índices dinâmicos: [0,1,2,...]
+            const traceIndices = newTraces.map((_, i) => i);
 
-            // 🎉 ANIMAÇÃO DO PLOTLY (fade/transition suave)
-            Plotly.animate("plot", {
-              transition: { duration: 450, easing: "cubic-in-out" },
-              frame: { duration: 450 },
+            // atualiza e quando terminar anima a transição
+            Plotly.react("plot", newTraces, layout, config).then(() => {
+              Plotly.animate(
+                "plot",
+                {
+                  data: newTraces,
+                  traces: traceIndices,
+                  layout: {
+                    transition: {
+                      duration: 600,
+                      easing: "cubic-in-out",
+                    },
+                  },
+                },
+                {
+                  transition: {
+                    duration: 600,
+                    easing: "cubic-in-out",
+                  },
+                  frame: {
+                    duration: 500,
+                    redraw: false,
+                  },
+                }
+              );
             });
           };
 

@@ -242,31 +242,9 @@
 
       <div id="plot"></div>
     </div>
+
     <script>
-      // Função para ler CSV
-      async function carregarCSV(url) {
-        const response = await fetch(url);
-        const csvText = await response.text();
-
-        const linhas = csvText.split("\n").filter((l) => l.trim() !== "");
-        const cabecalho = linhas[0].split(";");
-
-        const data2010 = [];
-        const data2022 = [];
-
-        for (let i = 1; i < linhas.length; i++) {
-          const cols = linhas[i].split(";");
-          const total2010 = Number(cols[5].replace(/\./g, ""));
-          const total2022 = Number(cols[11].replace(/\./g, ""));
-          data2010.push(total2010);
-          data2022.push(total2022);
-        }
-
-        return { data2010, data2022 };
-      }
-
       (function () {
-        const wrap = document.getElementById("wrap-container");
         const regions = [
           "Centro",
           "Leste",
@@ -279,14 +257,11 @@
         const data2010 = [72115, 160990, 59800, 41161, 45800, 233536, 15237];
         const data2022 = [72401, 181463, 61780, 64482, 62541, 237572, 15372];
         const total2022 = data2022.reduce((a, b) => a + b, 0);
-        const criancas0a14 = 128855;
-        const idosos65Mais = 80504;
 
         let selectedYear = "both";
         let selectedRegions = [...regions];
 
         function makeTraces(filteredRegions) {
-          // Filtra os índices das regiões selecionadas
           const indices = regions
             .map((r, i) => (filteredRegions.includes(r) ? i : -1))
             .filter((i) => i !== -1);
@@ -313,7 +288,6 @@
             ),
             textposition: "auto",
             hovertemplate: "%{x}<br><b>2010:</b> %{text}<extra></extra>",
-            hoverlabel: { bgcolor: "#004d9d", font: { color: "#fff" } },
           };
 
           const trace2022 = {
@@ -332,11 +306,6 @@
             }),
             textposition: "auto",
             hovertemplate: "%{x}<br><b>2022:</b> %{text}<extra></extra>",
-            hoverlabel: {
-              bgcolor: "#b9dbff",
-              bordercolor: "#004d9d",
-              font: { color: "#000" },
-            },
           };
 
           if (selectedYear === "2010") return [trace2010];
@@ -347,14 +316,11 @@
         const layout = {
           barmode: "group",
           margin: { t: 40, r: 16, l: 50, b: 40 },
-          legend: { orientation: "h", y: -0.15 },
           xaxis: { tickangle: 0, automargin: true },
           yaxis: { tickformat: ",d" },
-          hovermode: "closest",
           font: {
             family: "Segoe UI, Tahoma, Geneva, Verdana, sans-serif",
             color: "#222",
-            size: 10,
           },
           paper_bgcolor: "rgba(0,0,0,0)",
           plot_bgcolor: "rgba(0,0,0,0)",
@@ -368,59 +334,132 @@
           displayModeBar: false,
         };
 
-        // Primeiro cria o gráfico
         Plotly.newPlot("plot", makeTraces(selectedRegions), layout, config);
 
-        // Função de atualização
         function updatePlot() {
           const traces = makeTraces(selectedRegions);
-
           Plotly.react("plot", traces, layout, config).then(() => {
-            Plotly.animate(
-              "plot",
-              {
-                data: traces,
-                traces: [0, 1],
-                layout: {
-                  transition: {
-                    duration: 600,
-                    easing: "cubic-in-out",
-                  },
+            // tentativa de suavizar a transição (não obrigatório)
+            try {
+              Plotly.animate(
+                "plot",
+                {
+                  data: traces,
+                  traces: [0, 1],
+                  layout: { transition: { duration: 600 } },
                 },
-              },
-              {
-                transition: {
-                  duration: 600,
-                  easing: "cubic-in-out",
-                },
-                frame: {
-                  duration: 500,
-                  redraw: false,
-                },
-              }
-            );
+                { transition: { duration: 600 }, frame: { duration: 500 } }
+              );
+            } catch (e) {
+              // Plotly.animate pode falhar se não existir o segundo trace; ignore
+            }
           });
         }
 
-        // Botões de ano
+        // --- controles de ano e filtros ---
         const btnBoth = document.getElementById("show-both");
         const btn2010 = document.getElementById("show-2010");
         const btn2022 = document.getElementById("show-2022");
         const yearButtons = [btnBoth, btn2010, btn2022];
 
+        // cria botões de filtro regionais
+        const filterContainer = document.getElementById("region-filters");
+        regions.forEach((region) => {
+          const btn = document.createElement("button");
+          btn.textContent = region;
+          btn.classList.add("region", "active", "year-both");
+          btn.addEventListener("click", () => {
+            if (selectedRegions.includes(region)) {
+              selectedRegions = selectedRegions.filter((r) => r !== region);
+              btn.classList.remove(
+                "active",
+                "year-2010",
+                "year-2022",
+                "year-both"
+              );
+            } else {
+              selectedRegions.push(region);
+              btn.classList.add("active", `year-${selectedYear}`);
+            }
+            // Atualiza a aparência dos botões de ano com base no estado atual dos filtros
+            updateYearButtonColors();
+            updatePlot();
+          });
+          filterContainer.appendChild(btn);
+        });
+
+        // Função robusta que faz exatamente:
+        // - se alguma região for desmarcada: os botões de ano ficam neutros (sem cor)
+        // - se todas regiões estiverem marcadas: reaplica o estilo do ano selecionado ao botão correto
+        function updateYearButtonColors() {
+          const totalSelected = selectedRegions.length;
+          const allSelected = totalSelected === regions.length;
+
+          if (!allSelected) {
+            // se qualquer filtro está OFF, remover classes de destaque dos botões de ano
+            yearButtons.forEach((b) => {
+              b.classList.remove(
+                "active",
+                "year-2010",
+                "year-2022",
+                "year-both"
+              );
+            });
+          } else {
+            // todas selecionadas => garantir que só o botão do ano atual tenha destaque e a classe de ano
+            yearButtons.forEach((b) =>
+              b.classList.remove(
+                "active",
+                "year-2010",
+                "year-2022",
+                "year-both"
+              )
+            );
+
+            const activeBtn =
+              selectedYear === "both"
+                ? btnBoth
+                : selectedYear === "2010"
+                ? btn2010
+                : btn2022;
+            activeBtn.classList.add("active", `year-${selectedYear}`);
+
+            // também reaplica a classe year-X em todos os filtros ativos (útil se vc quiser visualizar cores nas tags)
+            document.querySelectorAll("#region-filters button").forEach((b) => {
+              if (b.classList.contains("active")) {
+                b.classList.remove("year-2010", "year-2022", "year-both");
+                b.classList.add(`year-${selectedYear}`);
+              }
+            });
+          }
+        }
+
+        // selectYear agora apenas altera selectedYear e reaplica classes de filtro apenas aos filtros ativos
         function selectYear(btn, year) {
           selectedYear = year;
-          selectedRegions = [...regions];
-          yearButtons.forEach((b) => b.classList.remove("active"));
-          btn.classList.add("active");
 
-          const filterBtns = document.querySelectorAll(
-            "#region-filters button"
+          // ajustar classes visuais nos botões de ano (aplica somente quando todas as regiões estão selecionadas)
+          const allSelected = selectedRegions.length === regions.length;
+          yearButtons.forEach((b) =>
+            b.classList.remove("active", "year-2010", "year-2022", "year-both")
           );
-          filterBtns.forEach((b) => {
-            b.classList.add("active");
-            b.classList.remove("year-2010", "year-2022", "year-both");
-            b.classList.add(`year-${year}`);
+
+          if (allSelected) {
+            btn.classList.add("active");
+            btn.classList.add(`year-${year}`);
+          } else {
+            // se nem todas selecionadas, manter botões neutros (sem cor) — conforme requisito
+          }
+
+          // para cada filtro ativo, atualizamos a cor daquele filtro para o ano escolhido
+          document.querySelectorAll("#region-filters button").forEach((b) => {
+            if (b.classList.contains("active")) {
+              b.classList.remove("year-2010", "year-2022", "year-both");
+              b.classList.add(`year-${year}`);
+            } else {
+              // filtros off não recebem nenhuma classe de ano
+              b.classList.remove("year-2010", "year-2022", "year-both");
+            }
           });
 
           updatePlot();
@@ -430,32 +469,14 @@
         btn2010.addEventListener("click", () => selectYear(btn2010, "2010"));
         btn2022.addEventListener("click", () => selectYear(btn2022, "2022"));
 
-        // Filtros de regiões
-        const filterContainer = document.querySelectorAll("#region-filters")[0];
-        regions.forEach((region) => {
-          const btn = document.createElement("button");
-          btn.textContent = region;
-          btn.classList.add("region", "active", "year-both");
-          btn.addEventListener("click", () => {
-            if (selectedRegions.includes(region)) {
-              selectedRegions = selectedRegions.filter((r) => r !== region);
-              btn.classList.remove("active");
-            } else {
-              selectedRegions.push(region);
-              btn.classList.add("active");
-            }
-            updatePlot();
-          });
-          filterContainer.appendChild(btn);
-        });
+        // Inicialização: garante consistência visual
+        updateYearButtonColors();
 
-        // Responsividade do texto nas barras
-        function adjustTextPosition() {
-          const w = document.getElementById("plot").clientWidth;
-          const pos = w < 460 ? "outside" : "auto";
-          updatePlot();
-        }
-        window.addEventListener("resize", debounce(adjustTextPosition, 150));
+        // resize debounce (apenas para manter seu comportamento anterior)
+        window.addEventListener(
+          "resize",
+          debounce(() => updatePlot(), 150)
+        );
         function debounce(fn, wait) {
           let t;
           return function () {
@@ -463,32 +484,7 @@
             t = setTimeout(fn, wait);
           };
         }
-
-        // Comunicação com o parent
-        window.parent.postMessage(
-          {
-            type: "updateDemographics",
-            total: total2022,
-            criancas: criancas0a14,
-            idosos: idosos65Mais,
-            regioes: regions.map((nome, i) => ({ nome, valor: data2022[i] })),
-          },
-          "*"
-        );
       })();
-
-      // Rolagem com as setas no mobile
-      const scrollContainer = document.querySelectorAll("#region-filters")[0];
-      const btnLeft = document.getElementById("scroll-left");
-      const btnRight = document.getElementById("scroll-right");
-
-      btnLeft.addEventListener("click", () => {
-        scrollContainer.scrollBy({ left: -100, behavior: "smooth" });
-      });
-
-      btnRight.addEventListener("click", () => {
-        scrollContainer.scrollBy({ left: 100, behavior: "smooth" });
-      });
     </script>
   </body>
 </html>

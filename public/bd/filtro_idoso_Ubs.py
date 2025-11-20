@@ -3,7 +3,7 @@ import plotly.express as px
 
 ## População 60+ por região
 
-df_populacao = pd.read_csv("dados_sjc_regiao.csv", sep=";")
+df_populacao = pd.read_csv("public/bd/dados_sjc_regiao.csv", sep=";")
 df_populacao_idosa = df_populacao.groupby("Região", as_index=False)[["60 a 69 anos", "70 anos ou mais"]].sum()
 df_populacao_idosa["60+"] = df_populacao_idosa["60 a 69 anos"] + df_populacao_idosa["70 anos ou mais"]
 df_populacao_60mais = df_populacao_idosa[["Região", "60+"]]
@@ -11,7 +11,7 @@ df_populacao_60mais
 
 ## Ubs por Região
 
-df_ubs = pd.read_csv("UBS_por_regiao.csv", sep=",")
+df_ubs = pd.read_csv("public/bd/UBS_por_regiao.csv", sep=",")
 df_ubs_regiao = df_ubs.groupby("Região", as_index=False)["Nome da UBS"].size()
 df_ubs_regiao
 

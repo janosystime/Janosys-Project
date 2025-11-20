@@ -4,7 +4,7 @@ import plotly.express as px
 #Definindo os DFs
 df_populacao = pd.read_csv("public/bd/dados_sjc_regiao.csv", sep=";")
 df_populacao_0a4 = df_populacao.groupby("Região", as_index=False)["0 a 4 anos"].sum()
-df_populacao_0a4.head()
+df_populacao
 
 df_creche = pd.read_csv("public/bd/tabela_creche_regiao.csv", sep=",")
 df_creche_regiao = df_creche.groupby("Região", as_index=False).size()

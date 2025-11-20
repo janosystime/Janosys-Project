@@ -1,8 +1,110 @@
 <html>
   <head>
     <meta charset="utf-8" />
+   <style>
+      html,
+      body {
+        margin: 0;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #222;
+      }
+
+      .wrap {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+        position: relative;
+        padding: 20px;
+        transition: background-color 0.5s ease;
+        overflow: visible;
+      }
+
+      .wrap h2 {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: #004d9d;
+        margin: 0 0 8px 0;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+      }
+
+      .wrap p.source {
+        font-size: 0.85rem;
+        color: #666;
+        margin: 0;
+      }
+      .controls {
+          justify-content: center;
+          flex-wrap: nowrap;
+          gap: 8px;
+          overflow-x: auto;
+          display: flex;
+          flex-direction: column;
+        }
+       .flag_blue {
+        top: 50%;
+        background: linear-gradient(90deg, #004d9d, #0066cc);
+        color: #fff;
+        border: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        cursor: pointer;
+        z-index: 5;
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 0.5em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+        .flag_red {
+        top: 50%;
+        background: linear-gradient(90deg, #ff0000, #be5732  );
+        color: #fff;
+        border: none;
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        border-bottom-left-radius: 10px;
+        border-bottom-right-radius: 10px;
+        cursor: pointer;
+        z-index: 5;
+        font-size: 0.8rem;
+        text-align: center;
+        padding: 0.5em;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+      }
+    </style>
+
   </head>
   <body>
+     <div class="wrap bg-all" id="wrap-container">
+       <div
+          style="
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+          "
+        >
+          <div>
+            <h2 id="chart-title">Relação População Idosa e UBS's por Região</h2>
+            <p class="source">
+              Fonte: IBGE / Consolidação Municipal (Censo 2010) e PMSJC.
+            </p>
+          </div>
+          <div class="controls">
+              <button class="flag_red">
+                <i class="fa-solid fa-chart-bar"></i> População Idosa por Região
+              <button class="flag_blue">
+                <i class="fa-solid fa-chart-column"></i> Unidades Básicas de Saúde por Região
+              </button>
+              </button>
+          </div>
+        </div> 
+      </div>
     <div>
       <script type="text/javascript">
         window.PlotlyConfig = { MathJaxConfig: "local" };

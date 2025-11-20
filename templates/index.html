@@ -106,6 +106,9 @@
               <a onclick="chamaGraphIdoso()">
                 <i class="fas fa-user"></i> Idosos e Ubs
               </a>
+              <a onclick="chamaGraphRenda()">
+                <i class="fas fa-money-bill" aria-hidden="true"></i> Renda Média
+              </a>
 
             </div>
           </div>
@@ -212,6 +215,17 @@
       function chamaGraphIdoso(){
         iframe.src =
           "{{ url_for('static', filename='iframes/grafico_idoso_ubs.html') }}";
+        labelCard1.textContent = "Crianças em Creche";
+        labelCard2.textContent = "% Cobertura Creche";
+        labelCard3.textContent = "Vagas Disponíveis";
+        card1.textContent = "0";
+        card2.textContent = "0";
+        card3.textContent = "0";
+      }
+
+            function chamaGraphRenda(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/grafico_renda.html') }}";
         labelCard1.textContent = "Crianças em Creche";
         labelCard2.textContent = "% Cobertura Creche";
         labelCard3.textContent = "Vagas Disponíveis";

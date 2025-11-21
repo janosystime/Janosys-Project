@@ -1,143 +1,41 @@
 <html>
   <head>
     <meta charset="utf-8" />
-   <style>
-      html,
-      body {
-        margin: 0;
-        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-        color: #222;
-      }
-
-      .wrap {
-        display: flex;
-        flex-direction: column;
-        gap: 14px;
-        position: relative;
-        padding: 20px;
-        transition: background-color 0.5s ease;
-        overflow: visible;
-      }
-
-      .wrap h2 {
-        font-size: 1.3rem;
-        font-weight: 800;
-        color: #004d9d;
-        margin: 0 0 8px 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-
-      .wrap p.source {
-        font-size: 0.85rem;
-        color: #666;
-        margin: 0;
-      }
-      .controls {
-          justify-content: center;
-          flex-wrap: nowrap;
-          gap: 8px;
-          overflow-x: auto;
-          display: flex;
-          flex-direction: column;
-        }
-       .flag_blue {
-        top: 50%;
-        background: linear-gradient(90deg, #004d9d, #0066cc);
-        color: #fff;
-        border: none;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        cursor: pointer;
-        z-index: 5;
-        font-size: 0.8rem;
-        text-align: center;
-        padding: 0.5em;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-      }
-        .flag_red {
-        top: 50%;
-        background: linear-gradient(90deg, #ff0000, #be5732  );
-        color: #fff;
-        border: none;
-        border-top-left-radius: 10px;
-        border-top-right-radius: 10px;
-        border-bottom-left-radius: 10px;
-        border-bottom-right-radius: 10px;
-        cursor: pointer;
-        z-index: 5;
-        font-size: 0.8rem;
-        text-align: center;
-        padding: 0.5em;
-        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-        transition: all 0.3s ease;
-      }
-    </style>
-
   </head>
   <body>
-     <div class="wrap bg-all" id="wrap-container">
-       <div
-          style="
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
-            gap: 12px;
-            align-items: center;
-          "
-        >
-          <div>
-            <h2 id="chart-title">Relação População Idosa e UBS's por Região</h2>
-            <p class="source">
-              Fonte: IBGE / Consolidação Municipal (Censo 2010) e PMSJC.
-            </p>
-          </div>
-          <div class="controls">
-            <button class="flag_blue">
-              <i class="fa-solid fa-chart-bar"></i> População Idosa por Região
-            </button>
-            <button class="flag_red">
-                <i class="fa-solid fa-chart-column"></i> Unidades Básicas de Saúde por Região
-              </button>
-          </div>
-        </div> 
-      </div>
     <div>
       <script type="text/javascript">
         window.PlotlyConfig = { MathJaxConfig: "local" };
       </script>
       <script
         charset="utf-8"
-        src="https://cdn.plot.ly/plotly-3.1.0.min.js"
-        integrity="sha256-Ei4740bWZhaUTQuD6q9yQlgVCMPBz6CZWhevDYPv93A="
+        src="https://cdn.plot.ly/plotly-3.3.0.min.js"
+        integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI="
         crossorigin="anonymous"
       ></script>
       <div
-        id="0df958f7-0f7b-49c2-9848-4eb4628a7aec"
+        id="3cd27cac-09b7-4d66-8dca-b64f6166daef"
         class="plotly-graph-div"
         style="height: 100%; width: 100%"
       ></div>
       <script type="text/javascript">
         window.PLOTLYENV = window.PLOTLYENV || {};
-        if (document.getElementById("0df958f7-0f7b-49c2-9848-4eb4628a7aec")) {
+        if (document.getElementById("3cd27cac-09b7-4d66-8dca-b64f6166daef")) {
           Plotly.newPlot(
-            "0df958f7-0f7b-49c2-9848-4eb4628a7aec",
+            "3cd27cac-09b7-4d66-8dca-b64f6166daef",
             [
               {
                 alignmentgroup: "True",
                 hovertemplate:
-                  "variable=Idoso %Total\u003cbr\u003eRegi\u00e3o=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e",
-                legendgroup: "Idoso %Total",
+                  "Tipo=Idosos\u003cbr\u003eRegi\u00e3o=%{x}\u003cbr\u003eQuantidade=%{y}\u003cextra\u003e\u003c\u002fextra\u003e",
+                legendgroup: "Idosos",
                 marker: { color: "#636efa", pattern: { shape: "" } },
-                name: "Idoso %Total",
-                offsetgroup: "Idoso %Total",
+                name: "Idosos",
+                offsetgroup: "Idosos",
                 orientation: "v",
                 showlegend: true,
-                textposition: "outside",
-                texttemplate: "%{y:.2f}",
+                textposition: "auto",
+                texttemplate: "%{y}",
                 x: [
                   "Centro",
                   "Leste",
@@ -151,7 +49,7 @@
                 y: {
                   dtype: "f8",
                   bdata:
-                    "IFn1tU0lIUCjTedrgWQyQPF9Xb1knDJAZGyUqhz\u002fMUAonIzLv1igP2HgCVmdYiZA+mTBRNszOUA=",
+                    "pHA9CtcjIUCkcD0K12MyQFyPwvUonDJAAAAAAAAAMkC4HoXrUbieP+F6FK5HYSZAMzMzMzMzOUA=",
                 },
                 yaxis: "y",
                 type: "bar",
@@ -159,15 +57,15 @@
               {
                 alignmentgroup: "True",
                 hovertemplate:
-                  "variable=UBS %Total\u003cbr\u003eRegi\u00e3o=%{x}\u003cbr\u003evalue=%{y}\u003cextra\u003e\u003c\u002fextra\u003e",
-                legendgroup: "UBS %Total",
+                  "Tipo=Unidades B\u00e1sicas de Sa\u00fade\u003cbr\u003eRegi\u00e3o=%{x}\u003cbr\u003eQuantidade=%{y}\u003cextra\u003e\u003c\u002fextra\u003e",
+                legendgroup: "Unidades B\u00e1sicas de Sa\u00fade",
                 marker: { color: "#EF553B", pattern: { shape: "" } },
-                name: "UBS %Total",
-                offsetgroup: "UBS %Total",
+                name: "Unidades B\u00e1sicas de Sa\u00fade",
+                offsetgroup: "Unidades B\u00e1sicas de Sa\u00fade",
                 orientation: "v",
                 showlegend: true,
-                textposition: "outside",
-                texttemplate: "%{y:.2f}",
+                textposition: "auto",
+                texttemplate: "%{y}",
                 x: [
                   "Centro",
                   "Leste",
@@ -181,7 +79,7 @@
                 y: {
                   dtype: "f8",
                   bdata:
-                    "chzHcRzHIUDHcRzHcRw\u002fQMdxHMdxHC9AchzHcRzHEUByHMdxHMcBQKuqqqqqqipAHMdxHMdxOEA=",
+                    "SOF6FK7HIUBcj8L1KBw\u002fQB+F61G4Hi9Aw\u002fUoXI\u002fCEUDD9Shcj8IBQClcj8L1qCpAcT0K16NwOEA=",
                 },
                 yaxis: "y",
                 type: "bar",
@@ -460,8 +358,8 @@
                   font: { color: "#2a3f5f" },
                   hovermode: "closest",
                   hoverlabel: { align: "left" },
-                  paper_bgcolor: "white",
-                  plot_bgcolor: "#E5ECF6",
+                  paper_bgcolor: "e3f2fb",
+                  plot_bgcolor: "e3f2fb",
                   polar: {
                     bgcolor: "#E5ECF6",
                     angularaxis: {
@@ -600,13 +498,32 @@
               },
               xaxis: { anchor: "y", domain: [0.0, 1.0], title: { text: "" } },
               yaxis: { anchor: "x", domain: [0.0, 1.0], title: { text: "%" } },
-              legend: { title: { text: "variable" }, tracegroupgap: 0 },
-              margin: { t: 60 },
+              legend: { title: { text: "Tipo" }, tracegroupgap: 0 },
+              title: {
+                text: "IDOSOS E UBS POR REGI\u00c3O",
+                x: 0,
+                font: {
+                  family: "Segoe UI",
+                  size: 21,
+                  color: "#154389",
+                  weight: "bold",
+                },
+                xanchor: "left",
+              },
               barmode: "group",
-              title: { x: 0.5 },
-              plot_bgcolor: "white",
+              plot_bgcolor: "e3f2fb",
               bargap: 0.2,
-              showlegend: false,
+              annotations: [
+                {
+                  font: { color: "#666", size: 10 },
+                  showarrow: false,
+                  text: "Fonte: IBGE Censo (2022) \u002f PMSJC.",
+                  x: 1,
+                  xref: "paper",
+                  y: -0.08,
+                  yref: "paper",
+                },
+              ],
             },
             { displayModeBar: false, responsive: true }
           );

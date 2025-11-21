@@ -1,45 +1,43 @@
 import pandas as pd
 import plotly.express as px
 
-## Renda Media 2010
-## Renda media em 2010 = 3669.52
-df_renda_pc_2010 = pd.read_csv('public/bd/df_renda_media_regiao.csv', sep=',')
-df_renda_pc_2010["Desvio %"] = (df_renda_pc_2010['renda_media_2010'] / 3669.52)
-df_renda_pc_2010["Diferença %"] = ((df_renda_pc_2010['Desvio %'] -1)*100).apply(lambda x: f"{x:.2f}%")
-df_renda = df_renda_pc_2010
 
-## Renda Media 2025
-## Renda media em 2025 = 4072.97
-df_renda["Projeção 2025"] =  (df_renda['Desvio %'] * 4072.97).round(2)
-df_renda
+# Carregar o DataFrame a partir do arquivo CSV
+# O nome do arquivo é 'tabela_rendimento_medio_bairro.csv''
+df = pd.read_csv('public/bd/tabela_rendimento_medio_bairro.csv')
 
-## Desvio Padrão
+# 1. Garantir que a coluna de rendimento é numérica (caso haja algum problema na importação)
+# df['Rendimento Médio (R$)'] = pd.to_numeric(df['Rendimento Médio (R$)'], errors='coerce')
+
+# 2. Calcular o Rendimento Médio por Região
+df_rendimento_medio_regiao = df.groupby('Região')['Rendimento Médio (R$)'].mean().reset_index()
+df_rendimento_medio_regiao.round(2)
 
 
-## Calculo Bruto ZO
+df_rendimento_medio_regiao
 
+# Assumindo que o DF 'df_rendimento_medio_regiao' já foi criado com o código Pandas acima
 
-
-## Printar Grafico
-fig = px.line(df_renda, x='regiao', y=['Diferença %', 'renda_media_2010'], text='Diferença %')
-fig.add_shape(
-type="line",
-x0=df_renda['regiao'].iloc[0],   # início da linha em x
-x1=df_renda['regiao'].iloc[-1],  # fim da linha em x
-y0=3669.52, y1=3669.52,                      # valor constante no eixo y
-line=dict(color="red", width=2, dash="dash"),  # cor e estilo
-xref="x", yref="y")
-fig.add_annotation(
-x=df_renda['regiao'].iloc[0],   # pode ser o fim ou o início, ajuste como preferir
-y=3669.52,
-text="R$ 3.669,52",
-showarrow=False,
-font=dict(color="red", size=12),
-xanchor="left",
-yanchor="bottom"
+fig = px.bar(
+    df_rendimento_medio_regiao,
+    x='Região',
+    y='Rendimento Médio (R$)',
+    title='Rendimento Médio(R$) em São José dos Campos',
+    color='Rendimento Médio(R$)',
+    color_continuous_scale=px.colors.sequential.Viridis,
+    text=df_rendimento_medio_regiao['Rendimento Médio (R$)'].round(2).apply(lambda x: f'R$ {x:,.2f}')
 )
-fig.update_layout(xaxis_title=" ",yaxis_title="Rendimento Médio (2010)", title_x=0.5, plot_bgcolor="white", bargap=0.2, showlegend=False)
-fig.update_traces(textposition='top right')
-fig.show()
-fig.write_html('public/bd/grafico_renda.html', full_html=True, include_plotlyjs="cdn")
 
+fig.update_layout(
+    xaxis_title='Região',
+    yaxis_title='Rendimento Médio (R$)',
+    xaxis={'categoryorder':'total descending'}
+)
+
+fig.update_layout(
+    title={'font': {'family': 'Segoe UI', 'size': 21, 'color': '#154389', "weight": "bold"}, 'x': 0, 'xanchor': 'left'})
+fig.add_annotation(x=1, y=-0.08, xref='paper', yref='paper', text='Fonte: IBGE Censo (2022) / PMSJC.', showarrow=False, font={'size': 10, 'color': '#666'})
+
+fig.show()
+
+#fig.write_html('static/iframes/grafico_renda.html', full_html=True, include_plotlyjs="cdn", config={'displayModeBar': False})

@@ -107,8 +107,9 @@
 <!--Estilizando titulo e comentarios-->
 
 fig.update_layout(
-    title={'font': {'family': 'Segoe UI', 'size': 21, 'color': '#154389', "weight": "bold"}, 'x': 0.03, 'xanchor': 'left'}
-)
+    title={'font': {'family': 'Segoe UI', 'size': 21, 'color': '#154389', "weight": "bold"}, 'x': 0.03, 'xanchor': 'left', 
+    # Fundo da figura inteira (incluindo título e margens)
+    paper_bgcolor='#e3f2fb', plot_bgcolor='#e3f2fb')
 fig.add_annotation(x=0, y=1.04, xref='paper', yref='paper', text='Fonte: IBGE Censo (2022) / Censo Escolar(2024).',
     showarrow=False,
     font={'size': 14, 'color': '#666'}

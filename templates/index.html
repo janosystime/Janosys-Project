@@ -204,12 +204,12 @@
       function chamaGraphCreche() {
         iframe.src =
           "{{ url_for('static', filename='iframes/grafico_criancas_creches.html') }}";
-        labelCard1.textContent = "Crianças em Creche";
-        labelCard2.textContent = "% Cobertura Creche";
-        labelCard3.textContent = "Vagas Disponíveis";
-        card1.textContent = "0";
-        card2.textContent = "0";
-        card3.textContent = "0";
+        labelCard1.textContent = "Escolas Infantis Públicas";
+        labelCard2.textContent = "Escolas Infantis Privadas";
+        labelCard3.textContent = "Maior Cobertura da Rede Infantil";
+        card1.textContent = "65";
+        card2.textContent = "159";
+        card3.textContent = "Centro";
       }
 
       function chamaGraphIdoso(){
@@ -217,10 +217,10 @@
           "{{ url_for('static', filename='iframes/grafico_idoso_ubs.html') }}";
         labelCard1.textContent = "Maior Cobertura da Rede de Atendimento";
         labelCard2.textContent = "Menor Cobertura da Rede de Atendimento" ;
-        labelCard3.textContent = "Vagas Disponíveis";
+        labelCard3.textContent = "Maior População Idosa";
         card1.textContent = "Leste";
         card2.textContent = "Oeste";
-        card3.textContent = "0";
+        card3.textContent = "Sul";
       }
 
             function chamaGraphRenda(){
@@ -228,10 +228,10 @@
           "{{ url_for('static', filename='iframes/grafico_renda.html') }}";
         labelCard1.textContent = "Maior Renda Média";
         labelCard2.textContent = "Menor Renda Média";
-        labelCard3.textContent = "Renda Média 2025";
-        card1.textContent = "Oeste: R$8.938,13";
-        card2.textContent = "Norte: R$2.333,51";
-        card3.textContent = "R$ 4.072,97";
+        labelCard3.textContent = "Renda Média da cidade em 2022";
+        card1.textContent = "Aquarius: R$ 14.194,47";
+        card2.textContent = "Banhado Centro: R$ 1.128,37";
+        card3.textContent = "R$ 4.028,00";
       }
       
       function atualizarCards(data) {

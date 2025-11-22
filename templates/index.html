@@ -109,6 +109,27 @@
               <a onclick="chamaGraphRenda()">
                 <i class="fas fa-money-bill" aria-hidden="true"></i> Renda Média
               </a>
+                     <a onclick="chamaGraphPerfilCentro()">
+                <i class="fas fa-landmark" aria-hidden="true"></i> Perfil - Zona Centro
+              </a>
+                 <a onclick="chamaGraphPerfilNorte()">
+                <i class="fas fa-tree" aria-hidden="true"></i> Perfil - Zona Norte
+              </a>
+                 <a onclick="chamaGraphPerfilSul()">
+                <i class="fas fa-people-group" aria-hidden="true"></i> Perfil - Zona Sul
+              </a>
+                </a>
+                 <a onclick="chamaGraphPerfilSudeste()">
+                <i class="fas fa-industry" aria-hidden="true"></i> Perfil - Zona Sudeste
+              </a>
+                </a>
+                 <a onclick="chamaGraphPerfilLeste()">
+                <i class="fas fa-microchip" aria-hidden="true"></i> Perfil - Zona Leste
+              </a>
+                </a>
+                 <a onclick="chamaGraphPerfilOeste()">
+                <i class="fas fa-magnifying-glass-dollar" aria-hidden="true"></i> Perfil - Zona Oeste
+              </a>
 
             </div>
           </div>
@@ -233,7 +254,73 @@
         card2.textContent = "Banhado Centro: R$ 1.128,37";
         card3.textContent = "R$ 4.028,00";
       }
+
+                       function chamaGraphPerfilCentro(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/perfil_zona_centro.html') }}";
+        labelCard1.textContent = "Polo Histórico e Cultural";
+        labelCard2.textContent = "Abriga a Prefeitura e o Paço";
+        labelCard3.textContent = "Parque Vicentina Aranha";
+        card1.textContent = "";
+        card2.textContent = "";
+        card3.textContent = "";
+      }
+
+                 function chamaGraphPerfilNorte(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/perfil_zona_norte.html') }}";
+        labelCard1.textContent = "Maior Área Rural de SJC";
+        labelCard2.textContent = "Acesso à Estrada dos Bandeirantes";
+        labelCard3.textContent = "Bairros com Chácaras e Sítios";
+        card1.textContent = "";
+        card2.textContent = "";
+        card3.textContent = "";
+      }
       
+                       function chamaGraphPerfilSul(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/perfil_zona_sul.html') }}";
+        labelCard1.textContent = "Maior Concentração Populacional";
+        labelCard2.textContent = "Principal Área Industrial e Fabril";
+        labelCard3.textContent = "Abriga o Parque Industrial";
+        card1.textContent = "";
+        card2.textContent = "";
+        card3.textContent = "";
+      }
+
+                       function chamaGraphPerfilSudeste(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/perfil_zona_sudeste.html') }}";
+        labelCard1.textContent = "Fácil Acesso à Rodovia";
+        labelCard2.textContent = "Comércio e Serviços em Expansão";
+        labelCard3.textContent = "Área com Potencial de Valorização";
+        card1.textContent = "";
+        card2.textContent = "";
+        card3.textContent = "";
+      }
+
+                       function chamaGraphPerfilLeste(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/perfil_zona_leste.html') }}";
+        labelCard1.textContent = "Foco em Tecnologia e Inovação";
+        labelCard2.textContent = "Próxima ao Aeroporto SJC (SJK)";
+        labelCard3.textContent = "Abriga o Parque Tecnológico";
+        card1.textContent = "";
+        card2.textContent = "";
+        card3.textContent = "";
+      }
+
+                       function chamaGraphPerfilOeste(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/perfil_zona_oeste.html') }}";
+        labelCard1.textContent = "Melhor Índice de Qualidade de Vida";
+        labelCard2.textContent = "Concentra Condomínios de Alto Padrão";
+        labelCard3.textContent = "Região do Urbanova e Colinas";
+        card1.textContent = "";
+        card2.textContent = "";
+        card3.textContent = "";
+      }
+
       function atualizarCards(data) {
         const label1 = labelCard1.textContent;
 

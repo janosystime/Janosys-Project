@@ -108,7 +108,7 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 | :---------------: | :--------: | :----------: | :---------------: |
 |        01         | 28/09/2025 |  Finalizada  | [MVP](MVP/sp1.md) |
 |        02         | 26/10/2025 |  Finalizada  | [MVP](MVP/sp2.md) |
-|        03         | 23/11/2025 |   a fazer    |         -         |
+|        03         | 23/11/2025 |  Finalizada  | [MVP](MVP/sp3.md) |
 | Feira de Soluções | 04/12/2025 |   a fazer    |         -         |
 
 ---

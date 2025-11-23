@@ -103,6 +103,13 @@
               <a onclick="chamaGraphCreche()">
                 <i class="fas fa-child"></i> Crianças e Creches
               </a>
+              <a onclick="chamaGraphIdoso()">
+                <i class="fas fa-user"></i> Idosos e Ubs
+              </a>
+              <a onclick="chamaGraphRenda()">
+                <i class="fas fa-money-bill" aria-hidden="true"></i> Renda Média
+              </a>
+
             </div>
           </div>
 
@@ -116,7 +123,7 @@
           </div>
 
           <iframe
-            src="{{ url_for('static', filename='iframes/grafico_etaria_regiao_2010.html') }}"
+            src="{{ url_for('static', filename='iframes/grafico_regioes.html') }}"
             frameborder="0"
             width="100%"
             height="682"
@@ -196,13 +203,35 @@
 
       function chamaGraphCreche() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_cricanca_creche.html') }}";
-        labelCard1.textContent = "Crianças em Creche";
-        labelCard2.textContent = "% Cobertura Creche";
-        labelCard3.textContent = "Vagas Disponíveis";
-        card1.textContent = "0";
-        card2.textContent = "0";
-        card3.textContent = "0";
+          "{{ url_for('static', filename='iframes/grafico_criancas_creches.html') }}";
+        labelCard1.textContent = "Escolas Infantis Públicas";
+        labelCard2.textContent = "Escolas Infantis Privadas";
+        labelCard3.textContent = "Maior Cobertura da Rede Infantil";
+        card1.textContent = "65";
+        card2.textContent = "159";
+        card3.textContent = "Centro";
+      }
+
+      function chamaGraphIdoso(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/grafico_idoso_ubs.html') }}";
+        labelCard1.textContent = "Maior Cobertura da Rede de Atendimento";
+        labelCard2.textContent = "Menor Cobertura da Rede de Atendimento" ;
+        labelCard3.textContent = "Maior População Idosa";
+        card1.textContent = "Leste";
+        card2.textContent = "Oeste";
+        card3.textContent = "Sul";
+      }
+
+            function chamaGraphRenda(){
+        iframe.src =
+          "{{ url_for('static', filename='iframes/grafico_renda.html') }}";
+        labelCard1.textContent = "Maior Renda Média";
+        labelCard2.textContent = "Menor Renda Média";
+        labelCard3.textContent = "Renda Média da cidade em 2022";
+        card1.textContent = "Aquarius: R$ 14.194,47";
+        card2.textContent = "Banhado Centro: R$ 1.128,37";
+        card3.textContent = "R$ 4.028,00";
       }
       
       function atualizarCards(data) {

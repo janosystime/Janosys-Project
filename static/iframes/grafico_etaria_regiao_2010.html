@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <script src="https://cdn.plot.ly/plotly-2.30.0.min.js"></script>
+    <script src="https://cdn.plot.ly/plotly-3.2.0.min.js"></script>
     <title>Gráfico — Faixa Etária por Região / Censo 2010</title>
     <meta
       name="description"
@@ -11,6 +11,17 @@
     />
 
     <style>
+      :root {
+        --cor-crianca: #c0392b; /* vermelho mais escuro */
+        --cor-jovem: #2471a3; /* azul mais escuro */
+        --cor-adulto: #27ae60; /* verde mais escuro */
+        --cor-idoso: #d68910; /* amarelo/laranja mais escuro */
+        --rgb-crianca: 192, 57, 43;
+        --rgb-jovem: 36, 113, 163;
+        --rgb-adulto: 39, 174, 96;
+        --rgb-idoso: 214, 137, 16;
+      }
+
       html,
       body {
         margin: 0;
@@ -110,16 +121,16 @@
       }
 
       .region-filters button[data-group="Criança"]:hover {
-        box-shadow: 0 0 12px 3px rgba(231, 76, 60, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-crianca), 0.6);
       }
       .region-filters button[data-group="Jovem"]:hover {
-        box-shadow: 0 0 12px 3px rgba(52, 152, 219, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-jovem), 0.6);
       }
       .region-filters button[data-group="Adulto"]:hover {
-        box-shadow: 0 0 12px 3px rgba(46, 204, 113, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-adulto), 0.6);
       }
       .region-filters button[data-group="Idoso"]:hover {
-        box-shadow: 0 0 12px 3px rgba(243, 156, 18, 0.6);
+        box-shadow: 0 0 12px 3px rgba(var(--rgb-idoso), 0.6);
       }
 
       button.ativo {
@@ -172,55 +183,135 @@
         font-weight: 700;
         cursor: pointer;
         color: white;
-        background: linear-gradient(90deg, #3498db, #2980b9); /* padrão */
+        background: radial-gradient(
+          circle at center,
+          rgba(255, 255, 255, 0.35),
+          rgba(255, 255, 255, 0) 70%
+        );
+
         transition: all 0.35s ease, background 0.5s ease;
         position: relative;
         overflow: hidden;
       }
 
-      /* ANIMAÇÃO DE SELEÇÃO — suave com scale + drop shadow */
-      .year-switcher button.ativo {
-        transform: scale(0.93);
-        background: linear-gradient(90deg, #2ecc71, #27ae60);
-        box-shadow: 0 0 12px rgba(46, 204, 113, 0.45);
+      .year-switcher button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 2px;
+        border-radius: inherit;
+        background: conic-gradient(
+          var(--cor-crianca),
+          var(--cor-jovem),
+          var(--cor-adulto),
+          var(--cor-idoso),
+          var(--cor-crianca)
+        );
+        z-index: -1;
+      }
+
+      .year-switcher button:active::after {
+        animation: radialPulse 0.6s ease-out forwards;
+      }
+
+      /* --- SOMBRA COLORIDA DE ACORDO COM AS FAIXAS ATIVAS (dinâmico) --- */
+      .year-switcher button.shadow-crianca {
+        box-shadow: 0 0 20px rgba(231, 76, 60, 0.55) !important;
+      }
+      .year-switcher button.shadow-jovem {
+        box-shadow: 0 0 20px rgba(52, 152, 219, 0.55) !important;
+      }
+      .year-switcher button.shadow-adulto {
+        box-shadow: 0 0 20px rgba(46, 204, 113, 0.55) !important;
+      }
+      .year-switcher button.shadow-idoso {
+        box-shadow: 0 0 20px rgba(243, 156, 18, 0.55) !important;
+      }
+
+      /* Para quando 2+ faixas estiverem ativas */
+      .year-switcher button.shadow-multi {
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4) !important;
+      }
+
+      /* Quando só algumas cores devem aparecer no gradiente */
+      .year-switcher button.grad-crianca {
+        background: linear-gradient(90deg, var(--cor-crianca));
+      }
+
+      .year-switcher button.grad-jovem {
+        background: linear-gradient(90deg, var(--cor-jovem));
+      }
+
+      .year-switcher button.grad-adulto {
+        background: linear-gradient(90deg, var(--cor-adulto));
+      }
+
+      .year-switcher button.grad-idoso {
+        background: linear-gradient(90deg, var(--cor-idoso));
+      }
+
+      /* combinações */
+      .year-switcher button.grad-cj {
+        background: linear-gradient(
+          90deg,
+          var(--cor-crianca),
+          var(--cor-jovem)
+        );
+      }
+
+      .year-switcher button.grad-cja {
+        background: linear-gradient(
+          90deg,
+          var(--cor-crianca),
+          var(--cor-jovem),
+          var(--cor-adulto)
+        );
       }
 
       /* Hover animado */
       .year-switcher button:hover {
-        filter: brightness(1.15);
-        transform: translateY(-2px);
+        filter: brightness(1.18);
+        transform: translateY(-2px) scale(1.03);
         border-radius: 14px;
+        box-shadow: 0 0 14px rgba(255, 255, 255, 0.55);
+        transition: all 0.25s ease-out;
       }
 
       /* Flash radial igual aos filtros */
       .year-switcher button.flash-radial::after {
         content: "";
         position: absolute;
-        top: 50%;
-        left: 50%;
-        width: 0;
-        height: 0;
-        background: rgba(255, 255, 255, 0.35);
+        inset: 0;
+        border-radius: inherit;
+        background: radial-gradient(
+          circle,
+          rgba(255, 255, 255, 0.4),
+          transparent 70%
+        );
         transform: translate(-50%, -50%);
-        border-radius: 50%;
-        animation: radialPulse 0.6s ease-out forwards;
+
+        animation: flashPulse 0.6s ease-out forwards;
       }
 
-      @keyframes radialPulse {
+      @keyframes flashPulse {
         0% {
-          width: 0;
-          height: 0;
-          opacity: 0.6;
-        }
-        50% {
-          width: 150%;
-          height: 150%;
-          opacity: 0.4;
+          opacity: 1;
+          transform: scale(0.8);
         }
         100% {
-          width: 200%;
-          height: 200%;
           opacity: 0;
+          transform: scale(1.6);
+        }
+      }
+      @keyframes gradMove {
+        0% {
+          background-position: 0% 50%;
+        }
+        50% {
+          background-position: 100% 50%;
+        }
+        100% {
+          background-position: 0% 50%;
         }
       }
 
@@ -292,19 +383,119 @@
         </div>
       </div>
       <div class="region-scroll-container">
-        <button class="arrow-btn left" id="scroll-left">Left Arrow</button>
+        <button class="arrow-btn left" id="scroll-left">&#9664;</button>
 
         <div class="region-filters" id="age-filters">
           <!-- botões de filtros serão inseridos aqui via JS -->
         </div>
 
-        <button class="arrow-btn right" id="scroll-right">Right Arrow</button>
+        <button class="arrow-btn right" id="scroll-right">&#9654;</button>
       </div>
 
       <div id="plot"></div>
     </div>
 
     <script>
+      const cssVars = getComputedStyle(document.documentElement);
+
+      const ageColors = {
+        Criança: cssVars.getPropertyValue("--cor-crianca").trim(),
+        Jovem: cssVars.getPropertyValue("--cor-jovem").trim(),
+        Adulto: cssVars.getPropertyValue("--cor-adulto").trim(),
+        Idoso: cssVars.getPropertyValue("--cor-idoso").trim(),
+      };
+
+      function atualizarGradienteAno() {
+        const botoesAno = [
+          document.getElementById("btn-2010"),
+          document.getElementById("btn-2022"),
+        ];
+
+        if (selectedAges.length === 0) {
+          botoesAno.forEach((btn) => {
+            btn.style.background = "#777";
+            btn.style.animation = "none";
+            btn.style.filter = "none";
+          });
+          return;
+        }
+
+        // LIMPAR ESTILOS ANTIGOS
+        botoesAno.forEach((btn) => {
+          btn.style.background = "none";
+          btn.style.backgroundImage = "none";
+          btn.style.filter = "none";
+          btn.style.animation = "none";
+          btn.style.backgroundSize = "auto";
+        });
+
+        const mapa = { Criança: "c", Jovem: "j", Adulto: "a", Idoso: "i" };
+        const cores = {
+          c: ageColors["Criança"],
+          j: ageColors["Jovem"],
+          a: ageColors["Adulto"],
+          i: ageColors["Idoso"],
+        };
+
+        const selecionadas = selectedAges.map((a) => mapa[a]);
+
+        let gradient = "";
+
+        if (selecionadas.length === 1) {
+          const key = selecionadas[0];
+          const cor = cores[key];
+
+          gradient = `linear-gradient(
+      90deg,
+      ${cor} 0%,
+      ${cor}CC 50%,
+      ${cor} 100%
+    )`;
+        } else {
+          gradient = `linear-gradient(90deg, ${selecionadas
+            .map((key) => cores[key])
+            .join(", ")})`;
+        }
+
+        botoesAno.forEach((btn) => {
+          btn.style.transition = "background 0.6s ease, filter 0.3s ease";
+          btn.style.background = gradient;
+          btn.style.filter = "brightness(1.05)";
+        });
+
+        botoesAno.forEach((btn) => {
+          btn.style.backgroundSize = "200% 200%";
+          btn.style.animation = "gradMove 6s ease infinite";
+        });
+      }
+
+      function atualizarSombraAno() {
+        const btn2010 = document.getElementById("btn-2010");
+        const btn2022 = document.getElementById("btn-2022");
+
+        // remover classes antigas
+        const allClasses = [
+          "shadow-crianca",
+          "shadow-jovem",
+          "shadow-adulto",
+          "shadow-idoso",
+          "shadow-multi",
+        ];
+
+        [btn2010, btn2022].forEach((btn) => {
+          allClasses.forEach((c) => btn.classList.remove(c));
+        });
+
+        // aplicar nova
+        if (selectedAges.length === 1) {
+          const faixa = selectedAges[0].toLowerCase();
+          btn2010.classList.add(`shadow-${faixa}`);
+          btn2022.classList.add(`shadow-${faixa}`);
+        } else {
+          btn2010.classList.add("shadow-multi");
+          btn2022.classList.add("shadow-multi");
+        }
+      }
       (function () {
         // === DADOS DIRETAMENTE NO CÓDIGO (sem CSV) ===
         const rawData = {
@@ -1010,15 +1201,14 @@
           regions.forEach((r) => {
             if (regionMap[r].includes(setor)) {
               // Criança: 0-14 anos
-              regionData[r].Criança +=
-                (data["0 a 4 anos"] || 0) +
-                (data["5 a 9 anos"] || 0) +
-                (data["10 a 14 anos"] || 0);
+              regionData[r].Criança += data["0 a 4 anos"] || 0;
               // Jovem: 15-19 anos
               regionData[r].Jovem +=
                 (data["15 a 17 anos"] || 0) +
                 (data["18 anos"] || 0) +
-                (data["19 anos"] || 0);
+                (data["19 anos"] || 0) +
+                (data["5 a 9 anos"] || 0) +
+                (data["10 a 14 anos"] || 0);
               // Adulto: 20-64 anos
               regionData[r].Adulto +=
                 (data["20 a 24 anos"] || 0) +
@@ -1070,6 +1260,7 @@
            ------------------------------------------------- */
         function makeTraces(filtered) {
           const isMobile = window.innerWidth <= 640;
+
           return ageGroups.map((age) => ({
             x: regions,
             y: regions.map((r) =>
@@ -1078,7 +1269,7 @@
             type: "bar",
             name: age,
             marker: {
-              color: ageColors[age],
+              color: ageColors[age], // <<<<<<<<<< AQUI
               line: { width: 1, color: ageColors[age] },
             },
             text: regions.map((r) =>
@@ -1091,7 +1282,6 @@
               size: isMobile ? 12 : 14,
               color: isMobile ? "#fff" : "#333",
             },
-            insidetextanchor: "middle",
             hovertemplate: "%{x} - " + age + ": %{text}<extra></extra>",
             showlegend: false,
           }));
@@ -1135,17 +1325,54 @@
 
           btn.onclick = () => {
             const idx = selectedAges.indexOf(group);
+
             if (idx > -1) {
+              // desselecionar
               selectedAges.splice(idx, 1);
               setButtonColor(btn, group, false);
             } else {
+              // selecionar
               selectedAges.push(group);
               setButtonColor(btn, group, true);
             }
+
+            // animação do botão (já existia)
             btn.classList.add("flash-radial");
             setTimeout(() => btn.classList.remove("flash-radial"), 600);
-            updatePlot();
+
+            // --- Atualiza o gráfico e anima SOMENTE depois que o react terminar ---
+            const newTraces = makeTraces(selectedAges); // cria os traces atualizados
+            // índices dinâmicos: [0,1,2,...]
+            const traceIndices = newTraces.map((_, i) => i);
+
+            // atualiza e quando terminar anima a transição
+            Plotly.react("plot", newTraces, layout, config).then(() => {
+              Plotly.animate(
+                "plot",
+                {
+                  data: newTraces,
+                  traces: traceIndices,
+                  layout: {
+                    transition: {
+                      duration: 600,
+                      easing: "cubic-in-out",
+                    },
+                  },
+                },
+                {
+                  transition: {
+                    duration: 600,
+                    easing: "cubic-in-out",
+                  },
+                  frame: {
+                    duration: 500,
+                    redraw: false,
+                  },
+                }
+              );
+            });
           };
+
           filterContainer.appendChild(btn);
         });
 
@@ -1179,7 +1406,6 @@
       // === BOTÕES DE TROCA DE ANO (2010 / 2022) ===
       const btn2010 = document.getElementById("btn-2010");
       const btn2022 = document.getElementById("btn-2022");
-
 
       btn2010.addEventListener("click", () => {
         if (btn2010.classList.contains("ativo")) return;

@@ -1,514 +1,285 @@
 <html>
   <head>
     <meta charset="utf-8" />
+
+    <!-- FontAwesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
   </head>
+
   <body>
-    <div>
-      <script type="text/javascript">
-        window.PlotlyConfig = { MathJaxConfig: "local" };
-      </script>
-      <script
-        charset="utf-8"
-        src="https://cdn.plot.ly/plotly-3.3.0.min.js"
-        integrity="sha256-bO3dS6yCpk9aK4gUpNELtCiDeSYvGYnK7jFI58NQnHI="
-        crossorigin="anonymous"
-      ></script>
-      <div
-        id="88d5a49a-b7b5-47df-ac12-5e34a9deaf93"
-        class="plotly-graph-div"
-        style="height: 100%; width: 100%"
-      ></div>
-      <script type="text/javascript">
-        window.PLOTLYENV = window.PLOTLYENV || {};
-        if (document.getElementById("88d5a49a-b7b5-47df-ac12-5e34a9deaf93")) {
-          Plotly.newPlot(
-            "88d5a49a-b7b5-47df-ac12-5e34a9deaf93",
-            [
-              {
-                name: "Crian\u00e7as de 0 a 4 anos",
-                offsetgroup: "1",
-                text: [
-                  "6.18%",
-                  "20.81%",
-                  "16.28%",
-                  "16.97%",
-                  "0.04%",
-                  "14.98%",
-                ],
-                textposition: "outside",
-                x: ["Centro", "Leste", "Norte", "Oeste", "Sudeste", "Sul"],
-                y: [6.18, 20.81, 16.28, 16.97, 0.04, 14.98],
-                type: "bar",
-              },
-              {
-                name: "Escolas Infantis Municipais",
-                offsetgroup: "2",
-                text: ["3.57%", "6.70%", "4.91%", "1.34%", "2.68%", "9.82%"],
-                textposition: "inside",
-                x: ["Centro", "Leste", "Norte", "Oeste", "Sudeste", "Sul"],
-                y: [3.57, 6.7, 4.91, 1.34, 2.68, 9.82],
-                type: "bar",
-              },
-              {
-                base: [3.57, 6.7, 4.91, 1.34, 2.68, 9.82],
-                name: "Escolas Infantis Particulares",
-                offsetgroup: "2",
-                text: [
-                  "16.52%",
-                  "12.95%",
-                  "3.12%",
-                  "10.27%",
-                  "3.57%",
-                  "24.55%",
-                ],
-                textposition: "inside",
-                x: ["Centro", "Leste", "Norte", "Oeste", "Sudeste", "Sul"],
-                y: [16.52, 12.95, 3.12, 10.27, 3.57, 24.55],
-                type: "bar",
-              },
-            ],
-            {
-              template: {
-                data: {
-                  histogram2dcontour: [
-                    {
-                      type: "histogram2dcontour",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                      colorscale: [
-                        [0.0, "#0d0887"],
-                        [0.1111111111111111, "#46039f"],
-                        [0.2222222222222222, "#7201a8"],
-                        [0.3333333333333333, "#9c179e"],
-                        [0.4444444444444444, "#bd3786"],
-                        [0.5555555555555556, "#d8576b"],
-                        [0.6666666666666666, "#ed7953"],
-                        [0.7777777777777778, "#fb9f3a"],
-                        [0.8888888888888888, "#fdca26"],
-                        [1.0, "#f0f921"],
-                      ],
-                    },
-                  ],
-                  choropleth: [
-                    {
-                      type: "choropleth",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                    },
-                  ],
-                  histogram2d: [
-                    {
-                      type: "histogram2d",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                      colorscale: [
-                        [0.0, "#0d0887"],
-                        [0.1111111111111111, "#46039f"],
-                        [0.2222222222222222, "#7201a8"],
-                        [0.3333333333333333, "#9c179e"],
-                        [0.4444444444444444, "#bd3786"],
-                        [0.5555555555555556, "#d8576b"],
-                        [0.6666666666666666, "#ed7953"],
-                        [0.7777777777777778, "#fb9f3a"],
-                        [0.8888888888888888, "#fdca26"],
-                        [1.0, "#f0f921"],
-                      ],
-                    },
-                  ],
-                  heatmap: [
-                    {
-                      type: "heatmap",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                      colorscale: [
-                        [0.0, "#0d0887"],
-                        [0.1111111111111111, "#46039f"],
-                        [0.2222222222222222, "#7201a8"],
-                        [0.3333333333333333, "#9c179e"],
-                        [0.4444444444444444, "#bd3786"],
-                        [0.5555555555555556, "#d8576b"],
-                        [0.6666666666666666, "#ed7953"],
-                        [0.7777777777777778, "#fb9f3a"],
-                        [0.8888888888888888, "#fdca26"],
-                        [1.0, "#f0f921"],
-                      ],
-                    },
-                  ],
-                  contourcarpet: [
-                    {
-                      type: "contourcarpet",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                    },
-                  ],
-                  contour: [
-                    {
-                      type: "contour",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                      colorscale: [
-                        [0.0, "#0d0887"],
-                        [0.1111111111111111, "#46039f"],
-                        [0.2222222222222222, "#7201a8"],
-                        [0.3333333333333333, "#9c179e"],
-                        [0.4444444444444444, "#bd3786"],
-                        [0.5555555555555556, "#d8576b"],
-                        [0.6666666666666666, "#ed7953"],
-                        [0.7777777777777778, "#fb9f3a"],
-                        [0.8888888888888888, "#fdca26"],
-                        [1.0, "#f0f921"],
-                      ],
-                    },
-                  ],
-                  surface: [
-                    {
-                      type: "surface",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                      colorscale: [
-                        [0.0, "#0d0887"],
-                        [0.1111111111111111, "#46039f"],
-                        [0.2222222222222222, "#7201a8"],
-                        [0.3333333333333333, "#9c179e"],
-                        [0.4444444444444444, "#bd3786"],
-                        [0.5555555555555556, "#d8576b"],
-                        [0.6666666666666666, "#ed7953"],
-                        [0.7777777777777778, "#fb9f3a"],
-                        [0.8888888888888888, "#fdca26"],
-                        [1.0, "#f0f921"],
-                      ],
-                    },
-                  ],
-                  mesh3d: [
-                    {
-                      type: "mesh3d",
-                      colorbar: { outlinewidth: 0, ticks: "" },
-                    },
-                  ],
-                  scatter: [
-                    {
-                      fillpattern: {
-                        fillmode: "overlay",
-                        size: 10,
-                        solidity: 0.2,
-                      },
-                      type: "scatter",
-                    },
-                  ],
-                  parcoords: [
-                    {
-                      type: "parcoords",
-                      line: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  scatterpolargl: [
-                    {
-                      type: "scatterpolargl",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  bar: [
-                    {
-                      error_x: { color: "#2a3f5f" },
-                      error_y: { color: "#2a3f5f" },
-                      marker: {
-                        line: { color: "#E5ECF6", width: 0.5 },
-                        pattern: {
-                          fillmode: "overlay",
-                          size: 10,
-                          solidity: 0.2,
-                        },
-                      },
-                      type: "bar",
-                    },
-                  ],
-                  scattergeo: [
-                    {
-                      type: "scattergeo",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  scatterpolar: [
-                    {
-                      type: "scatterpolar",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  histogram: [
-                    {
-                      marker: {
-                        pattern: {
-                          fillmode: "overlay",
-                          size: 10,
-                          solidity: 0.2,
-                        },
-                      },
-                      type: "histogram",
-                    },
-                  ],
-                  scattergl: [
-                    {
-                      type: "scattergl",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  scatter3d: [
-                    {
-                      type: "scatter3d",
-                      line: { colorbar: { outlinewidth: 0, ticks: "" } },
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  scattermap: [
-                    {
-                      type: "scattermap",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  scattermapbox: [
-                    {
-                      type: "scattermapbox",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  scatterternary: [
-                    {
-                      type: "scatterternary",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  scattercarpet: [
-                    {
-                      type: "scattercarpet",
-                      marker: { colorbar: { outlinewidth: 0, ticks: "" } },
-                    },
-                  ],
-                  carpet: [
-                    {
-                      aaxis: {
-                        endlinecolor: "#2a3f5f",
-                        gridcolor: "white",
-                        linecolor: "white",
-                        minorgridcolor: "white",
-                        startlinecolor: "#2a3f5f",
-                      },
-                      baxis: {
-                        endlinecolor: "#2a3f5f",
-                        gridcolor: "white",
-                        linecolor: "white",
-                        minorgridcolor: "white",
-                        startlinecolor: "#2a3f5f",
-                      },
-                      type: "carpet",
-                    },
-                  ],
-                  table: [
-                    {
-                      cells: {
-                        fill: { color: "#EBF0F8" },
-                        line: { color: "white" },
-                      },
-                      header: {
-                        fill: { color: "#C8D4E3" },
-                        line: { color: "white" },
-                      },
-                      type: "table",
-                    },
-                  ],
-                  barpolar: [
-                    {
-                      marker: {
-                        line: { color: "#E5ECF6", width: 0.5 },
-                        pattern: {
-                          fillmode: "overlay",
-                          size: 10,
-                          solidity: 0.2,
-                        },
-                      },
-                      type: "barpolar",
-                    },
-                  ],
-                  pie: [{ automargin: true, type: "pie" }],
-                },
-                layout: {
-                  autotypenumbers: "strict",
-                  colorway: [
-                    "#636efa",
-                    "#EF553B",
-                    "#00cc96",
-                    "#ab63fa",
-                    "#FFA15A",
-                    "#19d3f3",
-                    "#FF6692",
-                    "#B6E880",
-                    "#FF97FF",
-                    "#FECB52",
-                  ],
-                  font: { color: "#2a3f5f" },
-                  hovermode: "closest",
-                  hoverlabel: { align: "left" },
-                  paper_bgcolor: "#e3f2fb",
-                  plot_bgcolor: "#e3f2fb",
-                  polar: {
-                    bgcolor: "#E5ECF6",
-                    angularaxis: {
-                      gridcolor: "white",
-                      linecolor: "white",
-                      ticks: "",
-                    },
-                    radialaxis: {
-                      gridcolor: "white",
-                      linecolor: "white",
-                      ticks: "",
-                    },
-                  },
-                  ternary: {
-                    bgcolor: "#E5ECF6",
-                    aaxis: {
-                      gridcolor: "white",
-                      linecolor: "white",
-                      ticks: "",
-                    },
-                    baxis: {
-                      gridcolor: "white",
-                      linecolor: "white",
-                      ticks: "",
-                    },
-                    caxis: {
-                      gridcolor: "white",
-                      linecolor: "white",
-                      ticks: "",
-                    },
-                  },
-                  coloraxis: { colorbar: { outlinewidth: 0, ticks: "" } },
-                  colorscale: {
-                    sequential: [
-                      [0.0, "#0d0887"],
-                      [0.1111111111111111, "#46039f"],
-                      [0.2222222222222222, "#7201a8"],
-                      [0.3333333333333333, "#9c179e"],
-                      [0.4444444444444444, "#bd3786"],
-                      [0.5555555555555556, "#d8576b"],
-                      [0.6666666666666666, "#ed7953"],
-                      [0.7777777777777778, "#fb9f3a"],
-                      [0.8888888888888888, "#fdca26"],
-                      [1.0, "#f0f921"],
-                    ],
-                    sequentialminus: [
-                      [0.0, "#0d0887"],
-                      [0.1111111111111111, "#46039f"],
-                      [0.2222222222222222, "#7201a8"],
-                      [0.3333333333333333, "#9c179e"],
-                      [0.4444444444444444, "#bd3786"],
-                      [0.5555555555555556, "#d8576b"],
-                      [0.6666666666666666, "#ed7953"],
-                      [0.7777777777777778, "#fb9f3a"],
-                      [0.8888888888888888, "#fdca26"],
-                      [1.0, "#f0f921"],
-                    ],
-                    diverging: [
-                      [0, "#8e0152"],
-                      [0.1, "#c51b7d"],
-                      [0.2, "#de77ae"],
-                      [0.3, "#f1b6da"],
-                      [0.4, "#fde0ef"],
-                      [0.5, "#f7f7f7"],
-                      [0.6, "#e6f5d0"],
-                      [0.7, "#b8e186"],
-                      [0.8, "#7fbc41"],
-                      [0.9, "#4d9221"],
-                      [1, "#276419"],
-                    ],
-                  },
-                  xaxis: {
-                    gridcolor: "white",
-                    linecolor: "white",
-                    ticks: "",
-                    title: { standoff: 15 },
-                    zerolinecolor: "white",
-                    automargin: true,
-                    zerolinewidth: 2,
-                  },
-                  yaxis: {
-                    gridcolor: "white",
-                    linecolor: "white",
-                    ticks: "",
-                    title: { standoff: 15 },
-                    zerolinecolor: "white",
-                    automargin: true,
-                    zerolinewidth: 2,
-                  },
-                  scene: {
-                    xaxis: {
-                      backgroundcolor: "#E5ECF6",
-                      gridcolor: "white",
-                      linecolor: "white",
-                      showbackground: true,
-                      ticks: "",
-                      zerolinecolor: "white",
-                      gridwidth: 2,
-                    },
-                    yaxis: {
-                      backgroundcolor: "#E5ECF6",
-                      gridcolor: "white",
-                      linecolor: "white",
-                      showbackground: true,
-                      ticks: "",
-                      zerolinecolor: "white",
-                      gridwidth: 2,
-                    },
-                    zaxis: {
-                      backgroundcolor: "#E5ECF6",
-                      gridcolor: "white",
-                      linecolor: "white",
-                      showbackground: true,
-                      ticks: "",
-                      zerolinecolor: "white",
-                      gridwidth: 2,
-                    },
-                  },
-                  shapedefaults: { line: { color: "#2a3f5f" } },
-                  annotationdefaults: {
-                    arrowcolor: "#2a3f5f",
-                    arrowhead: 0,
-                    arrowwidth: 1,
-                  },
-                  geo: {
-                    bgcolor: "white",
-                    landcolor: "#E5ECF6",
-                    subunitcolor: "white",
-                    showland: true,
-                    showlakes: true,
-                    lakecolor: "white",
-                  },
-                  title: { x: 0.05 },
-                  mapbox: { style: "light" },
-                },
-              },
-              barmode: "group",
-              title: {
-                text: "CRIAN\u00c7AS E ESCOLAS INFANTIS POR REGI\u00c3O",
-                font: {
-                  family: "Segoe UI",
-                  size: 21,
-                  color: "#154389",
-                  weight: "bold",
-                },
-                x: 0,
-                xanchor: "left",
-              },
-              yaxis: { title: { text: "Propor\u00e7\u00e3o (%)" } },
-              xaxis: { title: { text: "" } },
-              plot_bgcolor: "#e3f2fb",
-              annotations: [
-                {
-                  font: { color: "#666", size: 10 },
-                  showarrow: false,
-                  text: "Fonte: IBGE Censo (2022) \u002f Censo Escolar (2024).",
-                  x: 1,
-                  xref: "paper",
-                  y: -0.08,
-                  yref: "paper",
-                },
-              ],
-            },
-            { displayModeBar: false, responsive: true }
-          );
-        }
-      </script>
+    <div class="chart-section">
+      <!-- Título -->
+      <h2 class="chart-title">CRIANÇAS E ESCOLAS INFANTIS POR REGIÃO — 2022</h2>
+
+      <!-- Fonte -->
+      <p class="chart-subtitle">
+        Fonte: IBGE / Consolidação Municipal (Censo 2022).
+      </p>
+
+      <!-- Botões estilo pill -->
+      <div class="btns-container">
+        <button class="chart-btn ativo btn-criancas" data-key="criancas">
+          <i class="fa-solid fa-child"></i> Crianças
+        </button>
+
+        <button class="chart-btn ativo btn-municipais" data-key="municipais">
+          <i class="fa-solid fa-school"></i> Municipais
+        </button>
+
+        <button
+          class="chart-btn ativo btn-particulares"
+          data-key="particulares"
+        >
+          <i class="fa-solid fa-building-columns"></i> Particulares
+        </button>
+      </div>
+
+      <!-- Gráfico -->
+      <div id="chart"></div>
     </div>
+
+    <style>
+      /* ====== LAYOUT ====== */
+
+      .chart-section {
+        width: 100%;
+        margin-top: 20px;
+      }
+
+      .chart-title {
+        font-family: "Segoe UI", sans-serif;
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: #1d2d50;
+        margin-bottom: 4px;
+        padding-left: 40px;
+      }
+
+      .chart-subtitle {
+        font-family: "Segoe UI", sans-serif;
+        font-size: 14px;
+        color: #4a5a77;
+        margin-bottom: 22px;
+        padding-left: 40px;
+      }
+
+      /* ====== BOTÕES PILL ====== */
+
+      .btns-container {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 18px;
+        padding-left: 40px;
+      }
+
+      .chart-btn {
+        border: none;
+        padding: 10px 22px;
+        border-radius: 999px;
+        cursor: pointer;
+        font-size: 15px;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        background: #777; /* fallback */
+        box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+        transition: background 0.35s ease, color 0.35s ease, opacity 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .chart-btn:hover {
+        transform: translateY(-3px);
+        opacity: 1;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.18);
+      }
+
+      .chart-btn.ativo {
+        transform: translateY(-2px);
+        opacity: 1;
+      }
+
+      /* Quando o botão NÃO está ativo → fica cinza */
+      .chart-btn:not(.ativo) {
+        background: #b9c2cc !important;
+        color: #2f3b52 !important;
+        opacity: 0.7;
+        box-shadow: none;
+        transform: none;
+      }
+
+      /* CORES QUE VOCÊ JÁ USA */
+      .btn-criancas {
+        background: #e74c3c;
+      }
+
+      .btn-municipais {
+        background: #3498db;
+      }
+
+      .btn-particulares {
+        background: #2ecc71;
+      }
+
+      /* ====== GRÁFICO ====== */
+
+      #chart {
+        height: 500px !important;
+      }
+
+      .plotly-tooltip {
+        background: #ffffffee !important;
+        backdrop-filter: blur(6px);
+        border: 1px solid #d7e0ea !important;
+        border-radius: 12px !important;
+        padding: 10px 14px !important;
+
+        color: #1d2d50 !important;
+        font-family: "Segoe UI", sans-serif;
+        font-size: 14px !important;
+        line-height: 1.4em !important;
+
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.08) !important;
+
+        transform: translateY(-6px);
+        transition: opacity 0.18s ease, transform 0.18s ease;
+      }
+
+      @media (max-width: 600px) {
+        .chart-title {
+          font-size: 1.05rem;
+          line-height: 1.3em;
+        }
+
+        .chart-subtitle {
+          font-size: 12px;
+          margin-bottom: 14px;
+        }
+
+        .btns-container {
+          flex-wrap: wrap;
+          gap: 10px;
+        }
+
+        .chart-btn {
+          font-size: 14px;
+          padding: 9px 18px;
+        }
+
+        #chart {
+          height: 380px !important; /* Melhor visual em telas pequenas */
+        }
+
+        /* Tooltip um pouco mais compacto */
+        .plotly-tooltip {
+          font-size: 12px !important;
+          padding: 8px 10px !important;
+        }
+      }
+    </style>
+
+    <!-- Plotly -->
+    <script src="https://cdn.plot.ly/plotly-3.3.0.min.js"></script>
+
+    <script>
+      const chartId = "chart";
+
+      const datasets = {
+        criancas: {
+          visible: true,
+          trace: {
+            name: "Crianças 0 a 4 anos",
+            offsetgroup: "1",
+            text: ["6.18%", "20.81%", "16.28%", "16.97%", "0.04%", "14.98%"],
+            textposition: "outside",
+            textfont: { color: "#1d2d50", size: 13 },
+            marker: { color: "#e74c3c" },
+            hovertemplate:
+              "<b>%{x}</b> – Crianças(0-4)<br>%{y}%<extra></extra>",
+            x: ["Centro", "Leste", "Norte", "Oeste", "Sudeste", "Sul"],
+            y: [6.18, 20.81, 16.28, 16.97, 0.04, 14.98],
+            type: "bar",
+          },
+        },
+
+        municipais: {
+          visible: true,
+          trace: {
+            name: "Escolas Municipais",
+            offsetgroup: "2",
+            text: ["3.57%", "6.70%", "4.91%", "1.34%", "2.68%", "9.82%"],
+            textposition: "outside",
+            textfont: { color: "#1d2d50", size: 13 },
+            marker: { color: "#3498db" },
+            hovertemplate:
+              "<b>%{x}</b> – Escolas Municipais<br>%{y}%<extra></extra>",
+            x: ["Centro", "Leste", "Norte", "Oeste", "Sudeste", "Sul"],
+            y: [3.57, 6.7, 4.91, 1.34, 2.68, 9.82],
+            type: "bar",
+          },
+        },
+
+        particulares: {
+          visible: true,
+          trace: {
+            name: "Escolas Particulares",
+            offsetgroup: "3",
+            text: ["16.52%", "12.95%", "3.12%", "10.27%", "3.57%", "24.55%"],
+            textposition: "outside",
+            textfont: { color: "#1d2d50", size: 13 },
+            marker: { color: "#2ecc71" },
+            hovertemplate:
+              "<b>%{x}</b> – Escolas Particulares<br>%{y}%<extra></extra>",
+            x: ["Centro", "Leste", "Norte", "Oeste", "Sudeste", "Sul"],
+            y: [16.52, 12.95, 3.12, 10.27, 3.57, 24.55],
+            type: "bar",
+          },
+        },
+      };
+
+      function renderChart() {
+        const traces = Object.entries(datasets)
+          .filter(([k, d]) => d.visible)
+          .sort(([a], [b]) => {
+            const ordem = { criancas: 1, municipais: 2, particulares: 3 };
+            return ordem[a] - ordem[b];
+          })
+          .map(([_, d]) => JSON.parse(JSON.stringify(d.trace)));
+
+        Plotly.react(
+          chartId,
+          traces,
+          {
+            barmode: "group",
+            font: { family: "Segoe UI", size: 13, color: "#1d2d50" },
+            plot_bgcolor: "rgba(0,0,0,0)",
+            paper_bgcolor: "rgba(0,0,0,0)",
+            yaxis: { gridcolor: "#dce6f3", zeroline: false },
+            xaxis: { gridcolor: "transparent" },
+            margin: { t: 20, b: 70, l: 50, r: 10 },
+            transition: { duration: 350 },
+            showlegend: false,
+          },
+          {
+            displayModeBar: false,
+          }
+        );
+      }
+
+      renderChart();
+
+      document.querySelectorAll(".chart-btn").forEach((btn) => {
+        btn.addEventListener("click", (e) => {
+          const key = e.currentTarget.dataset.key;
+          datasets[key].visible = !datasets[key].visible;
+          e.currentTarget.classList.toggle("ativo");
+          renderChart();
+        });
+      });
+    </script>
   </body>
 </html>

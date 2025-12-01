@@ -1,199 +1,334 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Sobre Nós</title>
 
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
 
     <style>
-        body {
-            margin: 0;
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #dceeff, #003a70);
-            color: #000;
-        }
+      /* ====== BASE ====== */
+      :root {
+        --azul-escuro: #003a70;
+        --azul-grad: #dceeff;
+        --glass-bg: rgba(255, 255, 255, 0.18);
+        --glass-border: rgba(255, 255, 255, 0.35);
+      }
 
-        header {
-            text-align: center;
-            padding: 40px 20px 20px;
-            color: #fff;
-            position: relative;
-        }
+      body {
+        margin: 0;
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(
+          135deg,
+          var(--azul-grad),
+          var(--azul-escuro)
+        );
+        color: #000;
+        overflow-x: hidden;
+      }
 
-        .btn-voltar {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            background: linear-gradient(90deg, #004d9d, #0066cc);
-            padding: 10px 18px;
-            border-radius: 8px;
-            text-decoration: none;
-            color: white;
-            font-weight: 600;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            transition: 0.2s;
-        }
+      /* ====== HEADER ====== */
+      header {
+        text-align: center;
+        padding: 60px 20px 40px;
+        color: #000;
+        position: relative;
+        animation: fadeDown 0.8s ease forwards;
+      }
 
-        .btn-voltar:hover {
-            background: linear-gradient(135deg, #0d4d7f, #0a60a8);
+      @keyframes fadeDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
         }
-
-        .container {
-            max-width: 1100px;
-            margin: auto;
-            padding: 20px;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
 
-        .sobre-projeto {
-            background: rgba(255, 255, 255, 0.85);
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-            margin-bottom: 40px;
-            opacity: 0;
-            animation: aparecer 0.8s ease forwards;
+      .btn-voltar {
+        position: absolute;
+        top: 25px;
+        left: 25px;
+        background: linear-gradient(90deg, #004d9d, #0066cc);
+        padding: 10px 18px;
+        border-radius: 10px;
+        text-decoration: none;
+        color: white;
+        font-weight: 600;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+        transition: 0.25s;
+      }
+
+      .btn-voltar:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+      }
+
+      /* ====== CONTAINER ====== */
+      .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+      }
+
+      /* ====== SOBRE O PROJETO (Glassmorphism) ====== */
+      .sobre-projeto {
+        background: var(--glass-bg);
+        backdrop-filter: blur(12px);
+        border: 1px solid var(--glass-border);
+        padding: 30px;
+        border-radius: 22px;
+        margin-bottom: 40px;
+        box-shadow: 0 8px 28px rgba(0, 0, 0, 0.15);
+        animation: waveIn 1.2s ease forwards;
+        opacity: 0;
+      }
+
+      /* ====== Efeito "ondas" de entrada ====== */
+      @keyframes waveIn {
+        0% {
+          opacity: 0;
+          transform: translateY(40px) scale(0.95);
         }
-
-        .cards {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 25px;
+        50% {
+          opacity: 0.5;
+          transform: translateY(-8px) scale(1.02);
         }
+        100% {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
 
+      h2 {
+        margin-top: 0;
+      }
+
+      /* ====== CARDS ====== */
+      .cards {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 28px;
+      }
+
+      .card {
+        width: 300px;
+        background: var(--glass-bg);
+        backdrop-filter: blur(14px);
+        border: 1px solid var(--glass-border);
+        padding: 22px;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+        animation: waveIn 1.2s ease forwards;
+        opacity: 0;
+        transition: 0.3s;
+      }
+
+      .card:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 12px 36px rgba(0, 0, 0, 0.25);
+      }
+
+      /* ====== IMAGENS ====== */
+      .card img {
+        width: 240px;
+        height: 240px;
+        border-radius: 20px;
+        object-fit: cover;
+        border: 4px solid var(--azul-escuro);
+        box-shadow: 0 0 14px rgba(0, 58, 112, 0.6);
+        transition: 0.35s;
+      }
+
+      /* Hover animado nas imagens */
+      .card img:hover {
+        transform: scale(1.07) rotate(1.5deg);
+        box-shadow: 0 0 20px rgba(0, 58, 112, 0.9);
+      }
+
+      /* ====== LINKS ====== */
+      .links a {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        margin: 8px;
+        text-decoration: none;
+        color: var(--azul-escuro);
+        font-weight: 600;
+        font-size: 15px;
+        transition: 0.25s;
+      }
+
+      .links a:hover {
+        opacity: 0.75;
+        transform: translateY(-2px);
+      }
+
+      footer {
+        margin-top: 60px;
+        text-align: center;
+        padding: 25px;
+        color: #fff;
+        background: rgba(0, 0, 0, 0.12);
+        backdrop-filter: blur(8px);
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+        font-size: 14px;
+        letter-spacing: 0.4px;
+      }
+
+      footer span.footer-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        transition: 0.25s;
+      }
+
+      footer span.footer-link i {
+        transition: 0.3s ease;
+      }
+
+      /* HOVER APLICADO EM TUDO JUNTO */
+      footer span.footer-link:hover {
+        transform: translateY(-2px);
+        opacity: 0.85;
+      }
+
+      footer span.footer-link:hover i {
+        transform: scale(1.2) rotate(8deg);
+      }
+
+      /* ====== RESPONSIVO ====== */
+      @media (max-width: 700px) {
         .card {
-            background: #fff;
-            padding: 20px;
-            border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-            text-align: center;
-            width: 300px;
-            opacity: 0;
-            animation: aparecer 0.8s ease forwards;
+          width: 90%;
         }
-
         .card img {
-            width: 240px;
-            height: 240px;
-            border-radius: 20px;
-            object-fit: cover;
-            margin-bottom: 5px;
-            border: 4px solid #003a70;
-            box-shadow: 0 0 10px rgba(0, 58, 112, 0.6);
+          width: 200px;
+          height: 200px;
         }
-
-        @keyframes aparecer {
-            from {
-                opacity: 0;
-                transform: translateY(25px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            margin: 8px;
-            text-decoration: none;
-            color: #003a70;
-            font-weight: 600;
-            font-size: 15px;
-        }
-
-        .links a:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 700px) {
-            .card {
-                width: 90%;
-            }
-
-            .card img {
-                width: 200px;
-                height: 200px;
-            }
-        }
-
+      }
     </style>
-</head>
-<body>
+  </head>
 
+  <body>
     <header>
-        <a href="{{ url_for('index') }}" class="btn-voltar">← Voltar</a>
-        <h1>Sobre Nós</h1>
+      <a href="{{ url_for('index') }}" class="btn-voltar">← Voltar</a>
+      <h1>Sobre Nós</h1>
     </header>
 
     <div class="container">
+      <section class="sobre-projeto">
+        <h2>Sobre o Projeto</h2>
+        <p>
+          O projeto tem como objetivo desenvolver uma plataforma que facilite a
+          visualização dos dados do Censo e ofereça suporte à Secretaria de
+          Urbanismo e Sustentabilidade na tomada de decisões, auxiliando na
+          definição da melhor distribuição dos recursos públicos.
+        </p>
+      </section>
 
-        <section class="sobre-projeto">
-            <h2>Sobre o Projeto</h2>
-            <p>
-                O projeto tem como objetivo desenvolver uma plataforma que facilite a visualização dos dados do Censo e ofereça suporte à Secretaria de Urbanismo e Sustentabilidade na tomada de decisões, auxiliando na definição da melhor distribuição dos recursos públicos.
-            </p>
-        </section>
+      <section class="cards">
+        <!-- CARD 1 -->
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/lucas.jpeg') }}" />
+          <h3>Lucas da Silva Alves</h3>
+          <p>Scrum Master (SM)</p>
+          <div class="links">
+            <a
+              href="https://www.linkedin.com/in/lucas-da-silva-alves-18852b2b3/"
+              ><i class="fab fa-linkedin"></i> LinkedIn</a
+            >
+            <a href="https://github.com/LuccasLukaDev"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
+        </div>
 
-        <section class="cards">
+        <!-- CARD 2 -->
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/wagner.jpeg') }}" />
+          <h3>Wagner Costa</h3>
+          <p>Product Owner (PO)</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/wagner-costa-391b0726/"
+              ><i class="fab fa-linkedin"></i> LinkedIn</a
+            >
+            <a href="https://github.com/Costa-Wagner"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
+        </div>
 
-            <div class="card">
-                <img src="{{ url_for('static', filename='images/lucas.jpeg') }}" alt="Foto do integrante">
-                <h3>Lucas da Silva Alves</h3>
-                <p>Scrum Master (SM)</p>
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/lucas-da-silva-alves-18852b2b3/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/LuccasLukaDev"><i class="fa-brands fa-github"></i> GitHub</a>
-                </div>
-            </div>
+        <!-- CARD 3 -->
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/chaim.jpeg') }}" />
+          <h3>Pedro Chaim</h3>
+          <p>Dev Team (DT)</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/pedrochaim/"
+              ><i class="fab fa-linkedin"></i> LinkedIn</a
+            >
+            <a href="https://github.com/Spockchaim"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
+        </div>
 
-            <div class="card">
-                <img src="{{ url_for('static', filename='images/wagner.jpeg') }}" alt="Foto do integrante">
-                <h3>Wagner Costa</h3>
-                <p>Product Owner (PO)</p>
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/wagner-costa-391b0726/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/Costa-Wagner"><i class="fa-brands fa-github"></i> GitHub</a>
-                </div>
-            </div>
+        <!-- CARD 4 -->
+        <div class="card">
+          <img src="{{ url_for('static', filename='images/pereira.jpeg') }}" />
+          <h3>Lucas Santos</h3>
+          <p>Dev Team (DT)</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/lucas-santostec/"
+              ><i class="fab fa-linkedin"></i> LinkedIn</a
+            >
+            <a href="https://github.com/tirolasca"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
+        </div>
 
-            <div class="card">
-                <img src="{{ url_for('static', filename='images/chaim.jpeg') }}" alt="Foto do integrante">
-                <h3>Pedro Chaim</h3>
-                <p>Dev Team (DT)</p>
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/pedrochaim/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/Spockchaim"><i class="fa-brands fa-github"></i> GitHub</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="{{ url_for('static', filename='images/pereira.jpeg') }}" alt="Foto do integrante">
-                <h3>Lucas Santos</h3>
-                <p>Dev Team (DT)</p>
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/lucas-santostec/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/tirolasca"><i class="fa-brands fa-github"></i> GitHub</a>
-                </div>
-            </div>
-
-            <div class="card">
-                <img src="{{ url_for('static', filename='images/pedro_lucas.jpeg') }}" alt="Foto do integrante">
-                <h3>Pedro Lucas</h3>
-                <p>Dev Team (DT)</p>
-                <div class="links">
-                    <a href="https://www.linkedin.com/in/pedro-lucas-76870237b/"><i class="fa-brands fa-linkedin"></i> LinkedIn</a>
-                    <a href="https://github.com/pedrodevroot"><i class="fa-brands fa-github"></i> GitHub</a>
-                </div>
-            </div>
-
-        </section>
+        <!-- CARD 5 -->
+        <div class="card">
+          <img
+            src="{{ url_for('static', filename='images/pedro_lucas.jpeg') }}"
+          />
+          <h3>Pedro Lucas</h3>
+          <p>Dev Team (DT)</p>
+          <div class="links">
+            <a href="https://www.linkedin.com/in/pedro-lucas-76870237b/"
+              ><i class="fab fa-linkedin"></i> LinkedIn</a
+            >
+            <a href="https://github.com/pedrodevroot"
+              ><i class="fab fa-github"></i> GitHub</a
+            >
+          </div>
+        </div>
+      </section>
     </div>
 
-</body>
+    <footer>
+      <span
+        class="footer-link"
+        onclick="window.open('https://github.com/janosystime', '_blank')"
+      >
+        <i class="fas fa-code icon-animated pulse"></i>
+        JanoSys Technologies
+      </span>
+    </footer>
+  </body>
 </html>

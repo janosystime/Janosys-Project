@@ -514,20 +514,40 @@ main section:hover {
 .footer-pmsjc {
   background: linear-gradient(180deg, #cfe2f3 1%, #003366);
   color: #fff;
-  font-size: 0.9rem;
-  padding: 15px 0;
-  margin-top: 1em;
+  padding: 18px 0;
+  margin-top: 1.5em;
   font-weight: 600;
+  animation: fadeIn 1s ease forwards;
+
   display: flex;
   justify-content: center;
   align-items: center;
-  gap: 10px;
-  height: 8em;
-  animation: fadeIn 1s ease forwards;
+  gap: 10px; /* <-- garante espaçamento entre ícone e texto */
+  font-size: 1rem;
 }
 
-.footer-pmsjc span:last-child {
-  opacity: 0.85;
+/* Link e ícone com comportamento uniforme */
+.footer-link,
+.footer-pmsjc i {
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.25s ease;
+}
+
+/* Hover com a mesma cor e comportamento */
+.footer-link:hover,
+.footer-pmsjc i:hover {
+  color: #0b1e33; /* azul escuro do hover dos ícones */
+  transform: translateY(-2px) scale(1.05);
+  text-decoration: none;
+}
+
+/* Divisor bonito */
+.divider {
+  opacity: 0.6;
+  margin: 0 8px;
+  user-select: none;
 }
 
 /* ANIMAÇÕES */
@@ -627,14 +647,14 @@ main section:hover {
   font-weight: 600;
   border-radius: 8px;
   text-decoration: none;
-  box-shadow: 0 3px 8px rgba(0,0,0,0.15);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
   transition: all 0.25s ease;
 }
 
 .btn-sobre:hover {
   background: linear-gradient(135deg, #0d4d7f, #0a60a8);
   transform: translateY(-2px);
-  box-shadow: 0 6px 14px rgba(0,0,0,0.22);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.22);
 }
 
 .btn-sobre i {

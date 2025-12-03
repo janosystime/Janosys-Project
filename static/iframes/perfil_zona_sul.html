@@ -1,23 +1,147 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Região Sul - SJC (Interativo)</title>
-</head>
-<body>
-<div style="font-family: 'Lato', 'Open Sans', Arial, sans-serif; border: 1px solid #ddd; border-left: 5px solid #007bff; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9;">
-    <h3 style="color: #007bff; border-bottom: 2px solid #007bff; padding-bottom: 5px; margin-top: 0;">🥇 Região Sul: O Gigante Domiciliar e de Renda Média-Baixa</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 10px;"><strong>👥 População Absoluta:</strong> Maior concentração populacional da cidade (237.572 habitantes), ideal para serviços de alto volume. <span style="cursor: help; color: #007bff; font-weight: bold;" title="Censo IBGE 2022 (Dados de População e Crescimento)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>📈 Estabilidade Demográfica:</strong> Crescimento sólido de 15,28% (2010 a 2022), indicando um mercado consolidado e estável. <span style="cursor: help; color: #007bff; font-weight: bold;" title="Censo IBGE 2022 (Dados de População e Crescimento)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🏘️ Densidade Domiciliar:</strong> Alto número de domicílios (91.878), facilitando a logística e a distribuição. <span style="cursor: help; color: #007bff; font-weight: bold;" title="Censo IBGE 2022 (Dados de População e Crescimento)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>💵 Condições de Trabalho:</strong> Historicamente, com fragilidade nas condições de trabalho (dado 2010), foco em soluções de baixo custo e qualificação. <span style="cursor: help; color: #007bff; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🏭 Proximidade Industrial:</strong> Base logística, englobando áreas próximas à divisa com Jacareí. <span style="cursor: help; color: #007bff; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🛣️ Acessibilidade:</strong> Localização estratégica devido às importantes vias de acesso e ligação com a Dutra.</li>
-        <li style="margin-bottom: 10px;"><strong>🏡 Tipologia de Moradia:</strong> Predomínio de casas unifamiliares, forte para serviços de manutenção e segurança. <span style="cursor: help; color: #007bff; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>⚕️ Demanda Social:</strong> A fragilidade socioeconômica histórica indica alta demanda por serviços públicos e clínicas populares.</li>
-    </ul>
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil Região Sul - SJC</title>
+
+    <style>
+      body {
+        font-family: "Lato", "Open Sans", Arial, sans-serif;
+        padding: 40px;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border-left: 6px solid #007bff;
+        padding: 1.2px;
+        max-width: 1200px;
+        margin: auto;
+        transition: 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .card h3 {
+        color: #007bff;
+        margin-top: 0;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 6px;
+        font-size: 1.45rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 14px;
+        background: #f9fafc;
+        padding: 12px 14px;
+        border-radius: 8px;
+        border: 1px solid #dbe7ff;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        transition: 0.2s ease;
+      }
+
+      li:hover {
+        background: #e9f2ff;
+        border-color: #bcd5ff;
+      }
+
+      strong {
+        color: #333;
+      }
+
+      .info {
+        cursor: help;
+        color: #007bff;
+        font-weight: bold;
+        margin-left: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h3>🥇 Região Sul: O Gigante Domiciliar e de Renda Média-Baixa</h3>
+
+      <ul>
+        <li>
+          <strong>👥 População Absoluta:</strong> Maior concentração
+          populacional da cidade (237.572 habitantes), ideal para serviços de
+          alto volume.
+          <span
+            class="info"
+            title="Censo IBGE 2022 (Dados de População e Crescimento)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>📈 Estabilidade Demográfica:</strong> Crescimento sólido de
+          15,28% (2010 a 2022), indicando um mercado consolidado e estável.
+          <span
+            class="info"
+            title="Censo IBGE 2022 (Dados de População e Crescimento)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏘️ Densidade Domiciliar:</strong> Alto número de domicílios
+          (91.878), facilitando a logística e a distribuição.
+          <span
+            class="info"
+            title="Censo IBGE 2022 (Dados de População e Crescimento)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>💵 Condições de Trabalho:</strong> Historicamente, com
+          fragilidade nas condições de trabalho (dado 2010), foco em soluções de
+          baixo custo e qualificação.
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏭 Proximidade Industrial:</strong> Base logística, englobando
+          áreas próximas à divisa com Jacareí.
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🛣️ Acessibilidade:</strong> Localização estratégica devido às
+          importantes vias de acesso e ligação com a Dutra.
+        </li>
+
+        <li>
+          <strong>🏡 Tipologia de Moradia:</strong> Predomínio de casas
+          unifamiliares, forte para serviços de manutenção e segurança.
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>⚕️ Demanda Social:</strong> A fragilidade socioeconômica
+          histórica indica alta demanda por serviços públicos e clínicas
+          populares.
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>

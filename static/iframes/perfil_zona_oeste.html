@@ -1,40 +1,180 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Perfil Região Oeste - SJC (Interativo)</title>
-</head>
-<body>
-<div style="font-family: 'Lato', 'Open Sans', Arial, sans-serif; border: 1px solid #ddd; border-left: 5px solid #ffc107; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9;">
-    <h3 style="color: #ffc107; border-bottom: 2px solid #ffc107; padding-bottom: 5px; margin-top: 0;">🚀 Região Oeste: Elite, Inovação e Crescimento Acelerado</h3>
-    <ul style="list-style: none; padding: 0;">
-        
-        <li style="margin-bottom: 10px;"><strong>📈 Maior Aceleração:</strong> Maior crescimento populacional da cidade (56,65% de 2010 a 2022), prioritária para verticalização. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Censo IBGE 2022 (Dados de População e Crescimento)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>💵 Perfil de Renda Alta:</strong> Concentra bairros como Urbanova e Aquarius, ideal para serviços premium e luxo. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Análise Regional (Perfil de Bairros de Alto Padrão)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🏢 Polo Empresarial Moderno:</strong> Abriga a maior e mais moderna concentração de edifícios de escritórios e complexos corporativos de SJC.<span style="cursor: help; color: #ffc107; font-weight: bold;" title="Concentração de edifícios corporativos e sedes de empresas de alto padrão">ⓘ</span></li> 
-        <li style="margin-bottom: 10px;"><strong>🏡 Tipologia de Moradia:</strong> Alta concentração de apartamentos e condomínios fechados. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Análise Regional (Perfil de Bairros de Alto Padrão)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🌲 Meio Ambiente:</strong> Forte apelo à qualidade de vida e áreas verdes. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Institucional (Polos de Inovação e Geografia)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🚘 Saturação de Vias:</strong> Rápido crescimento impõe desafios críticos de tráfego, com congestionamento em vias principais. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Diagnóstico Síntese (Mobilidade e Acessibilidade) - 2020">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🎓 Educação de Qualidade:</strong> Concentração de escolas de alto padrão e universidades. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Institucional (Polos de Inovação e Geografia)">ⓘ</span></li>
-        
-        <li style="margin-bottom: 10px;">
-            <strong>💵 Perfil de Empregadores:</strong> Possui a maior proporção de moradores classificados como empregadore em SJC. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Leitura Técnica do Plano Diretor SJC - 2017">ⓘ</span>
-        </li>
-        <li style="margin-bottom: 10px;">
-            <strong>⚖️ Disparidade Social:</strong> Forte contraste entre Urbanova/Aquarius e Limoeiro/Zonas não regularizadas. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Estudos Socioeconômicos e Segregação Espacial">ⓘ</span>
-        </li>
-        <li style="margin-bottom: 10px;">
-            <strong>🚌 Desafio do Transporte:</strong> Dificuldade em adequar linhas e frequência do transporte público ao padrão de dispersão dos condomínios. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Diagnóstico PlanMob SJC (Transporte)">ⓘ</span>
-        </li>
-        <li style="margin-bottom: 10px;">
-            <strong>📚 Demanda por Creches:</strong> A população jovem crescente impõe alta pressão por vagas em creches e escolas públicas na região. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Planejamento Setorial de Educação - Crescimento Pop.">ⓘ</span>
-        </li>
-        <li style="margin-bottom: 10px;">
-            <strong>🏥 Demanda por Saúde (UBS):</strong> Necessidade de expansão  dos serviços de saúde básica (UBSs) para acompanhar o adensamento populacional. <span style="cursor: help; color: #ffc107; font-weight: bold;" title="Planejamento Setorial de Saúde - Demanda Crescente">ⓘ</span>
+
+    <style>
+      /* Hover nos itens */
+      .item-hover li {
+        transition: background-color 0.2s ease, transform 0.15s ease;
+        border-radius: 4px;
+        padding: 6px 4px;
+      }
+
+      .item-hover li:hover {
+        background-color: #fff7dd;
+        transform: translateX(4px);
+      }
+
+      /* Hover no card */
+      .card-oeste {
+        transition: transform 0.2s ease, box-shadow 0.25s ease;
+      }
+
+      .card-oeste:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+      }
+    </style>
+  </head>
+  <body>
+    <div
+      class="card-oeste"
+      style="
+        font-family: 'Lato', 'Open Sans', Arial, sans-serif;
+        border: 1px solid #e5e5e5;
+        border-left: 6px solid #ffca2c;
+        padding: 18px;
+        margin-bottom: 22px;
+        border-radius: 6px;
+        background-color: #fffef8;
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+      "
+    >
+      <h3
+        style="
+          color: #d39e00;
+          border-bottom: 2px solid #ffca2c;
+          padding-bottom: 6px;
+          margin-top: 0;
+          font-size: 1.25rem;
+        "
+      >
+        🚀 Região Oeste: Elite, Inovação e Crescimento Acelerado
+      </h3>
+
+      <ul
+        class="item-hover"
+        style="list-style: none; padding: 0; margin-top: 12px"
+      >
+        <li>
+          <strong>📈 Maior Aceleração:</strong> Lidera o crescimento
+          populacional de SJC (56,65% entre 2010 e 2022), sendo hoje o epicentro
+          da verticalização urbana.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Censo IBGE 2022 (Dados de População e Crescimento)"
+          ></span>
         </li>
 
-    </ul>
-</div>
-</body>
+        <li>
+          <strong>💵 Perfil de Renda Alta:</strong> Reúne bairros como Urbanova
+          e Aquarius, orientados ao consumo premium, serviços exclusivos e vida
+          de alto padrão.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Análise Regional (Perfil de Bairros de Alto Padrão)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏢 Polo Empresarial Moderno:</strong> Concentra os mais
+          avançados centros corporativos e coworkings de SJC, atraindo empresas
+          de tecnologia, escritórios de ponta e serviços especializados.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Concentração de edifícios corporativos e sedes de empresas de alto padrão"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏡 Tipologia de Moradia:</strong> Domínio de apartamentos
+          modernos, studios, condomínios verticais de luxo e bairros fechados de
+          alto padrão.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Análise Regional (Perfil de Bairros de Alto Padrão)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🌿 Meio Ambiente e Bem-Estar:</strong> A região valoriza
+          qualidade de vida, com parques, áreas verdes e empreendimentos que
+          priorizam vistas e contato com natureza.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Institucional (Polos de Inovação e Geografia)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🚘 Desafios Viários:</strong> O rápido adensamento pressiona
+          vias como Av. Cassiano Ricardo e Anel Viário, gerando
+          congestionamentos frequentes.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Diagnóstico Síntese (Mobilidade e Acessibilidade) - 2020"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🎓 Educação de Alta Qualidade:</strong> Forte presença de
+          escolas particulares, universidades e centros de formação
+          profissional.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Institucional (Polos de Inovação e Geografia)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>💼 Perfil dos Moradores:</strong> Maior proporção de moradores
+          classificados como empregadores no município — forte poder econômico e
+          empreendedor.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Leitura Técnica do Plano Diretor SJC - 2017"
+          ></span>
+        </li>
+
+        <li>
+          <strong>⚖️ Disparidade Social:</strong> Contrastes marcantes entre
+          Urbanova/Aquarius e Limoeiro/Zonas não regularizadas.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Estudos Socioeconômicos e Segregação Espacial"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🚌 Transporte Público:</strong> Estrutura dispersa dos
+          condomínios dificulta planejamento e frequência adequada de ônibus.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Diagnóstico PlanMob SJC (Transporte)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>📚 Pressão por Creches:</strong> Crescimento jovem acelerado e
+          necessidade de expansão da rede educacional.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Planejamento Setorial de Educação - Crescimento Pop."
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏥 Saúde Básica (UBS):</strong> Exige ampliação urgente de
+          unidades de saúde pela velocidade do adensamento populacional.
+          <span
+            style="cursor: help; color: #d39e00; font-weight: bold"
+            title="Planejamento Setorial de Saúde - Demanda Crescente"
+          ></span>
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>

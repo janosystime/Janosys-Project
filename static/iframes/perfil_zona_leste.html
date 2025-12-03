@@ -1,23 +1,150 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Região Leste - SJC (Interativo)</title>
-</head>
-<body>
-<div style="font-family: 'Lato', 'Open Sans', Arial, sans-serif; border: 1px solid #ddd; border-left: 5px solid #28a745; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9;">
-    <h3 style="color: #28a745; border-bottom: 2px solid #28a745; padding-bottom: 5px; margin-top: 0;">🥈 Região Leste: Expansão de Renda Média e Moradias</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 10px;"><strong>👥 População Absoluta:</strong> A segunda mais populosa (181.463 habitantes), crucial para a economia da cidade. <span style="cursor: help; color: #28a745; font-weight: bold;" title="Censo IBGE 2022 (Dados de População e Crescimento)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>📈 Crescimento Ativo:</strong> Taxa de crescimento superior à média (20,49% de 2010 a 2022), demandando novos investimentos. <span style="cursor: help; color: #28a745; font-weight: bold;" title="Censo IBGE 2022 (Dados de População e Crescimento)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>💲 Renda Segmentada:</strong> Necessita segmentação; áreas como Leste 1 registram renda média abaixo do padrão da cidade (dado 2010). <span style="cursor: help; color: #28a745; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🏡 Tipologia de Moradia:</strong> Predominância de casas (77%), forte para serviços de manutenção residencial. <span style="cursor: help; color: #28a745; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🛣️ Mobilidade:</strong> Apresenta desafios históricos de mobilidade urbana devido ao rápido crescimento. <span style="cursor: help; color: #28a745; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🏭 Base Industrial:</strong> Presença de zoneamento industrial, mercado para serviços B2B de apoio a PMEs. <span style="cursor: help; color: #28a745; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>👶 Demanda Jovem:</strong> Crescimento ativo sugere atração de famílias jovens e alta demanda por educação infantil.</li>
-        <li style="margin-bottom: 10px;"><strong>⚠️ Vulnerabilidade:</strong> Histórico de alta vulnerabilidade social em algumas áreas de ocupação recente (dado 2010), foco em inclusão social. <span style="cursor: help; color: #28a745; font-weight: bold;" title="Plano Diretor SJC (Análise Socioeconômica 2010)">ⓘ</span></li>
-    </ul>
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil Região Leste - SJC</title>
+
+    <style>
+      body {
+        font-family: "Lato", "Open Sans", Arial, sans-serif;
+        padding: 40px;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border-left: 6px solid #28a745; /* Verde da Leste */
+        padding: 1.9px;
+        max-width: 1200px;
+        margin: auto;
+        transition: 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .card h3 {
+        color: #28a745;
+        margin-top: 0;
+        border-bottom: 2px solid #28a745;
+        padding-bottom: 6px;
+        font-size: 1.4rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 14px;
+        background: #fafafa;
+        padding: 12px 14px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        transition: 0.2s ease;
+      }
+
+      li:hover {
+        background: #f2fbf4; /* leve verde para hover */
+        border-color: #bde7c7;
+      }
+
+      strong {
+        color: #333;
+      }
+
+      .info {
+        cursor: help;
+        color: #28a745;
+        font-weight: bold;
+        margin-left: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h3>🥈 Região Leste: Expansão de Renda Média e Moradias</h3>
+
+      <ul>
+        <li>
+          <strong>👥 População Absoluta:</strong> A segunda mais populosa
+          (181.463 habitantes), crucial para a economia da cidade.
+          <span
+            class="info"
+            title="Censo IBGE 2022 (Dados de População e Crescimento)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>📈 Crescimento Ativo:</strong> Taxa de crescimento superior à
+          média (20,49% de 2010 a 2022), demandando novos investimentos.
+          <span
+            class="info"
+            title="Censo IBGE 2022 (Dados de População e Crescimento)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>💲 Renda Segmentada:</strong> Necessita segmentação; áreas
+          como Leste 1 registram renda média abaixo do padrão da cidade (dado
+          2010).
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏡 Tipologia de Moradia:</strong> Predominância de casas
+          (77%), forte para serviços de manutenção residencial.
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🛣️ Mobilidade:</strong> Apresenta desafios históricos de
+          mobilidade urbana devido ao rápido crescimento.
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏭 Base Industrial:</strong> Presença de zoneamento
+          industrial, mercado para serviços B2B de apoio a PMEs.
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>👶 Demanda Jovem:</strong> Crescimento ativo sugere atração de
+          famílias jovens e alta demanda por educação infantil.
+        </li>
+
+        <li>
+          <strong>⚠️ Vulnerabilidade:</strong> Histórico de alta vulnerabilidade
+          social em algumas áreas de ocupação recente (dado 2010), foco em
+          inclusão social.
+          <span
+            class="info"
+            title="Plano Diretor SJC (Análise Socioeconômica 2010)"
+          ></span>
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>

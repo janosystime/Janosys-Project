@@ -1,22 +1,139 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Perfil Região Centro - SJC (Interativo)</title>
-</head>
-<body>
-<div style="font-family: 'Lato', 'Open Sans', Arial, sans-serif; border: 1px solid #ddd; border-left: 5px solid #dc3545; padding: 15px; margin-bottom: 20px; border-radius: 5px; background-color: #f9f9f9;">
-    <h3 style="color: #dc3545; border-bottom: 2px solid #dc3545; padding-bottom: 5px; margin-top: 0;">✨ Região Centro: Hub de Negócios e População Flutuante</h3>
-    <ul style="list-style: none; padding: 0;">
-        <li style="margin-bottom: 10px;"><strong>👤 População Flutuante:</strong> Principal ponto de destino para trabalho e serviços, população residente é estável (72.401 habitantes). <span style="cursor: help; color: #dc3545; font-weight: bold;" title="Censo IBGE 2022 (Dados de População e Crescimento)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🏛️ Administrativo e Financeiro:</strong> Concentra órgãos públicos e grandes escritórios, mercado forte para serviços B2B. <span style="cursor: help; color: #dc3545; font-weight: bold;" title="Prefeitura SJC (Patrimônio e Uso do Solo Central)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🛒 Polo de Comércio e Serviços Regional:</strong> É o maior hub de comércio varejista e serviços essenciais (bancários, jurídicos, públicos) para toda a Região Metropolitana do Vale do Paraíba e Litoral Norte, atraindo um mercado consumidor de mais de 2,3 milhões de pessoas.<span style="cursor: help; color: #dc3545; font-weight: bold;" title="Abrangência regional do comércio e serviços de SJC">ⓘ</span></li>        <li style="margin-bottom: 10px;"><strong>🌳 Patrimônio e Lazer:</strong> Abriga parques (Vicentina Aranha e Parque da Cidade), foco em turismo e eventos. <span style="cursor: help; color: #dc3545; font-weight: bold;" title="Prefeitura SJC (Patrimônio e Uso do Solo Central)">ⓘ</span></li>
-        <li style="margin-bottom: 10px;"><strong>🎓 Educação:</strong> Sede de instituições e cursos, demanda por educação continuada e idiomas.</li>
-        <li style="margin-bottom: 10px;"><strong>🚶 Mobilidade Urbana:</strong> Alta densidade de pedestres, oportunidades em micromobilidade (patinetes, bicicletas).</li>
-        <li style="margin-bottom: 10px;"><strong>🏢 Verticalização Antiga:</strong> Ocupação densa, mercado para *retrofit* de edifícios antigos.</li>
-        <li style="margin-bottom: 10px;"><strong>🍴 Gastronomia:</strong> Maior variedade gastronômica, espaço para culinária internacional e *food service* inovador.</li>
-    </ul>
-</div>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Perfil Região Centro - SJC</title>
+
+    <style>
+      body {
+        font-family: "Lato", "Open Sans", Arial, sans-serif;
+        padding: 40px;
+      }
+
+      .card {
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+        border-left: 6px solid #dc3545;
+        padding: 1.8px;
+        max-width: 1200px;
+        margin: auto;
+        transition: 0.3s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .card h3 {
+        color: #dc3545;
+        margin-top: 0;
+        border-bottom: 2px solid #dc3545;
+        padding-bottom: 6px;
+        font-size: 1.4rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li {
+        margin-bottom: 14px;
+        background: #fafafa;
+        padding: 12px 14px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+        transition: 0.2s ease;
+      }
+
+      li:hover {
+        background: #fff5f5;
+        border-color: #f1b6b6;
+      }
+
+      strong {
+        color: #333;
+      }
+
+      .info {
+        cursor: help;
+        color: #dc3545;
+        font-weight: bold;
+        margin-left: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <h3>✨ Região Centro: Hub de Negócios e População Flutuante</h3>
+
+      <ul>
+        <li>
+          <strong>👤 População Flutuante:</strong> Principal ponto de destino
+          para trabalho e serviços, população residente é estável (72.401
+          habitantes).
+          <span
+            class="info"
+            title="Censo IBGE 2022 (Dados de População e Crescimento)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🏛️ Administrativo e Financeiro:</strong> Concentra órgãos
+          públicos e grandes escritórios, mercado forte para serviços B2B.
+          <span
+            class="info"
+            title="Prefeitura SJC (Patrimônio e Uso do Solo Central)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🛒 Polo de Comércio e Serviços Regional:</strong> É o maior
+          hub de comércio varejista e serviços essenciais para toda a RM Vale e
+          Litoral Norte, atraindo um mercado consumidor de mais de 2,3 milhões
+          de pessoas.
+          <span
+            class="info"
+            title="Abrangência regional do comércio e serviços de SJC"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🌳 Patrimônio e Lazer:</strong> Abriga parques (Vicentina
+          Aranha e Parque da Cidade), foco em turismo e eventos.
+          <span
+            class="info"
+            title="Prefeitura SJC (Patrimônio e Uso do Solo Central)"
+          ></span>
+        </li>
+
+        <li>
+          <strong>🎓 Educação:</strong> Sede de instituições e cursos, demanda
+          por educação continuada e idiomas.
+        </li>
+
+        <li>
+          <strong>🚶 Mobilidade Urbana:</strong> Alta densidade de pedestres,
+          oportunidades em micromobilidade (patinetes, bicicletas).
+        </li>
+
+        <li>
+          <strong>🏢 Verticalização Antiga:</strong> Ocupação densa, mercado
+          para retrofit de edifícios antigos.
+        </li>
+
+        <li>
+          <strong>🍴 Gastronomia:</strong> Maior variedade gastronômica, espaço
+          para culinária internacional e food service inovador.
+        </li>
+      </ul>
+    </div>
+  </body>
 </html>

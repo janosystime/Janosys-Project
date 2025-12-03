@@ -21,7 +21,7 @@
     />
     <meta
       property="og:image"
-      content="{{ url_for('static', filename='images/brasao.png') }}"
+      content="/Janosys-Project/static/images/brasao.png"
     />
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
@@ -32,20 +32,20 @@
     <link
       rel="icon"
       type="image/png"
-      href="{{ url_for('static', filename='images/brasao.png') }}"
+      href="/Janosys-Project/static/images/brasao.png"
     />
     <link
       rel="apple-touch-icon"
-      href="{{ url_for('static', filename='images/brasao.png') }}"
+      href="/Janosys-Project/static/images/brasao.png"
     />
 
     <link
       rel="stylesheet"
-      href="{{ url_for('static', filename='css/style.css') }}"
+      href="/Janosys-Project/static/css/style.css"
     />
     <link
       rel="preload"
-      href="{{ url_for('static', filename='css/style.css') }}"
+      href="/Janosys-Project/static/css/style.css"
       as="style"
     />
 
@@ -64,7 +64,7 @@
       <!-- HEADER -->
       <header class="header-pmsjc">
         <img
-          src="{{ url_for('static', filename='images/brasao.png') }}"
+          src="/Janosys-Project/static/images/brasao.png"
           alt="Brasão de São José dos Campos"
           width="80"
         />
@@ -79,7 +79,7 @@
           </p>
         </div>
         <img
-          src="{{ url_for('static', filename='images/bandeira.jpg') }}"
+          src="/Janosys-Project/static/images/bandeira.jpg"
           alt="Bandeira de São José dos Campos"
           width="80"
           id="bandeira"
@@ -141,14 +141,14 @@
 
           <div class="container-div-helper-img">
             <p>
-              <a class="btn-sobre" href="{{ url_for('sobre') }}">
+              <a class="btn-sobre" href="/Janosys-Project/templates/sobre.html">
                 <i class="fas fa-users"></i> Sobre Nós
               </a>
             </p>
           </div>
 
           <iframe
-            src="{{ url_for('static', filename='iframes/grafico_regioes.html') }}"
+            src="/Janosys-Project/static/iframes/grafico_regioes.html"
             frameborder="0"
             width="100%"
             height="682"
@@ -214,7 +214,7 @@
 
       function chamaGraphDensPop() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_regioes.html') }}";
+          "/Janosys-Project/static/iframes/grafico_regioes.html";
         labelCard1.textContent = "População Total";
         labelCard2.textContent = "Maior População";
         labelCard3.textContent = "Menor População";
@@ -225,7 +225,7 @@
 
       function chamaGraphEtariaRegiao() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_etaria_regiao.html') }}";
+          "/Janosys-Project/static/iframes/grafico_etaria_regiao.html";
         labelCard1.textContent = "Adultos (20-59)";
         labelCard2.textContent = "Região + Crianças";
         labelCard3.textContent = "Região + Idosos";
@@ -236,7 +236,7 @@
 
       function chamaGraphCreche() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_criancas_creches.html') }}";
+          "/Janosys-Project/static/iframes/grafico_criancas_creches.html";
         labelCard1.textContent = "Escolas Infantis Públicas";
         labelCard2.textContent = "Escolas Infantis Privadas";
         labelCard3.textContent = "Maior Cobertura da Rede Infantil";
@@ -247,7 +247,7 @@
 
       function chamaGraphIdoso() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_idoso_ubs.html') }}";
+          "/Janosys-Project/static/iframes/grafico_idoso_ubs.html";
         labelCard1.textContent = "Maior Cobertura da Rede de Atendimento";
         labelCard2.textContent = "Menor Cobertura da Rede de Atendimento";
         labelCard3.textContent = "Maior População Idosa";
@@ -258,7 +258,7 @@
 
       function chamaGraphRenda() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/grafico_renda.html') }}";
+          "/Janosys-Project/static/iframes/grafico_renda.html";
         labelCard1.textContent = "Maior Renda Média";
         labelCard2.textContent = "Menor Renda Média";
         labelCard3.textContent = "Renda Média da cidade em 2022";
@@ -269,7 +269,7 @@
 
       function chamaGraphPerfilCentro() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/perfil_zona_centro.html') }}";
+          "/Janosys-Project/static/iframes/perfil_zona_centro.html";
         labelCard1.textContent = "Polo Histórico e Cultural";
         labelCard2.textContent = "Abriga a Prefeitura e o Paço";
         labelCard3.textContent = "Parque Vicentina Aranha";
@@ -280,7 +280,7 @@
 
       function chamaGraphPerfilNorte() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/perfil_zona_norte.html') }}";
+          "/Janosys-Project/static/iframes/perfil_zona_norte.html";
         labelCard1.textContent = "Maior Área Rural de SJC";
         labelCard2.textContent = "Acesso à Estrada dos Bandeirantes";
         labelCard3.textContent = "Bairros com Chácaras e Sítios";
@@ -291,7 +291,7 @@
 
       function chamaGraphPerfilSul() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/perfil_zona_sul.html') }}";
+          "/Janosys-Project/static/iframes/perfil_zona_sul.html";
         labelCard1.textContent = "Maior Concentração Populacional";
         labelCard2.textContent = "Principal Área Industrial e Fabril";
         labelCard3.textContent = "Abriga o Parque Industrial";
@@ -302,7 +302,7 @@
 
       function chamaGraphPerfilSudeste() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/perfil_zona_sudeste.html') }}";
+          "/Janosys-Project/static/iframes/perfil_zona_sudeste.html";
         labelCard1.textContent = "Fácil Acesso à Rodovia";
         labelCard2.textContent = "Comércio e Serviços em Expansão";
         labelCard3.textContent = "Área com Potencial de Valorização";
@@ -313,7 +313,7 @@
 
       function chamaGraphPerfilLeste() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/perfil_zona_leste.html') }}";
+          "/Janosys-Project/static/iframes/perfil_zona_leste.html";
         labelCard1.textContent = "Foco em Tecnologia e Inovação";
         labelCard2.textContent = "Próxima ao Aeroporto SJC (SJK)";
         labelCard3.textContent = "Abriga o Parque Tecnológico";
@@ -324,7 +324,7 @@
 
       function chamaGraphPerfilOeste() {
         iframe.src =
-          "{{ url_for('static', filename='iframes/perfil_zona_oeste.html') }}";
+          "/Janosys-Project/static/iframes/perfil_zona_oeste.html";
         labelCard1.textContent = "Melhor Índice de Qualidade de Vida";
         labelCard2.textContent = "Concentra Condomínios de Alto Padrão";
         labelCard3.textContent = "Região do Urbanova e Colinas";
@@ -391,6 +391,6 @@
       });
     </script>
 
-    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+    <script src="/Janosys-Project/static/js/script.js"></script>
   </body>
 </html>

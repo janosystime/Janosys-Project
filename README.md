@@ -179,6 +179,14 @@ docker run -p 5000:5000 janosystime/api_01:latest
 ```
 ---
 
+---
+#### 4. Acesse o seu localhost através do link
+
+```bash
+http://localhost:5000
+```
+---
+
 ## 👷 Time <a id="time"></a>
 
 |      Membro       |    Função     |                                                                        GitHub                                                                         |                                                                                    Linkedin                                                                                     |

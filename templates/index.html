@@ -26,9 +26,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:locale" content="pt_BR" />
 
-    <title>
-      Prefeitura de São José dos Campos — Relatório Demográfico
-    </title>
+    <title>Prefeitura de São José dos Campos — Relatório Demográfico</title>
 
     <!-- Favicon -->
     <link
@@ -104,33 +102,40 @@
                 <i class="fas fa-child"></i> Crianças e Creches
               </a>
               <a onclick="chamaGraphIdoso()">
-                <i class="fas fa-user"></i> Idosos e Ubs
+                <i class="fas fa-user"></i> Idosos e UBS
               </a>
               <a onclick="chamaGraphRenda()">
                 <i class="fas fa-money-bill" aria-hidden="true"></i> Renda Média
               </a>
-                     <a onclick="chamaGraphPerfilCentro()">
-                <i class="fas fa-landmark" aria-hidden="true"></i> Perfil - Zona Centro
+              <a onclick="chamaGraphPerfilCentro()">
+                <i class="fas fa-landmark" aria-hidden="true"></i> Perfil - Zona
+                Central
               </a>
-                 <a onclick="chamaGraphPerfilNorte()">
-                <i class="fas fa-tree" aria-hidden="true"></i> Perfil - Zona Norte
+              <a onclick="chamaGraphPerfilNorte()">
+                <i class="fas fa-tree" aria-hidden="true"></i> Perfil - Zona
+                Norte
               </a>
-                 <a onclick="chamaGraphPerfilSul()">
-                <i class="fas fa-people-group" aria-hidden="true"></i> Perfil - Zona Sul
-              </a>
-                </a>
-                 <a onclick="chamaGraphPerfilSudeste()">
-                <i class="fas fa-industry" aria-hidden="true"></i> Perfil - Zona Sudeste
-              </a>
-                </a>
-                 <a onclick="chamaGraphPerfilLeste()">
-                <i class="fas fa-microchip" aria-hidden="true"></i> Perfil - Zona Leste
-              </a>
-                </a>
-                 <a onclick="chamaGraphPerfilOeste()">
-                <i class="fas fa-magnifying-glass-dollar" aria-hidden="true"></i> Perfil - Zona Oeste
+              <a onclick="chamaGraphPerfilSul()">
+                <i class="fas fa-people-group" aria-hidden="true"></i> Perfil -
+                Zona Sul
               </a>
 
+              <a onclick="chamaGraphPerfilSudeste()">
+                <i class="fas fa-industry" aria-hidden="true"></i> Perfil - Zona
+                Sudeste
+              </a>
+
+              <a onclick="chamaGraphPerfilLeste()">
+                <i class="fas fa-microchip" aria-hidden="true"></i> Perfil -
+                Zona Leste
+              </a>
+              <a onclick="chamaGraphPerfilOeste()">
+                <i
+                  class="fas fa-magnifying-glass-dollar"
+                  aria-hidden="true"
+                ></i>
+                Perfil - Zona Oeste
+              </a>
             </div>
           </div>
 
@@ -180,25 +185,21 @@
         title="Voltar ao topo"
       ></button>
 
-  <footer class="footer-pmsjc text-center">
+      <footer class="footer-pmsjc text-center">
+        <i class="fas fa-landmark icon-animated float"></i>
+        <span class="fw-bold">PMSJC</span>
 
-  <i class="fas fa-landmark icon-animated float"></i>
-  <span class="fw-bold">PMSJC</span>
+        <span class="divider">|</span>
 
-  <span class="divider">|</span>
-
-  <i class="fas fa-code icon-animated pulse"></i>
-  <a 
-    href="https://github.com/janosystime" 
-    target="_blank" 
-    class="fw-bold footer-link"
-  >
-    JanoSys Technologies
-  </a>
-
-</footer>
-
-
+        <i class="fas fa-code icon-animated pulse"></i>
+        <a
+          href="https://github.com/janosystime"
+          target="_blank"
+          class="fw-bold footer-link"
+        >
+          JanoSys Technologies
+        </a>
+      </footer>
     </div>
 
     <!-- SCRIPTS -->
@@ -244,18 +245,18 @@
         card3.textContent = "Centro";
       }
 
-      function chamaGraphIdoso(){
+      function chamaGraphIdoso() {
         iframe.src =
           "{{ url_for('static', filename='iframes/grafico_idoso_ubs.html') }}";
         labelCard1.textContent = "Maior Cobertura da Rede de Atendimento";
-        labelCard2.textContent = "Menor Cobertura da Rede de Atendimento" ;
+        labelCard2.textContent = "Menor Cobertura da Rede de Atendimento";
         labelCard3.textContent = "Maior População Idosa";
         card1.textContent = "Leste";
         card2.textContent = "Oeste";
         card3.textContent = "Sul";
       }
 
-            function chamaGraphRenda(){
+      function chamaGraphRenda() {
         iframe.src =
           "{{ url_for('static', filename='iframes/grafico_renda.html') }}";
         labelCard1.textContent = "Maior Renda Média";
@@ -266,7 +267,7 @@
         card3.textContent = "R$ 4.028,00";
       }
 
-                       function chamaGraphPerfilCentro(){
+      function chamaGraphPerfilCentro() {
         iframe.src =
           "{{ url_for('static', filename='iframes/perfil_zona_centro.html') }}";
         labelCard1.textContent = "Polo Histórico e Cultural";
@@ -277,7 +278,7 @@
         card3.textContent = "";
       }
 
-                 function chamaGraphPerfilNorte(){
+      function chamaGraphPerfilNorte() {
         iframe.src =
           "{{ url_for('static', filename='iframes/perfil_zona_norte.html') }}";
         labelCard1.textContent = "Maior Área Rural de SJC";
@@ -287,8 +288,8 @@
         card2.textContent = "";
         card3.textContent = "";
       }
-      
-                       function chamaGraphPerfilSul(){
+
+      function chamaGraphPerfilSul() {
         iframe.src =
           "{{ url_for('static', filename='iframes/perfil_zona_sul.html') }}";
         labelCard1.textContent = "Maior Concentração Populacional";
@@ -299,7 +300,7 @@
         card3.textContent = "";
       }
 
-                       function chamaGraphPerfilSudeste(){
+      function chamaGraphPerfilSudeste() {
         iframe.src =
           "{{ url_for('static', filename='iframes/perfil_zona_sudeste.html') }}";
         labelCard1.textContent = "Fácil Acesso à Rodovia";
@@ -310,7 +311,7 @@
         card3.textContent = "";
       }
 
-                       function chamaGraphPerfilLeste(){
+      function chamaGraphPerfilLeste() {
         iframe.src =
           "{{ url_for('static', filename='iframes/perfil_zona_leste.html') }}";
         labelCard1.textContent = "Foco em Tecnologia e Inovação";
@@ -321,7 +322,7 @@
         card3.textContent = "";
       }
 
-                       function chamaGraphPerfilOeste(){
+      function chamaGraphPerfilOeste() {
         iframe.src =
           "{{ url_for('static', filename='iframes/perfil_zona_oeste.html') }}";
         labelCard1.textContent = "Melhor Índice de Qualidade de Vida";

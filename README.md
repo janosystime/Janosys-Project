@@ -147,20 +147,15 @@ Desenvolver uma página que permita visualizar e interpretar os dados do Censo d
 
 Antes de iniciar a instalação, certifique-se de que você tenha os seguintes itens instalados na sua máquina:
 
-- [Python 3.10+](https://www.python.org/downloads/)
-- [MySQL Server](https://dev.mysql.com/downloads/mysql/)
 - [Git](https://git-scm.com/)
 - [pip](https://pip.pypa.io/en/stable/)
 - [Virtualenv (opcional, mas recomendado)](https://virtualenv.pypa.io/en/latest/)
+- [Docker](https://virtualenv.pypa.io/en/latest/)
 - Navegador web (Google Chrome, Firefox, etc.)
-- Bibliotecas Python:
-  - [`Flask`](https://flask.palletsprojects.com/)
-  - [`Pandas`](https://pandas.pydata.org/)
-  - [`Plotly`](https://plotly.com/python/)
 
 ---
 
-### 🚀 Passo a Passo para Rodar Localmente (MVP - Sprint 1)
+### 🚀 Passo a Passo para Rodar Localmente
 
 #### 1. Clone o repositório
 
@@ -168,12 +163,19 @@ Antes de iniciar a instalação, certifique-se de que você tenha os seguintes i
 git clone https://github.com/janosystime/Janosys-Project.git
 cd Janosys-Project
 ```
-
 ---
-#### 2. Instale as dependências iniciais do projeto
+#### 2. Baixe a imagem do projeto
 
 ```bash
-pip install -r requirements.txt
+docker pull janosystime/api_01:latest
+```
+---
+
+---
+#### 3. Inicie o projeto
+
+```bash
+docker run -p 5000:5000 janosystime/api_01:latest
 ```
 ---
 
